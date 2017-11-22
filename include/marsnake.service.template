@@ -1,0 +1,18 @@
+[Unit]
+Description=Marsnake Client Daemon
+
+[Service]
+Type=forking
+######################
+#
+# modify by installer 
+#
+######################
+#WorkingDirectory=
+#ExecStart=
+
+Restart=always
+RestartSec=600
+
+[Install]
+WantedBy=multi-user.target

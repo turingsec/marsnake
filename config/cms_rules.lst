@@ -1,0 +1,305 @@
+{
+    "discuz": [
+        {
+            "url": "/static/image/admincp/bg_repno.gif",
+            "md5": "403889213f03534a0651d7cfd6878b2c"
+        },
+        {
+            "url": "/",
+            "text": "<meta name=\"generator\" content=\"Discuz!",
+            "regexp": "<script src=\".*?logging\\.js"
+        }
+    ],
+    "phpwind": [
+        {
+            "url": "/res/js/dev/wind.js",
+            "md5": "7ad9ac3d647e00e12c615a06762430fe"
+        },
+        {
+            "url": "/",
+            "regexp": "<meta name=\"generator\" content=\"(phpwind|PHPWind)"
+        }
+    ],
+    "phpmyadmin": [
+        {
+            "url": "/",
+            "text": "<link rel=\"stylesheet\" type=\"text/css\" href=\"phpmyadmin.css.php",
+            "regexp": "<title>phpMyAdmin</title>"
+        }
+    ],
+    "wordpress": [
+        {
+            "url": "/wp-login.php",
+            "text": ["wp-core-ui", "click-backtoblog"]
+        }
+    ],
+    "zblog": [
+        {
+            "url": "/",
+            "regexp": "<link rel=\"stylesheet\" rev=\"stylesheet\" href=\".*zb_users"
+        }
+    ],
+    "emlog": [
+        {
+            "url": "/",
+            "regexp": ["include/lib/js/common_tpl.js", "Powered by emlog"]
+        }
+    ],
+    "phpcms": [
+        {
+            "url": "/",
+            "text": ["<link href=\"templates/default/skins/default/phpcms.css","Powered by Phpcms"],
+            "regexp": "Powered by (PHPCMS|Phpcms)"
+        },
+        {
+            "url": "/statics/images/icon/error.png",
+            "md5": "3c1bba4c2d2c0f9733ceff5f9f36baba"
+        }
+    ],
+    "dedecms": [
+        {
+            "url": "/",
+            "text": ["DedeAjax(","DedeCMS"],
+            "regexp": "Powered By <a href=\"http://www.dedecms.com/\""
+        }
+    ],
+    "dokuwiki": [
+        {
+            "url": "/",
+            "text": ["content=\"DokuWiki", "/lib/exe/css.php"]
+        }
+    ],
+    "hdwiki": [
+        {
+            "url": "/",
+            "text": ["Powered by HDWiki!","style/default/hdwiki.css"]
+        }
+    ],
+    "mediawiki": [
+        {
+            "url": "/",
+            "text": ["opensearch_desc.php","content=\"MediaWiki"]
+        }
+    ],
+    "php168": [
+        {
+            "url": "/",
+            "text": ["/images/default/inc.js","/images/default/default.js","/images/default/swfobject.js"]
+        }
+    ],
+    "thinkphp": [
+        {
+            "url": "/index.php/asasa",
+            "text": "ThinkPHP"
+        }
+    ],
+    "drupal": [
+        {
+            "url": "/",
+            "text": ["drupal\\.js", "Powered by <a href=\"http://drupal.org\">Drupal</a>"],
+            "regex": "<(?:link|style)[^>]+sites\/(?:default|all)\/(?:themes|modules)\/"
+
+        }
+    ],
+    "joomla": [
+        {
+            "url": "/",
+            "text": ["\/media\/system\/js", "Powered by <a href=\"http://www.joomla.org\">Joomla", "Joomla! Forum"]
+        }
+    ],
+    "cmseasy": [
+        {
+            "url": "/",
+            "text": ["Powered by CmsEasy", "content=\"CmsEasy"]
+        }
+    ],
+    "vbulletin": [
+        {
+            "url": "/",
+            "text": ["Powered by vBulletin", "content=\"vBulletin"]
+        }
+    ],
+    "ecshop": [
+        {
+            "url": "/",
+            "text": ["Powered by ECShop", "content=\"ECSHOP", "/api/cron.php"]
+        }
+    ],
+    "shopex": [
+        {
+            "url": "/",
+            "text": ["content=\"ShopEx"]
+        }
+    ],
+    "empirecms": [
+        {
+            "url": "/",
+            "text": ["Powered by EmpireCMS"]
+        }
+    ],
+    "metinfo": [
+        {
+            "url": "/",
+            "text": ["Powered by MetInfo", "content=\"MetInfo", "powered_by_metinfo"]
+        }
+    ],
+    "foosun": [
+        {
+            "url": "/",
+            "text": ["Created by DotNetCMS", "For Foosun"]
+        }
+    ],
+    "cmstop": [
+        {
+            "url": "/",
+            "text": ["/css/cmstop-common.css", "cmstop-list-text.css", "<a class=\"poweredby\" href=\"http://www.cmstop.com"]
+        }
+    ],
+    "jeecms": [
+        {
+            "url": "/",
+            "text": ["Powered by JEECMS", "http://www.jeecms.com"]
+        }
+    ],
+    "espcms": [
+        {
+            "url": "/",
+            "text": ["Powered by ESPCMS", "/templates/default/style/tempates_div.css"]
+        }
+    ],
+    "startbbs": [
+        {
+            "url": "/",
+            "text": "class=\"startbbs",
+            "regexp": "Powered by <a href=\"http://www.startbbs.com\""
+        }
+    ],
+    "74cms": [
+        {
+            "url": "/",
+            "text": ["74cms.com", "Powered by <a href=\"http://www.74cms.com/"]
+        }
+    ],
+    "waikucms": [
+        {
+            "url": "/",
+            "text": "Powered by <b>WaiKuCms"
+        },
+        {
+            "url": "/Public/Tpl/default/images/menu_line.gif",
+            "md5": "50c31163df5317f62b036287f6fe493b"
+        },
+        {
+            "url": "/Web/Tpl/default/images/menu_line.gif",
+            "md5": "50c31163df5317f62b036287f6fe493b"
+        }
+    ],
+    "easytalk": [
+        {
+            "url": "/Public/js/weibologin.js",
+            "text": "[EasyTalk]"
+        }
+    ],
+    "easytalk": [
+        {
+            "url": "/Public/js/weibologin.js",
+            "text": "[EasyTalk]"
+        }
+    ],
+    "08cms": [
+        {
+            "url": "/",
+            "text": ["cms08flash.js","js/floatwin.js"]
+        }
+    ],
+    "gxcms": [
+        {
+            "url": "/",
+            "text": "views/js/history.js"
+        }
+    ],
+    "kesioncms": [
+        {
+            "url": "/",
+            "text": ["/ks_inc/ajax.js","/ks_inc/stm"]
+        }
+    ],
+    "thinksaas": [
+        {
+            "url": "/",
+            "text": ["ThinkSAAS", "@thinksaas.cn"]
+        }
+    ],
+    "douphp": [
+        {
+            "url": "/",
+            "text": ["images/slide_show.js","images/global.js"]
+        }
+    ],
+    "discourse": [
+        {
+            "url": "/",
+            "text": ["Powered by <a href=\"http://www.discourse.org\">", "github.com/discourse/discourse version"]
+        }
+    ],
+    "fluxbb": [
+        {
+            "url": "/",
+            "text": ["<body id=\"fluxbb\">", "Powered by <a href=\"http://fluxbb.org/\">FluxBB</a>"]
+        }
+    ],
+    "phpbb": [
+        {
+            "url": "/",
+            "text": ["Powered by <a href=\"http://www.phpbb.com/\">phpBB", "phpBB style name: CFStyle"]
+        }
+    ],
+    "vanilla": [
+        {
+            "url": "/",
+            "text": ["vanilla/js/discussions.js", "<body id=\"vanilla_"]
+        }
+    ],
+    "cosmoshop": [
+        {
+            "url": "/",
+            "text": ["cosmoshop_functions.js","cosmoshop_formlib.js"]
+        }
+    ],
+    "opencart": [
+        {
+            "url": "/",
+            "text": ["Powered By <a href=\"http://www.opencart.com\">OpenCart","/catalog/view/javascript/common.js"]
+        }
+    ],
+    "oscommerce": [
+        {
+            "url": "/",
+            "text": ["osCommerce</a><br>Powered by", "class=\"infoBoxContents\">"]
+        }
+    ],
+    "bugzilla": [
+        {
+            "url": "/",
+            "text": ["enter_bug.cgi", "action=\"buglist.cgi"]
+        }
+    ],
+    "redmine": [
+        {
+            "url": "/",
+            "text": ["Redmine", "/redmine_"]
+        }
+    ],
+    "struts2": [
+        {
+            "url": "/",
+            "text": ["Struts Problem Report<"]
+        }
+    ],
+    "django": [
+        {
+            "url": "/",
+            "text": ["csrfmiddlewaretoken"]
+        }
+    ]
+}
