@@ -1,6 +1,6 @@
-Welcome to UniMaster
+Welcome to Marsnake
 ===========================
-UniMaster is an IT Infrastructure Security and Manage Platform
+Marsnake is an IT Infrastructure Security Operations Platform
 
 |                    |                             |
 |--------------------|-----------------------------|
@@ -107,7 +107,7 @@ python -m pip pycrypto install pycrypto psutil futures python-magic beautifulsou
 ```
 
 ### Step3. Register a cloud account
-Visit https://unimaster.turingsec.com to register a cloud account.  
+Visit https://www.marsnake.com to register a cloud account.  
 Cloud account used to manage your multiple devices via web panel.
 
 ### Step4. Launch ./install.sh script
