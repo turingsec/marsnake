@@ -80,7 +80,7 @@ class Kmodules():
 			if constant.ALLOW_MODULE_ID[cmd_id]["enabled"]:
 				if not self.maps.has_key(cmd_id):
 					print("{} not found".format(cmd_id))
-					raise
+					return
 				else:
 					self.executor.submit(run_mod, self.maps[cmd_id], payload, socket)
 					

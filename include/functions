@@ -674,7 +674,7 @@ InstallPythonModule() {
     while [ "$#" -ge "1" ]; do
         Display --indent 2 --text "- Installing ${1}. . ."
 
-        ${SUDO}${PIP_BINARY} install ${1} 2> ${INSTALL_LOG}
+        ${SUDO}${PIP_BINARY} install ${1} > ${INSTALL_LOG} 2>&1
 
         if [ $? -gt 0 ]; then
             InsertEmptyLine
