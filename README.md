@@ -2,7 +2,7 @@ Welcome to Marsnake
 ===========================
 Marsnake is an IT Infrastructure Security Operations Platform
 
-
+|                    |                             |
 |--------------------|-----------------------------|
 | Supported Versions | ![Supported Versions][vi]   |
 
@@ -44,6 +44,7 @@ This can be done in the following steps.
 Visit https://www.marsnake.com to register a cloud account.  
 Cloud account used to manage your multiple devices via web panel.
 
+
 ### Step2. Launch ./install.sh script
 This script help you to install Marsnake client daemon on your device.  
 We recommend you to launch script with root privilege to have a better experience.  
@@ -53,8 +54,10 @@ chmod +x install.sh
 ./install.sh
 ```
 
+
 ### Step3. Associate your cloud account with your device
 Enter your cloud account registed on Step1
+
 
 ### Step4. Enjoy
 You can visit https://www.marsnake.com to manage your devices
