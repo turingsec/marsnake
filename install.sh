@@ -173,8 +173,8 @@ fi
 PYTHON2_DEV="python-dev python-devel python2-devel"
 InstallPackage "${PYTHON2_DEV}" "Python Development Tools"
 
-MYSQL_DEV="libmysqlclient-dev mysql-devel mariadb-devel"
-InstallPackage "${MYSQL_DEV}" "Mysql Development Tools"
+#MYSQL_DEV="libmysqlclient-dev mysql-devel mariadb-devel"
+#InstallPackage "${MYSQL_DEV}" "Mysql Development Tools"
 
 LSHW_PACKAGE="lshw"
 InstallPackage "${LSHW_PACKAGE}" "lshw"
@@ -194,8 +194,9 @@ SearchRequiredBinary
 #
 ######################################
 InsertSection "Checking Essential Python Modules"
-REQUIRED_MODULES="psutil pycrypto futures python-magic beautifulsoup4 
-                paramiko redis pymongo MySQL-python lxml"
+REQUIRED_MODULES="psutil pycrypto futures"
+
+#python-magic beautifulsoup4 paramiko redis pymongo MySQL-python lxml
 
 CheckPythonModuleInstalled ${REQUIRED_MODULES}
 
