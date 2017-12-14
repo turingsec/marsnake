@@ -7,25 +7,17 @@ import os
 class Kconfig():
 	def __init__(self):
 		pass
-
+		
 	def init(self):
-		self.debug = constant.DEBUG
-
-		if self.debug:
-			self.server = constant.DEBUG_SERVERPORT
-			self.server_publickey = "DEBUG"
-			self.client_publickey = constant.DEBUG_PUBLIC_KEY
-			self.client_privatekey = constant.DEBUG_PRIVATE_KEY
-			self.credential = constant.DEBUG_CREDENTIAL
-		else:
-			self.server_url = constant.SERVER_URL
-			
-			self.server_publickey = self.read_server_publickey()
-			self.client_publickey = self.read_client_publickey()
-			self.client_privatekey = self.read_client_privatekey()
-			self.credential = self.read_credential().strip()
-			
-		self.log_path = constant.LOG_FILE
+		self.release = constant.RELEASE
+		self.server = constant.SERVER_URL
+		
+		self.server_publickey = self.read_server_publickey()
+		self.client_publickey = self.read_client_publickey()
+		self.client_privatekey = self.read_client_privatekey()
+		self.credential = self.read_credential().strip()
+		
+		self.log_path = constant.LOG_PATH
 		self.log_max_bytes = constant.LOG_MAX_BYTES
 		self.log_backup_count = constant.LOG_BACKUP_COUNT
 		

@@ -1,7 +1,6 @@
-VERSION = "v0.1"
+VERSION = "v0.2"
 
-DEBUG = False
-
+RELEASE = True
 TMP_DIRECTORY = ".marsnake"
 TMP_FILE = "tmp_file.zip"
 
@@ -15,17 +14,44 @@ CREDENTIAL = "config/credential"
 SERVER_PUBLIC_KEY = "config/server_public_key.pem"
 
 #LOG
-LOG_FILE = "log/marsnake.log"
+LOG_PATH = "log/marsnake.log"
 LOG_MAX_BYTES = 10 * 1024 * 1024
 LOG_BACKUP_COUNT = 5
 
-SERVER_URL = "gateway.turingsec.com:443"
-
+if RELEASE:
+	SERVER_URL = "gateway.turingsec.com:443"
+else:
+	SERVER_URL = "10.16.60.203:3000"
+	
 MSG_ID = []
 
 ALLOW_MODULE_ID = {
 	"1000" : {
 		"des" : "module/basic/get_info.py",
+		"enabled" : True
+	},
+	"1001" : {
+		"des" : "module/filesystem/open_dir.py",
+		"enabled" : True
+	},
+	"1002" : {
+		"des" : "module/filesystem/download_files.py",
+		"enabled" : True
+	},
+	"1003" : {
+		"des" : "module/filesystem/mkdir.py",
+		"enabled" : True
+	},
+	"1004" : {
+		"des" : "module/filesystem/delete_file_or_folder.py",
+		"enabled" : True
+	},
+	"1005" : {
+		"des" : "module/filesystem/upload.py",
+		"enabled" : True
+	},
+	"1006" : {
+		"des" : "module/filesystem/rename.py",
 		"enabled" : True
 	},
 	"1007" : {
@@ -68,8 +94,20 @@ ALLOW_MODULE_ID = {
 		"des" : "module/hardening/vulscan.py",
 		"enabled" : True
 	},
-	"1017" : {
-		"des" : "module/runshell.py",
+	"1018" : {
+		"des" : "module/filesystem/list_directory.py",
+		"enabled" : True
+	},
+	"1019" : {
+		"des" : "module/filesystem/paste.py",
+		"enabled" : True
+	},
+	"1020" : {
+		"des" : "module/filesystem/chmod.py",
+		"enabled" : True
+	},
+	"1021" : {
+		"des" : "module/filesystem/sync.py",
 		"enabled" : True
 	},
 	"1022" : {
@@ -96,8 +134,40 @@ ALLOW_MODULE_ID = {
 		"des" : "module/hardening/weakpwd_scan.py",
 		"enabled" : True
 	},
+	"1029" : {
+		"des" : "module/filesystem/execute.py",
+		"enabled" : True
+	},
 	"1030" : {
 		"des" : "module/status/process_detail.py",
+		"enabled" : True
+	},
+	"1031" : {
+		"des" : "module/filesystem/compress.py",
+		"enabled" : True
+	},
+	"1032" : {
+		"des" : "module/filesystem/decompress.py",
+		"enabled" : True
+	},
+	"1033" : {
+		"des" : "module/terminal/new_pty.py",
+		"enabled" : True
+	},
+	"1034" : {
+		"des" : "module/terminal/write_pty.py",
+		"enabled" : True
+	},
+	"1035" : {
+		"des" : "module/terminal/resize_pty.py",
+		"enabled" : True
+	},
+	"1036" : {
+		"des" : "module/terminal/kill_pty.py",
+		"enabled" : True
+	},
+	"1037" : {
+		"des" : "module/vnc/init_vnc.py",
 		"enabled" : True
 	}
 }

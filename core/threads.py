@@ -44,7 +44,6 @@ class Thread(threading.Thread):
     def terminate(self):
         """raises SystemExit in the context of the given thread, which should 
         cause the thread to exit silently (unless caught)"""
-        print("terminate")
         self.raise_exc(SystemExit)
         
 @singleton

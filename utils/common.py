@@ -5,6 +5,9 @@ system = sys.platform
 os_encoding = locale.getpreferredencoding() or "utf8"
 work_dir = ""
 
+def decode2utf8(data):
+    return data.decode(os_encoding)
+
 def add_module_path(path):
     sys.path.append(os.path.join(get_work_dir(), path))
     

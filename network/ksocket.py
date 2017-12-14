@@ -3,6 +3,7 @@ from utils.randomize import Krandom
 from config import constant
 from ctypes import create_string_buffer
 from core.security import Ksecurity
+from core.logger import Klogger
 import socket, json, struct, threading
 
 class stream():
@@ -13,12 +14,9 @@ class stream():
 		
 	def write(self, data):
 		if self.index + len(data) > self.size:
-			print(self.index)
-			print(len(data))
-			print(self.size)
-			print("")
+			Klogger().error("index:{} len(data):{} size:{}".format(self.index, len(data), self.size))
 			raise
-		
+			
 		for i in range(len(data)):
 			self.buffer[self.index] = data[i]
 			self.index += 1
@@ -92,12 +90,12 @@ class Ksocket():
 			request = self.sock.recv(constant.SOCKET_RECV_SIZE)
 			
 			if not len(request):
-				print("server closed!")
+				Klogger().info("server closed!")
 				break;
 				
 			self.input.write(request)
 			#self.print2hex(self.input.get_data(0, self.input.get_len()))
-			
+				
 			while self.handle_package():
 				pass
 
@@ -117,38 +115,34 @@ class Ksocket():
 		
 		payload = self.input.get_data(36, plen)
 		self.input.clear(total)
-
+		
 		self.handle_package_2(payload)
-
+		
 		return True
-
+		
 	def handle_package_2(self, payload):
 		if self.recv_count == 0:
 			payload = json.loads(payload)
-			print(payload)
+			Klogger().info("recv:{}".format(payload))
 			if payload["cmd_id"] == "10000":
 				Ksecurity().swap_publickey_with_server(self)		
-
+				
 		elif self.recv_count == 1:
 			payload = json.loads(payload)
-			print(payload)
+			Klogger().info("recv:{}".format(payload))
 			if payload["cmd_id"] == "1000":
 				payload["user_id"] = self.userid
 				Kmodules().create(self, payload)
 		else:
 			payload = Ksecurity().aes_decrypt(payload)
 			payload = json.loads(payload)
-			print(payload)
-			'''
-			if payload["cmd_id"] in constant.MSG_ID:
-				print("socket recv cmd_id:{}".format(payload["cmd_id"]))
-				
-				if "args" in payload:
-					print(payload["args"])
-			'''
+
+			if payload["cmd_id"] in ["1000", "1008", "10081"]:
+				Klogger().info("recv:{}".format(payload))
+
 			if payload["args"]["user_id"] == self.userid:
 				Kmodules().create(self, payload)
-
+				
 		self.recv_count += 1
 		
 	def response(self, payload):
@@ -159,26 +153,29 @@ class Ksocket():
 				print(payload)
 				print("")
 			'''
-			prefix = struct.pack("32s", Krandom().purely(32))
-			suffix = struct.pack("16s", Krandom().purely(16))
-			payload = json.dumps(payload)
-			
-			if Ksecurity().can_aes_encrypt():
-				payload = Ksecurity().aes_encrypt(payload)
-				
-			payload_len = struct.pack("<I", len(payload))
-
-			data = prefix + payload_len + payload + suffix
-			datalen = len(data)
-			send_bytes = 0
-			
 			with self.lock:
+				if payload["cmd_id"] in ["1000", "1008", "10081"]:
+					Klogger().info(payload)
+				
+				prefix = struct.pack("32s", Krandom().purely(32))
+				suffix = struct.pack("16s", Krandom().purely(16))
+				payload = json.dumps(payload)
+				
+				if Ksecurity().can_aes_encrypt():
+					payload = Ksecurity().aes_encrypt(payload)
+					
+				payload_len = struct.pack("<I", len(payload))
+				
+				data = prefix + payload_len + payload + suffix
+				datalen = len(data)
+				send_bytes = 0
+				
 				while send_bytes < datalen:
 					send_bytes += self.sock.send(data[send_bytes:])
-
+					
 		except Exception as e:
-			print e
-
+			Klogger().error(str(e))
+			
 	def close(self):
 		if hasattr(self, "sock"):
 			self.sock.close()

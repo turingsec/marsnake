@@ -15,12 +15,12 @@ echo -e \
 "  | |  | | (_| | |  \__ \ | | | (_| |   <  __/   \n"\
 "  |_|  |_|\__,_|_|  |___/_| |_|\__,_|_|\_\___|   \n"
 
-echo "What is Marsnake: "
+#echo "What is Marsnake: "
 
 COMPANY="Turing Security Technology Co., Ltd."
 COMPANY_ABBR="turingsec"
 PROGRAM="marsnake"
-PROGRAM_VERSION="v0.1"
+PROGRAM_VERSION="v0.2"
 PROGRAM_RELEASE_DATE="Oct 2017"
 PROGRAM_URL="https://www.marsnake.com"
 
