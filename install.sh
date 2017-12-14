@@ -194,7 +194,7 @@ SearchRequiredBinary
 #
 ######################################
 InsertSection "Checking Essential Python Modules"
-REQUIRED_MODULES="psutil pycrypto futures"
+REQUIRED_MODULES="psutil pycrypto futures ptyprocess"
 
 #python-magic beautifulsoup4 paramiko redis pymongo MySQL-python lxml
 
