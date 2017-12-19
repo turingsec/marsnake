@@ -1,7 +1,6 @@
 import sys
 from utils.singleton import singleton
 from network.launcher.connect_launcher import connect_launcher
-from network.launcher.proxy_launcher import proxy_launcher
 
 @singleton
 class Klauncher():
@@ -9,8 +8,7 @@ class Klauncher():
 	def __init__(self):
 		self.launcher = None
 		self.map = {
-			"connect" : connect_launcher,
-			"proxy" : proxy_launcher,
+			"connect" : connect_launcher
 		}
 		
 	def set_launcher(self, name):

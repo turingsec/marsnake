@@ -9,11 +9,11 @@ class Klogger():
 		self.logger = None
 		
 		dirname = os.path.dirname(Kconfig().log_path)
+		
 		if not os.path.exists(dirname):
 			os.mkdir(dirname)
 			
 	def init(self):
-		return
 		# create logger
 		logger_name = "loginfo"
 		

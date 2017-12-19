@@ -3,6 +3,8 @@ from network.ksocket import Ksocket
 from network.khttp import Khttp
 from utils.configuration import Kconfig
 from module.factory_module import Kmodules
+from core.logger import Klogger
+from core.event import Kevent
 import argparse, time, traceback
 
 class connect_launcher(base_launcher):
@@ -13,14 +15,8 @@ class connect_launcher(base_launcher):
 	def start(self):
 		while True:
 			try:
-				###For debug
-				if Kconfig().debug:
-					host, port = Kconfig().server.split(":")
-				else:
-					host, port, en_mods = Khttp().get_connection(Kconfig().server_url, Kconfig().credential)
-					Kmodules().unpacker(en_mods)
-					
-					print("return {} {}".format(host, port))
+				host, port, en_mods = Khttp().get_connection(Kconfig().server, Kconfig().credential)
+				Kmodules().unpacker(en_mods)
 
 				self.socket = Ksocket(host, port, Kconfig().credential)
 				
@@ -28,8 +24,11 @@ class connect_launcher(base_launcher):
 				self.socket.loop()
 				
 			except Exception as e:
+				Klogger().error(str(e))
 				traceback.print_exc()
-
+				
+			Kevent().do_disconnected()
+			
 			if self.socket:
 				self.socket.close()
 				self.socket = None

@@ -16,11 +16,11 @@ def init_config():
 	
 	if not Kconfig().init():
 		sys.exit(1)
-	
+		
+	Klogger().init()
 	Ksecurity().init()
 	Kmodules().init()
-	Klogger().init()
-	
+
 def init_network():
 	Klauncher().set_launcher(LAUNCHER)
 
@@ -28,9 +28,10 @@ if __name__ == '__main__':
 	try:
 		init_config()
 		init_network()
-
+		
 		Kthreads().apply_async(Klauncher().start, ())
 		Kthreads().join()
 
 	except Exception as e:
 		traceback.print_exc()
+		Klogger().error(str(e))
