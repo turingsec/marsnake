@@ -26,7 +26,7 @@ def terminal_reading(term, socket, session_id):
                 "session_id" : session_id,
                 "data" : data,
                 "error" : ""
-            });
+            })
             
             time.sleep(0.01)
     except Exception as e:
@@ -48,14 +48,14 @@ class Kptys(event):
         self.executor = ThreadPoolExecutor(max_workers = 1)
         
         event.__init__(self)
-
+        
     def on_initializing(self):
         pass
         
     def on_disconnected(self):
         """Override this to e.g. kill terminals on client disconnection.
         """
-        Klogger().debug("on_disconnected trigger!!")
+        Klogger().debug("on_disconnected trigger but do nothing!!")
         #self.terminate()
         
     def new_terminal(self, session_id, socket):
@@ -87,6 +87,7 @@ class Kptys(event):
             self.pty["terminal"].resize(rows, cols)
             
     def terminate(self):
+        Klogger().info("terminating pty")
         if self.pty:
             term = self.pty["terminal"]
             future = self.pty["future"]
