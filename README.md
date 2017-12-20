@@ -18,6 +18,7 @@ Marsnake is an IT Infrastructure Security Operations Platform
 * pycrypto
 * psutil
 * futures
+* ptyprocess
 
 ## Support OS
 | Distribution  | Release | Basic Info| Monitor | Vulscan | Hardening
@@ -41,7 +42,7 @@ This can be done in the following steps.
 4. Enjoy
 
 ### Step1. Register a cloud account
-Visit https://www.marsnake.com to register a cloud account.  
+Visit http://www.marsnake.com to register a cloud account.  
 Cloud account used to manage your multiple devices via web panel.
 
 
@@ -60,6 +61,6 @@ Enter your cloud account registed on Step1
 
 
 ### Step4. Enjoy
-You can visit https://www.marsnake.com to manage your devices
+You can visit http://www.marsnake.com to manage your devices
 
 [vi]: https://img.shields.io/badge/python-2.6%2C2.7-green.svg
