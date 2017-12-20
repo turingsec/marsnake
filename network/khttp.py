@@ -30,7 +30,7 @@ class Khttp():
 		data = "{};{}".format(userID, Ksecurity().get_pubkey())
 		encrypt = Ksecurity().rsa_long_encrypt(data, 200)
 		
-		Klogger().info("Request to Gateway server userid:{}".format(userID));
+		Klogger().info("Request to Gateway server {}:{} userid:{}".format(gate_host, gate_port, userID));
 		conn.request("POST", 
 					"/xxx", 
 					encrypt, 
@@ -38,7 +38,7 @@ class Khttp():
 					
 		res = conn.getresponse()
 		Klogger().info("Get Response From Gateway server status({})".format(res.status));
-
+		
 		if res.status == 200:
 			
 			data = res.read()

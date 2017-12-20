@@ -21,7 +21,7 @@ LOG_BACKUP_COUNT = 5
 if RELEASE:
 	SERVER_URL = "gateway.turingsec.com:443"
 else:
-	SERVER_URL = "10.16.60.203:3000"
+	SERVER_URL = "10.16.60.203:443"
 	
 MSG_ID = []
 

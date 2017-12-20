@@ -130,23 +130,23 @@ if [ ! -z "${PIP_BINARY}" ]; then
     Display --indent 2 --text "- pip" --result ${PIP_VERSION} --color GREEN
 else
     Display --indent 2 --text "- pip" --result "NOT FOUND" --color RED
-
+    
     if [ ${PRIVILEGED} -eq 1 ]; then
         CHECK="Y"
     else
         read -p "Do you want to install pip?(Y/n): " CHECK
     fi
-
+    
     if [ "$CHECK" = "" -o "$CHECK" = "Y" -o "$CHECK" = "y" ]; then
         ${SUDO}${PYTHON_BINARY} ${INCLUDE_DIR}/get-pip.py
-
+        
         if [ $? -eq 0 ]; then
             Display --indent 2 --text "- Install pip" --result DONE --color GREEN
         else
             Display --indent 2 --text "- Install pip" --result FAILED --color WARNING
             exit 1
         fi
-
+        
     else
         Display --indent 2 --text "- You need to install pip to continue"
         exit 1
@@ -184,6 +184,9 @@ InstallPackage "${OPENSSL_PACKAGE}" "OpenSSL toolkit"
 
 GCC_PACKAGE="gcc"
 InstallPackage "${GCC_PACKAGE}" "GNU Compiler Collection"
+
+IMLIB2_PACKAGE="libimlib2 imlib2"
+InstallPackage "${IMLIB2_PACKAGE}" "Image loading, manipulation library"
 
 #search again
 SearchRequiredBinary
