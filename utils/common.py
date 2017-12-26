@@ -14,6 +14,9 @@ def check_obj_is_string(s):
 def decode2utf8(data):
     return data.decode(os_encoding)
 
+def print_obj(obj):
+    print '\n'.join(['%s:%s' % item for item in obj.__dict__.items()])
+
 def add_module_path(path):
     sys.path.append(os.path.join(get_work_dir(), path))
     
@@ -289,3 +292,15 @@ def get_listen_port(ports):
                 ret.append(port)
                 
     return list(set(ret))
+
+def is_kernel_thread(proc):
+    if is_linux():
+        """Return True if proc is a kernel thread, False instead."""
+        try:
+            return os.getpgid(proc.pid) == 0
+        # Python >= 3.3 raises ProcessLookupError, which inherits OSError
+        except OSError:
+            # return False is process is dead
+            return False
+            
+    return False

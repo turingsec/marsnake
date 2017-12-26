@@ -42,7 +42,7 @@ class Kmodules():
 		else:
 			Klogger().error("unpack failed {} modules".format(len(self.modules)))
 			
-		#self.executor.submit(run_mod, self.modules["1014"], None, None)
+		self.executor.submit(run_mod, self.modules["1014"], None, None)
 		
 	def create(self, socket, payload):
 		cmd_id = payload["cmd_id"]

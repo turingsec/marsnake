@@ -1,4 +1,5 @@
 from utils.configuration import Kconfig
+from utils import common
 from utils.singleton import singleton
 import cPickle, os
 
@@ -8,9 +9,9 @@ class Kpickle():
 		
 		if not os.path.exists(dirname):
 			os.mkdir(dirname)
-
-		self.path = path
-
+			
+		self.path = os.path.join(common.get_work_dir(), path)
+		
 	def dump(self, obj):
 		with open(self.path, 'wb') as f:
 			cPickle.dump(obj, f, cPickle.HIGHEST_PROTOCOL)
@@ -20,10 +21,7 @@ class Kpickle():
 			return cPickle.load(f)
 			
 class Kresource():
-	def __init__(self):
-		self.begin_at = []
-		self.seconds = 0
-
+	def __init__(self, minute = False):
 		self.cpu = []
 		self.memory = []
 		self.net_io = {
@@ -36,7 +34,12 @@ class Kresource():
 			"write" : []
 		}
 		
-		self.procs = {}
+		if minute:
+			self.procs = []
+			self.begin_at = []
+		else:
+			self.procs = {}
+			self.seconds = 0
 
 @singleton
 class Kdatabase():
@@ -60,13 +63,13 @@ class Kdatabase():
 			self.db_objs["basic"] = {
 				"remark" : ""
 			}
-
+			
 		try:
 			self.db_objs["monitor"] = self.db_maps["monitor"].load()
 		except Exception as e:
 			self.db_objs["monitor"] = {
 				"status_second" : Kresource(),
-				"status_minute" : Kresource()
+				"status_minute" : Kresource(True)
 			}
 
 	def get_obj(self, key):
