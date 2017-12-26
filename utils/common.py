@@ -5,6 +5,12 @@ system = sys.platform
 os_encoding = locale.getpreferredencoding() or "utf8"
 work_dir = ""
 
+def check_obj_is_string(s):
+    if is_python2x():
+        return isinstance(s, basestring)
+    else:
+        return isinstance(s, str)
+        
 def decode2utf8(data):
     return data.decode(os_encoding)
 

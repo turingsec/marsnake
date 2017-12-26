@@ -14,7 +14,7 @@ def load_mod(mod_path):
 	except Exception as e:
 		Klogger().error(str(e))
 		traceback.print_exc()
-	
+		
 	return mod
 	
 def run_mod(mod_run, payload, socket):
@@ -42,6 +42,8 @@ class Kmodules():
 		else:
 			Klogger().error("unpack failed {} modules".format(len(self.modules)))
 			
+		#self.executor.submit(run_mod, self.modules["1014"], None, None)
+		
 	def create(self, socket, payload):
 		cmd_id = payload["cmd_id"]
 		

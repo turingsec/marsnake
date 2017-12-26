@@ -3,6 +3,7 @@ from network.launcher.launchers import Klauncher
 from module.factory_module import Kmodules
 from core.threads import Kthreads
 from core.security import Ksecurity
+from core.db import Kdatabase
 from core.logger import Klogger
 from utils import common
 from utils.configuration import Kconfig
@@ -18,6 +19,7 @@ def init_config():
 		sys.exit(1)
 		
 	Klogger().init()
+	Kdatabase().init()
 	Ksecurity().init()
 	Kmodules().init()
 
@@ -34,4 +36,4 @@ if __name__ == '__main__':
 
 	except Exception as e:
 		traceback.print_exc()
-		Klogger().error(str(e))
+		Klogger().error(e)

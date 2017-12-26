@@ -21,6 +21,9 @@ class Kconfig():
 		self.log_max_bytes = constant.LOG_MAX_BYTES
 		self.log_backup_count = constant.LOG_BACKUP_COUNT
 		
+		self.db_monitor = constant.DB_MONITOR
+		self.db_basic = constant.DB_BASIC
+		
 		if not self.server_publickey:
 			print("No server publickey file exists")
 			return False

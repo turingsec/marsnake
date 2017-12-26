@@ -1,6 +1,6 @@
 VERSION = "v0.2"
 
-RELEASE = True
+RELEASE = False
 TMP_DIRECTORY = ".marsnake"
 TMP_FILE = "tmp_file.zip"
 
@@ -17,6 +17,10 @@ SERVER_PUBLIC_KEY = "config/server_public_key.pem"
 LOG_PATH = "log/marsnake.log"
 LOG_MAX_BYTES = 10 * 1024 * 1024
 LOG_BACKUP_COUNT = 5
+
+#DB
+DB_MONITOR = "config/monitor.pkl"
+DB_BASIC = "config/basic.pkl"
 
 if RELEASE:
 	SERVER_URL = "gateway.turingsec.com:443"
@@ -92,6 +96,10 @@ ALLOW_MODULE_ID = {
 	},
 	"1016" : {
 		"des" : "module/hardening/vulscan.py",
+		"enabled" : True
+	},
+	"1017" : {
+		"des" : "module/basic/remark.py",
 		"enabled" : True
 	},
 	"1018" : {
