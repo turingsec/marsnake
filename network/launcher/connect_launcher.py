@@ -17,7 +17,7 @@ class connect_launcher(base_launcher):
 			try:
 				host, port, en_mods = Khttp().get_connection(Kconfig().server, Kconfig().credential)
 				Kmodules().unpacker(en_mods)
-
+				
 				self.socket = Ksocket(host, port, Kconfig().credential)
 				
 				self.socket.start()
@@ -32,5 +32,5 @@ class connect_launcher(base_launcher):
 			if self.socket:
 				self.socket.close()
 				self.socket = None
-
+				
 			time.sleep(10)

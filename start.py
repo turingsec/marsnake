@@ -31,8 +31,9 @@ if __name__ == '__main__':
 		init_config()
 		init_network()
 		
-		Kthreads().apply_async(Klauncher().start, ())
-		Kthreads().join()
+		Klauncher().start()
+		#Kthreads().apply_async(Klauncher().start, ())
+		#Kthreads().join()
 
 	except Exception as e:
 		traceback.print_exc()

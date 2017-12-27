@@ -1,6 +1,7 @@
 from utils.singleton import singleton
 from concurrent.futures import ThreadPoolExecutor
 from utils import common, import_helper
+from utils.randomize import Krandom
 from config import constant
 from core.logger import Klogger
 import sys, os, imp, traceback
@@ -18,12 +19,19 @@ def load_mod(mod_path):
 	return mod
 	
 def run_mod(mod_run, payload, socket):
+	tmp = Krandom().purely(8)
 	try:
-		mod_run(payload, socket)
+		if payload:
+			Klogger().info("command {} start {}".format(payload["cmd_id"], tmp))
+			mod_run(payload, socket)
+			Klogger().info("command {} stop  {}".format(payload["cmd_id"], tmp))
+		else:
+			mod_run(payload, socket)
 	except Exception as e:
 		Klogger().error(str(e))
 		traceback.print_exc()
-		
+		Klogger().info("command {} stop by error {}".format(payload["cmd_id"], tmp))
+
 @singleton
 class Kmodules():
 	def __init__(self):
@@ -31,7 +39,7 @@ class Kmodules():
 		
 	def init(self):
 		self.modules = {}
-		self.executor = ThreadPoolExecutor(max_workers = 10)
+		self.executor = ThreadPoolExecutor(max_workers = 2)
 		
 	def unpacker(self, data):
 		import cpacker
@@ -56,7 +64,7 @@ class Kmodules():
 					return
 				else:
 					self.executor.submit(run_mod, self.modules[cmd_id], payload, socket)
-					
+
 	def load_compiled(self, name, filename, code, ispackage = False):
 		#if data[:4] != imp.get_magic():
 		#	raise ImportError('Bad magic number in %s' % filename)
