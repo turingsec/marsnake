@@ -25,7 +25,7 @@ class Klogger():
 		rfh.setLevel(logging.DEBUG)
 		
 		# create formatter
-		fmt = "%(asctime)s [%(levelname)s] %(message)s"
+		fmt = "%(asctime)s [%(process)d/%(processName)s/%(thread)d/%(threadName)s] [%(levelname)s] %(message)s"
 		formatter = logging.Formatter(fmt)
 		
 		# add handler and formatter to logger

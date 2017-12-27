@@ -4,7 +4,7 @@ from utils import common, import_helper
 from utils.randomize import Krandom
 from config import constant
 from core.logger import Klogger
-import sys, os, imp, traceback
+import sys, imp, traceback
 
 def load_mod(mod_path):
 	mod_path = mod_path.replace("/", ".").rsplit(".", 1)[0]
@@ -20,6 +20,7 @@ def load_mod(mod_path):
 	
 def run_mod(mod_run, payload, socket):
 	tmp = Krandom().purely(8)
+	
 	try:
 		if payload:
 			Klogger().info("command {} start {}".format(payload["cmd_id"], tmp))

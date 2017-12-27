@@ -22,7 +22,7 @@ def init_config():
 	Kdatabase().init()
 	Ksecurity().init()
 	Kmodules().init()
-
+	
 def init_network():
 	Klauncher().set_launcher(LAUNCHER)
 

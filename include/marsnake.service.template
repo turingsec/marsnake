@@ -2,6 +2,7 @@
 Description=Marsnake Client Daemon
 
 [Service]
+Environment="DISPLAY=:0"
 Type=forking
 ######################
 #
