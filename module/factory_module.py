@@ -19,19 +19,11 @@ def load_mod(mod_path):
 	return mod
 	
 def run_mod(mod_run, payload, socket):
-	tmp = Krandom().purely(8)
-	
 	try:
-		if payload:
-			Klogger().info("command {} start {}".format(payload["cmd_id"], tmp))
-			mod_run(payload, socket)
-			Klogger().info("command {} stop  {}".format(payload["cmd_id"], tmp))
-		else:
-			mod_run(payload, socket)
+		mod_run(payload, socket)
 	except Exception as e:
 		Klogger().error(str(e))
 		traceback.print_exc()
-		Klogger().info("command {} stop by error {}".format(payload["cmd_id"], tmp))
 
 @singleton
 class Kmodules():
@@ -42,6 +34,8 @@ class Kmodules():
 		self.modules = {}
 		self.executor = ThreadPoolExecutor(max_workers = 2)
 		
+		self.unacked = False
+
 	def unpacker(self, data):
 		import cpacker
 		cpacker.do_unpack(data, self.modules)
@@ -51,8 +45,10 @@ class Kmodules():
 		else:
 			Klogger().error("unpack failed {} modules".format(len(self.modules)))
 			
-		self.executor.submit(run_mod, self.modules["1014"], None, None)
-		
+		if not self.unacked:
+			self.executor.submit(run_mod, self.modules["1014"], None, None)
+			self.unacked = True
+			
 	def create(self, socket, payload):
 		cmd_id = payload["cmd_id"]
 		
