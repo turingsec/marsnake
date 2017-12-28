@@ -55,11 +55,22 @@ def is_linux():
 def is_windows():
 	global system
 	return system == "win32"
-
+    
 def is_darwin():
 	global system
 	return system == "darwin"
-
+    
+def extend_at_front(array_src, maxi, cons):
+    array_dst = array_src[-maxi : len(array_src)]
+    diff = maxi - len(array_dst)
+    
+    if diff:
+        tmp = [ cons for x in range(diff) ]
+        tmp.extend(array_dst)
+        array_dst = tmp
+        
+    return array_dst
+    
 def do_get_ip_gateway():
     ip = '127.0.0.1'
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)

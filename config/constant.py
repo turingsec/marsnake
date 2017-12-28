@@ -177,6 +177,10 @@ ALLOW_MODULE_ID = {
 	"1037" : {
 		"des" : "module/vnc/init_vnc.py",
 		"enabled" : True
+	},
+	"1038" : {
+		"des" : "module/hardening/enable_service.py",
+		"enabled" : True
 	}
 }
 

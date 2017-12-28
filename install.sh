@@ -296,24 +296,28 @@ if [ "${CHECK}" = "" -o "${CHECK}" = "Y" -o "${CHECK}" = "y" ]; then
     AUTO_STARTING=0
     TMP_WORKDIR=$(echo ${WORKDIR} | sed 's/\//\\\//g')
     TMP_PYTHON_BINARY=$(echo ${PYTHON_BINARY} | sed 's/\//\\\//g')
-
+    
     cp ${INCLUDE_DIR}/${SYSV_SERVICE}.template ${INCLUDE_DIR}/${SYSV_SERVICE}
     
     sed -i 's/#dir=/dir="'${TMP_WORKDIR}'"/g' ${INCLUDE_DIR}/${SYSV_SERVICE}
     sed -i 's/#cmd=/cmd="'${TMP_PYTHON_BINARY}' start.py"/g' ${INCLUDE_DIR}/${SYSV_SERVICE}
-
+    
     chmod +x ${INCLUDE_DIR}/${SYSV_SERVICE}
-
+    
     if [ ! -z "${SYSTEMCTL_BINARY}" ]; then
         #As SELINUX policy limit, We had to copy init script into /usr/share directory
         ${SUDO}mkdir -p "${INSTALLATION_DIR}/${COMPANY_ABBR}/"
         INIT_SCRIPT="${INSTALLATION_DIR}/${COMPANY_ABBR}/${SYSV_SERVICE}"
-
+        
         cp ${INCLUDE_DIR}/${SYSTEMD_SERVICE}.template ${INCLUDE_DIR}/${SYSTEMD_SERVICE}
         
         sed -i 's/#WorkingDirectory=/WorkingDirectory='${TMP_WORKDIR}'/g' ${INCLUDE_DIR}/${SYSTEMD_SERVICE}
         sed -i 's/#ExecStart=/ExecStart='$(echo ${INIT_SCRIPT} | sed 's/\//\\\//g')' start/g' ${INCLUDE_DIR}/${SYSTEMD_SERVICE}
         #sed -i 's/#ExecStart=/ExecStart='${TMP_PYTHON_BINARY}' start.py/g' ${INCLUDE_DIR}/${SYSTEMD_SERVICE}
+
+        #Change Environment
+        ENV_DISPLAY=$(env | grep DISPLAY)
+        ENV_XAUTH=$(env | grep XAUTHORITY)
 
         ${SUDO}cp ${INCLUDE_DIR}/${SYSTEMD_SERVICE} /etc/systemd/system/
         ${SUDO}cp ${INCLUDE_DIR}/${SYSV_SERVICE} ${INIT_SCRIPT}
