@@ -23,7 +23,16 @@ def get_boot_time():
                 
                 if len(groups) == 4:
                     return groups
-                    
+                
+            pattern = re.compile(r"^Startup finished in (.+s) \(kernel\) \+ (.+s) \(userspace\) \= (.+s)")
+            match = pattern.match(data)
+            
+            if match:
+                groups = match.groups()
+                
+                if len(groups) == 3:
+                    return groups
+
     return None
 
 # @kind : 0 for systemd, 1 for upstart, 2 for SysV
