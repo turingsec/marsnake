@@ -164,7 +164,7 @@ def identifytype(path):
 def try_unicode(path):
     if type(path) != unicode:
         try:
-            return path.decode('utf-8')
+            return path.decode(os_encoding)
         except UnicodeDecodeError:
             pass
 
@@ -273,7 +273,7 @@ def enum_file_path(path, result):
 			abspath = os.sep.join([path, file])
 
 			if os.path.isdir(abspath):
-				do_zip_2(abspath, result)
+				enum_file_path(abspath, result)
 			else:
 				result.append(abspath)
 	else:
