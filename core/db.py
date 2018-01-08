@@ -28,7 +28,7 @@ class Kresource():
 			"tx" : [],
 			"rx" : []
 		}
-
+		
 		self.disk_io = {
 			"read" : [],
 			"write" : []
@@ -36,11 +36,12 @@ class Kresource():
 		
 		if minute:
 			self.procs = []
-			self.begin_at = []
+			self.times = []
+			self.minutes = 0
 		else:
 			self.procs = {}
 			self.seconds = 0
-
+			
 @singleton
 class Kdatabase():
 	def __init__(self):
@@ -48,9 +49,9 @@ class Kdatabase():
 		
 	def init(self):
 		'''
-			1min	1hours	6hours	1day		7days
-			60/s	60/min  360/min 144/10min	168/hour
-		'''
+	        6hours      2day        7days
+	        min         10min       hour
+	    '''
 		self.db_objs = {}
 		self.db_maps = {
 			"basic" : Kpickle(Kconfig().db_basic),

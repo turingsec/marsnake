@@ -5,7 +5,7 @@ TMP_DIRECTORY = ".marsnake"
 TMP_FILE = "tmp_file.zip"
 
 FILE_TRANSFER_SIZE_PER_TIME = 1 * 512 * 1024
-SOCKET_BUFFER_SIZE = 4 * 1024 * 1024
+SOCKET_BUFFER_SIZE = 10 * 1024 * 1024
 SOCKET_RECV_SIZE = 1 * 1024 * 1024
 
 RSA_PRIVATE_KEY = "config/private_key_2048.pem"
@@ -180,6 +180,14 @@ ALLOW_MODULE_ID = {
 	},
 	"1038" : {
 		"des" : "module/hardening/enable_service.py",
+		"enabled" : True
+	},
+	"1039" : {
+		"des" : "module/status/usage.py",
+		"enabled" : True
+	},
+	"1040" : {
+		"des" : "module/status/usage_proc.py",
 		"enabled" : True
 	}
 }
