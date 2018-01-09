@@ -48,10 +48,6 @@ class Kdatabase():
 		pass
 		
 	def init(self):
-		'''
-	        6hours      2day        7days
-	        min         10min       hour
-	    '''
 		self.db_objs = {}
 		self.db_maps = {
 			"basic" : Kpickle(Kconfig().db_basic),
