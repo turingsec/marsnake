@@ -315,9 +315,12 @@ def is_kernel_thread(proc):
             return False
             
     return False
-    
-def get_last_min():
-    a = int(time.time())
+
+def get_last_min(t):
+    if not t:
+        t = time.time()
+        
+    a = int(t)
     b = a % 60
     
     return a - b

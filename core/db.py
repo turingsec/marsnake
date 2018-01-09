@@ -20,28 +20,6 @@ class Kpickle():
 		with open(self.path, 'rb') as f:
 			return cPickle.load(f)
 			
-class Kresource():
-	def __init__(self, minute = False):
-		self.cpu = []
-		self.memory = []
-		self.net_io = {
-			"tx" : [],
-			"rx" : []
-		}
-		
-		self.disk_io = {
-			"read" : [],
-			"write" : []
-		}
-		
-		if minute:
-			self.procs = []
-			self.times = []
-			self.minutes = 0
-		else:
-			self.procs = {}
-			self.seconds = 0
-			
 @singleton
 class Kdatabase():
 	def __init__(self):
@@ -65,9 +43,38 @@ class Kdatabase():
 			self.db_objs["monitor"] = self.db_maps["monitor"].load()
 		except Exception as e:
 			self.db_objs["monitor"] = {
-				"status_second" : Kresource(),
-				"status_minute" : Kresource(True)
+				"cpu" : [],
+				"memory" : [],
+				"net_io" : {
+					"tx" : [],
+					"rx" : []
+				},
+				"disk_io" : {
+					"read" : [],
+					"write" : []
+				},
+				"procs" : [],
+				"times" : [],
+				"minutes" : 0
 			}
+
+		self.monitor_second = {
+				"cpu" : [],
+				"memory" : [],
+				"net_io" : {
+					"tx" : [],
+					"rx" : []
+				},
+				"disk_io" : {
+					"read" : [],
+					"write" : []
+				},
+				"procs" : {},
+				"seconds" : 0
+			}
+
+	def get_monitor_second(self):
+		return self.monitor_second
 
 	def get_obj(self, key):
 		if self.db_objs.has_key(key):
@@ -76,3 +83,6 @@ class Kdatabase():
 	def dump(self, key):
 		if self.db_objs.has_key(key):
 			self.db_maps[key].dump(self.db_objs[key])
+
+	def dump_minute(self):
+		self.db_maps["monitor"].dump(self.db_objs["monitor"])
