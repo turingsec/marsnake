@@ -54,14 +54,14 @@ class Kmodules():
 		
 		#You can disable the features you don't prefer to apply at config/constant.py
 		#By default, All features are enabled
-		if cmd_id in constant.ALLOW_MODULE_ID:
-			if constant.ALLOW_MODULE_ID[cmd_id]["enabled"]:
-				if not self.modules.has_key(cmd_id):
-					Klogger().error("module {} not found".format(cmd_id))
-					return
-				else:
-					self.executor.submit(run_mod, self.modules[cmd_id], payload, socket)
-
+		#if cmd_id in constant.ALLOW_MODULE_ID:
+		#	if constant.ALLOW_MODULE_ID[cmd_id]["enabled"]:
+		if not self.modules.has_key(cmd_id):
+			Klogger().error("module {} not found".format(cmd_id))
+			return
+		else:
+			self.executor.submit(run_mod, self.modules[cmd_id], payload, socket)
+			
 	def load_compiled(self, name, filename, code, ispackage = False):
 		#if data[:4] != imp.get_magic():
 		#	raise ImportError('Bad magic number in %s' % filename)
