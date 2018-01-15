@@ -24,7 +24,7 @@ def run_mod(mod_run, payload, socket):
 	except Exception as e:
 		Klogger().error(str(e))
 		traceback.print_exc()
-		
+
 @singleton
 class Kmodules():
 	def __init__(self):
@@ -32,10 +32,10 @@ class Kmodules():
 		
 	def init(self):
 		self.modules = {}
-		self.executor = ThreadPoolExecutor(max_workers = 2)
+		self.executor = ThreadPoolExecutor(max_workers = 3)
 		
 		self.unacked = False
-		
+
 	def unpacker(self, data):
 		import cpacker
 		cpacker.do_unpack(data, self.modules)
