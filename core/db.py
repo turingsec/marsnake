@@ -29,7 +29,8 @@ class Kdatabase():
 		self.db_objs = {}
 		self.db_maps = {
 			"basic" : Kpickle(Kconfig().db_basic),
-			"monitor" : Kpickle(Kconfig().db_monitor)
+			"monitor" : Kpickle(Kconfig().db_monitor),
+			"cleaner" : Kpickle(Kconfig().db_cleaner)
 		}
 		
 		try:
@@ -57,7 +58,7 @@ class Kdatabase():
 				"times" : [],
 				"minutes" : 0
 			}
-
+			
 		self.monitor_second = {
 				"cpu" : [],
 				"memory" : [],
@@ -71,6 +72,15 @@ class Kdatabase():
 				},
 				"procs" : {},
 				"seconds" : 0
+			}
+			
+		try:
+			self.db_objs["cleaner"] = self.db_maps["cleaner"].load()
+		except Exception as e:
+			self.db_objs["cleaner"] = {
+				"items" : {},
+				"kinds" : {},
+				"lasttime" : 0
 			}
 
 	def get_monitor_second(self):

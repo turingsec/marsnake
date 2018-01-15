@@ -228,7 +228,17 @@ def check_file_exists(path):
             return True
             
     return False
-    
+
+def get_directory_size(start_path = '.'):
+    total_size = 0
+
+    for dirpath, dirnames, filenames in os.walk(start_path):
+        for f in filenames:
+            fp = os.path.join(dirpath, f)
+            total_size += os.path.getsize(fp)
+
+    return total_size
+
 def grep(line, pattern):
     sub = re.findall(pattern, line)
     
