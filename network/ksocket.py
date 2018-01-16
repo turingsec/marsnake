@@ -137,7 +137,7 @@ class Ksocket():
 			payload = Ksecurity().aes_decrypt(payload)
 			payload = json.loads(payload)
 			
-			if payload["cmd_id"] in ["1000", "1008", "10081", "1039", "1040", "1041", "1042"]:
+			if payload["cmd_id"] in ["1000", "1008", "10081", "1039"]:
 				Klogger().info("recv:{}".format(payload))
 				
 			if payload["args"]["user_id"] == self.userid:
@@ -154,9 +154,9 @@ class Ksocket():
 				print("")
 			'''
 			with self.lock:
-				if payload["cmd_id"] in ["1000", "1008", "10081", "1039", "1040", "1041", "1042"]:
+				if payload["cmd_id"] in ["1000", "1008", "10081", "1042", "1043", "1044"]:
 					Klogger().info(payload)
-				
+					
 				prefix = struct.pack("32s", Krandom().purely(32))
 				suffix = struct.pack("16s", Krandom().purely(16))
 				payload = json.dumps(payload)

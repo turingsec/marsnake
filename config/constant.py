@@ -22,6 +22,7 @@ LOG_BACKUP_COUNT = 5
 DB_MONITOR = "config/monitor.pkl"
 DB_BASIC = "config/basic.pkl"
 DB_CLEANER = "config/cleaner.pkl"
+DB_VULS = "config/vuls.pkl"
 
 if RELEASE:
 	SERVER_URL = "gateway.turingsec.com:443"

@@ -32,7 +32,7 @@ class Kmodules():
 		
 	def init(self):
 		self.modules = {}
-		self.executor = ThreadPoolExecutor(max_workers = 3)
+		self.executor = ThreadPoolExecutor(max_workers = 6)
 		
 		self.unacked = False
 
@@ -47,6 +47,7 @@ class Kmodules():
 			
 		if not self.unacked:
 			self.executor.submit(run_mod, self.modules["1014"], None, None)
+			self.executor.submit(run_mod, self.modules["1016"], None, None)
 			self.executor.submit(run_mod, self.modules["1048"], None, None)
 			self.unacked = True
 			

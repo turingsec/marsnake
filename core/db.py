@@ -30,7 +30,8 @@ class Kdatabase():
 		self.db_maps = {
 			"basic" : Kpickle(Kconfig().db_basic),
 			"monitor" : Kpickle(Kconfig().db_monitor),
-			"cleaner" : Kpickle(Kconfig().db_cleaner)
+			"cleaner" : Kpickle(Kconfig().db_cleaner),
+			"vuls" : Kpickle(Kconfig().db_vuls)
 		}
 		
 		try:
@@ -80,6 +81,16 @@ class Kdatabase():
 			self.db_objs["cleaner"] = {
 				"items" : {},
 				"kinds" : {},
+				"record" : {},
+				"lasttime" : 0
+			}
+			
+		try:
+			self.db_objs["vuls"] = self.db_maps["vuls"].load()
+		except Exception as e:
+			self.db_objs["vuls"] = {
+				"items" : {},
+				"record" : {},
 				"lasttime" : 0
 			}
 

@@ -24,7 +24,8 @@ class Kconfig():
 		self.db_monitor = constant.DB_MONITOR
 		self.db_basic = constant.DB_BASIC
 		self.db_cleaner = constant.DB_CLEANER
-
+		self.db_vuls = constant.DB_VULS
+		
 		if not self.server_publickey:
 			print("No server publickey file exists")
 			return False
