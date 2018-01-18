@@ -1,7 +1,7 @@
 from utils.configuration import Kconfig
 from utils import common
 from utils.singleton import singleton
-import cPickle, os
+import cPickle, os, threading
 
 class Kpickle():
 	def __init__(self, path):
@@ -81,7 +81,7 @@ class Kdatabase():
 			self.db_objs["cleaner"] = {
 				"items" : {},
 				"kinds" : {},
-				"record" : {},
+				"record" : [],
 				"lasttime" : 0
 			}
 			
@@ -90,9 +90,11 @@ class Kdatabase():
 		except Exception as e:
 			self.db_objs["vuls"] = {
 				"items" : {},
-				"record" : {},
+				"record" : [],
 				"lasttime" : 0
 			}
+
+		self.cleaner_lock = threading.Lock()
 
 	def get_monitor_second(self):
 		return self.monitor_second
@@ -107,3 +109,6 @@ class Kdatabase():
 
 	def dump_minute(self):
 		self.db_maps["monitor"].dump(self.db_objs["monitor"])
+
+	def get_cleaner_lock(self):
+		return self.cleaner_lock
