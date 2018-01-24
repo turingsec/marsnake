@@ -1,0 +1,22 @@
+{
+  "id": "vim",
+  "label": "VIM",
+  "description": "Editor",
+  "option": [{
+    "id": "history",
+    "label": "History",
+    "description": "Delete ~/.viminfo which includes file history, command history, and buffers",
+    "action": [
+      {
+        "command": "delete",
+        "search": "file",
+        "path": "~/.viminfo"
+      },
+      {
+        "command": "delete",
+        "search": "file",
+        "path": "$USERPROFILE\\_viminfo"
+      }
+    ]
+  }]
+}

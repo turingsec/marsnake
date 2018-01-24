@@ -70,7 +70,17 @@ def extend_at_front(array_src, maxi, cons):
         array_dst = tmp
         
     return array_dst
-    
+
+def boolstr_to_bool(value):
+    """Convert a string boolean to a Python boolean"""
+    if 'true' == value.lower():
+        return True
+        
+    if 'false' == value.lower():
+        return False
+
+    raise RuntimeError("Invalid boolean: '%s'" % value)
+
 def do_get_ip_gateway():
     ip = '127.0.0.1'
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -121,6 +131,14 @@ def get_distribution():
 
 	return ""
 
+def grep(line, pattern):
+    sub = re.findall(pattern, line)
+    
+    if len(sub) != 0:
+        return sub[0], len(sub)
+    else:
+        return "", 0
+        
 def size_human_readable(num, suffix = 'B'):
     try:
         num = int(num)
@@ -132,35 +150,6 @@ def size_human_readable(num, suffix = 'B'):
     except:
         return '0.00 B'
 
-def mode_to_letter(mode):
-    if stat.S_ISDIR(mode):
-        return 'DIR'
-    elif stat.S_ISBLK(mode):
-        return 'BLK'
-    elif stat.S_ISCHR(mode):
-        return 'CHR'
-    elif stat.S_ISFIFO(mode):
-        return 'FIFO'
-    elif stat.S_ISSOCK(mode):
-        return 'SOCK'
-    elif stat.S_ISLNK(mode):
-        return 'LNK'
-    else:
-        return ''
-
-def identifytype(path):
-    mine = "Dir"
-
-    if os.path.isfile(path):
-        try:
-            import magic
-            mine = magic.from_file(path, mime = True)
-            mine = mine if mine else "Unknown"
-        except Exception as e:
-            mine = "File"
-        
-    return mine
-
 def try_unicode(path):
     if type(path) != unicode:
         try:
@@ -168,13 +157,6 @@ def try_unicode(path):
         except UnicodeDecodeError:
             pass
 
-    return path
-
-def path_translate(path):
-    path = try_unicode(path)
-    path = os.path.expanduser(path)
-    path = os.path.expandvars(path)
-    
     return path
 
 def timestamp2string(timestamp, dateandtime = False):
@@ -193,101 +175,6 @@ def timestamp2string(timestamp, dateandtime = False):
         
 def localtime2string():
     return "{}{}{}{}{}{}".format(*(time.localtime()[0:6]))
-    
-def check_abspath_writable(path):
-    if not os.access(path, os.W_OK):
-        return False
-        
-    return True
-    
-def check_abspath_readable(path, recursive = False):
-    if recursive and os.path.isdir(path):
-        for root, dirs, files in os.walk(path):
-            for item in dirs:
-                item = os.path.join(root, item)
-                
-                if not os.access(item, os.R_OK):
-                    return False, item
-                    
-            for item in files:
-                item = os.path.join(root, item)
-                
-                if not os.access(item, os.R_OK):
-                    return False, item
-                    
-        return True, ""
-        
-    if not os.access(path, os.R_OK):
-        return False, path
-        
-    return True, ""
-    
-def check_file_exists(path):
-    for i in path:
-        if os.path.exists(i):
-            return True
-            
-    return False
-
-def get_directory_size(start_path = '.'):
-    total_size = 0
-
-    for dirpath, dirnames, filenames in os.walk(start_path):
-        for f in filenames:
-            fp = os.path.join(dirpath, f)
-            total_size += os.path.getsize(fp)
-
-    return total_size
-
-def grep(line, pattern):
-    sub = re.findall(pattern, line)
-    
-    if len(sub) != 0:
-        return sub[0], len(sub)
-    else:
-        return "", 0
-        
-def cat(path):
-    data = ""
-    
-    try:
-        if os.path.exists(path):
-            with open(path, "rb") as fin:
-                data = fin.read()
-    except Exception as e:
-        pass
-        
-    return data
-    
-def rm(path):
-	try:
-		if os.path.isdir(path):
-			shutil.rmtree(path)
-		else:
-			os.remove(path)
-
-		return ""
-	except Exception as e:
-		return to_ts(str(e))
-
-def enum_file_path(path, result):
-	if os.path.isdir(path):
-		
-		try:
-			files = os.listdir(path)
-			result.append(path)
-		except Exception as e:
-			files = []
-			
-		for file in files:
-			abspath = os.sep.join([path, file])
-
-			if os.path.isdir(abspath):
-				enum_file_path(abspath, result)
-			else:
-				result.append(abspath)
-	else:
-		result.append(path)
 
 def is_program_running(program):
     for proc in psutil.process_iter():
@@ -334,3 +221,94 @@ def get_last_min(t):
     b = a % 60
     
     return a - b
+
+# os.path.expandvars does not work well with non-ascii Windows paths.
+# This is a unicode-compatible reimplementation of that function.
+def expandvars(var):
+    """Expand environment variables.
+
+    Return the argument with environment variables expanded. Substrings of the
+    form $name or ${name} or %name% are replaced by the value of environment
+    variable name."""
+    if isinstance(var, str):
+        final = var.decode('utf-8')
+    else:
+        final = var
+
+    if 'posix' == os.name:
+        final = os.path.expandvars(final)
+    elif 'nt' == os.name:
+        import _winreg
+        if final.startswith('${'):
+            final = re.sub(r'\$\{(.*?)\}(?=$|\\)',
+                           lambda x: '%%%s%%' % x.group(1),
+                           final)
+        elif final.startswith('$'):
+            final = re.sub(r'\$(.*?)(?=$|\\)',
+                           lambda x: '%%%s%%' % x.group(1),
+                           final)
+        final = _winreg.ExpandEnvironmentStrings(final)
+    return final
+
+def path_translate(path):
+    path = try_unicode(path)
+    path = os.path.expanduser(path)
+    path = os.path.expandvars(path)
+    
+    return path
+
+# Windows paths have to be unicode, but os.path.expanduser does not support it.
+# This is a unicode-compatible reimplementation of that function.
+def expanduser(path):
+    """Expand the path with the home directory.
+    
+    Return the argument with an initial component of "~" replaced by
+    that user's home directory.
+    """
+    if isinstance(path, str):
+        final = path.decode('utf-8')
+    else:
+        final = path
+
+    # If does not begin with tilde, do not alter.
+    if len(path) == 0 or not '~' == path[0]:
+        return final
+
+    if 'posix' == os.name:
+        final = os.path.expanduser(final)
+    elif 'nt' == os.name:
+        found = False
+        for env in [u'%USERPROFILE%', u'%HOME%']:
+            if env in os.environ:
+                home = expandvars(env)
+                found = True
+                break
+        if not found:
+            h_drive = expandvars(u'%HOMEDRIVE%')
+            h_path = expandvars(u'%HOMEPATH%')
+            home = os.path.join(h_drive, h_path)
+        final = final.replace('~user/', '')
+        final = final.replace('~/', '')
+        final = final.replace('~', '')
+        final = os.path.join(home, final)
+    return final
+
+def check_programs_installed(program):
+    delimiter = ':'
+
+    if 'nt' == os.name:
+        delimiter = ';'
+
+    for path in os.environ["PATH"].split(delimiter):
+        if os.path.exists(path):
+            try:
+                for x in os.listdir(path):
+                    item = os.path.join(path, x)
+
+                    if os.path.isfile(item):
+                        if x == program:
+                            return True
+            except Exception as e:
+                pass
+
+    return False

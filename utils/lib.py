@@ -8,10 +8,10 @@ import socket
 import psutil
 import struct
 from datetime import datetime
-from utils import common
+from utils import common, file_op
 
 def get_boot_time():
-    if check_programs_installed("systemd-analyze"):
+    if common.check_programs_installed("systemd-analyze"):
         data, success, retcode = exec_command(['systemd-analyze', 'time'])
         
         if success:
@@ -45,7 +45,7 @@ def get_description_by_name(service, kind):
             unit_path = os.path.join(path, service)
 
             if os.path.exists(unit_path):
-                data = common.cat(unit_path)
+                data = file_op.cat(unit_path)
 
                 if data:
                     lines = data.split("\n")
@@ -63,7 +63,7 @@ def get_description_by_name(service, kind):
         initscript_path = os.path.join("/etc/init.d", service)
 
         if os.path.exists(initscript_path):
-                data = common.cat(initscript_path)
+                data = file_op.cat(initscript_path)
 
                 if data:
                     lines = data.split("\n")
@@ -81,23 +81,6 @@ def get_description_by_name(service, kind):
                                 return match.groups()[0]
 
     return ""
-
-def check_programs_installed(program):
-    paths = os.environ["PATH"].split(":")
-
-    for path in paths:
-        if os.path.exists(path):
-            try:
-                for x in os.listdir(path):
-                    item = os.path.join(path, x)
-
-                    if os.path.isfile(item):
-                        if x == program:
-                            return True
-            except Exception as e:
-                pass
-
-    return False
 
 def get_ip_gateway():
     route = "/proc/net/route"
@@ -143,7 +126,7 @@ def find_useradd_users():
     uid_min = 1000
     uid_max = 60000
 
-    data = common.cat("/etc/login.defs")
+    data = file_op.cat("/etc/login.defs")
 
     if data:
         lines = data.split("\n")
@@ -160,7 +143,7 @@ def find_useradd_users():
                     uid_max = tmp
                     continue
 
-    data = common.cat("/etc/passwd")
+    data = file_op.cat("/etc/passwd")
     usernames = []
 
     if data:
@@ -325,7 +308,7 @@ def detect_distribution():
     #NAME="Ubuntu"
     #VERSION="16.04.2 LTS (Xenial Xerus)"
     items = {"NAME" : None, "VERSION" : None}
-    data = common.cat('/etc/os-release')
+    data = file_op.cat('/etc/os-release')
 
     if data:
         lines = data.split("\n")
@@ -352,7 +335,7 @@ def detect_distribution():
 
     for i in identification:
         if os.path.exists(i):
-            data = common.cat(i)
+            data = file_op.cat(i)
 
             if data:
                 pattern = re.compile(r'(.*) release (\d[\d.]*)')
@@ -365,7 +348,7 @@ def detect_distribution():
                     if distro and distro_release:
                         return distro, distro_release
         
-    data = common.cat('/etc/issue')
+    data = file_op.cat('/etc/issue')
     
     #raspbian
     if success:
@@ -390,7 +373,7 @@ def detect_distribution():
             if distro and distro_release:
                 return distro, distro_release
             
-    data = common.cat('/etc/lsb-release')
+    data = file_op.cat('/etc/lsb-release')
     
     #DISTRIB_ID=Ubuntu
     #DISTRIB_RELEASE=16.04

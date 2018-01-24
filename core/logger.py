@@ -1,7 +1,7 @@
 import os, logging
 from logging.handlers import RotatingFileHandler
 from utils.singleton import singleton
-from utils.configuration import Kconfig
+from core.configuration import Kconfig
 
 @singleton
 class Klogger():

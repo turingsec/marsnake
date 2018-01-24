@@ -1,4 +1,4 @@
-from utils.configuration import Kconfig
+from core.configuration import Kconfig
 from utils import common
 from utils.singleton import singleton
 import cPickle, os, threading

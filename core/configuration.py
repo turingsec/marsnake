@@ -1,5 +1,5 @@
 from utils.singleton import singleton
-from utils import common
+from utils import common, file_op
 from config import constant
 import os
 
@@ -45,13 +45,13 @@ class Kconfig():
 		return True
 		
 	def read_server_publickey(self):
-		return common.cat(os.path.join(common.get_work_dir(), constant.SERVER_PUBLIC_KEY))
+		return file_op.cat(os.path.join(common.get_work_dir(), constant.SERVER_PUBLIC_KEY))
 		
 	def read_client_publickey(self):
-		return common.cat(os.path.join(common.get_work_dir(), constant.RSA_PUBLIC_KEY))
+		return file_op.cat(os.path.join(common.get_work_dir(), constant.RSA_PUBLIC_KEY))
 		
 	def read_client_privatekey(self):
-		return common.cat(os.path.join(common.get_work_dir(), constant.RSA_PRIVATE_KEY))
+		return file_op.cat(os.path.join(common.get_work_dir(), constant.RSA_PRIVATE_KEY))
 		
 	def read_credential(self):
-		return common.cat(os.path.join(common.get_work_dir(), constant.CREDENTIAL))
+		return file_op.cat(os.path.join(common.get_work_dir(), constant.CREDENTIAL))

@@ -1,7 +1,7 @@
 import os, base64
 from utils.singleton import singleton
 from utils import common
-from utils.configuration import Kconfig
+from core.configuration import Kconfig
 from Crypto.Cipher import PKCS1_OAEP
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import AES

@@ -1,0 +1,66 @@
+{
+  "id": "flash",
+  "label": "Flash",
+  "description": "Multimedia viewer",
+  "option": [
+    {
+      "id": "cache",
+      "label": "Cache",
+      "description": "Delete the cache",
+      "action": [
+        {
+          "command": "delete",
+          "search": "walk.all",
+          "path": "$APPDATA\\Adobe\\Flash Player\\AssetCache\\"
+        },
+        {
+          "command": "delete",
+          "search": "walk.all",
+          "path": "$APPDATA\\Adobe\\Flash Player\\APSPrivateData2\\"
+        },
+        {
+          "command": "delete",
+          "search": "walk.all",
+          "path": "$APPDATA\\Adobe\\Flash Player\\NativeCache\\"
+        },
+        {
+          "command": "delete",
+          "search": "walk.all",
+          "path": "~/.adobe/Flash_Player/AssetCache/"
+        },
+        {
+          "command": "delete",
+          "search": "walk.all",
+          "path": "~/.adobe/Flash_Player/NativeCache/"
+        }
+      ]
+    },
+    {
+      "id": "cookies",
+      "label": "Cookies",
+      "description": "Delete cookies, which contain information such as web site preferences, authentication, and tracking identification",
+      "action": [
+        {
+          "command": "delete",
+          "search": "walk.all",
+          "path": "$APPDATA\\Macromedia\\Flash Player\\#SharedObjects\\"
+        },
+        {
+          "command": "delete",
+          "search": "walk.all",
+          "path": "$APPDATA\\Macromedia\\Flash Player\\macromedia.com\\support\\flashplayer\\sys\\"
+        },
+        {
+          "command": "delete",
+          "search": "walk.all",
+          "path": "~/.macromedia/Flash_Player/#SharedObjects/"
+        },
+        {
+          "command": "delete",
+          "search": "walk.all",
+          "path": "~/.macromedia/Flash_Player/macromedia.com/support/flashplayer/sys/"
+        }
+      ]
+    }
+  ]
+}

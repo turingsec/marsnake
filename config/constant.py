@@ -24,6 +24,9 @@ DB_BASIC = "config/basic.pkl"
 DB_CLEANER = "config/cleaner.pkl"
 DB_VULS = "config/vuls.pkl"
 
+#CLEANER
+CLEANER_CONF = "config/cleaner"
+
 if RELEASE:
 	SERVER_URL = "gateway.turingsec.com:443"
 else:

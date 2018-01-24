@@ -2,7 +2,7 @@ from utils.singleton import singleton
 from utils import common
 from core.security import Ksecurity
 from core.logger import Klogger
-from utils.configuration import Kconfig
+from core.configuration import Kconfig
 import base64, re
 
 @singleton
