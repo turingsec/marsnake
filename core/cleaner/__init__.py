@@ -11,7 +11,6 @@ class clean_item():
 
     def __init__(self, pathname):
         self.id = None
-        self.description = None
         self.usable = False
 
         with open(pathname, "r") as f:
@@ -21,7 +20,6 @@ class clean_item():
 
     def handle_json(self):
         self.id = self.conf["id"]
-        self.description = self.conf["description"]
 
         if self.os_match(self.conf["os"] if self.conf.has_key("os") else ""):
             self.usable = True
@@ -123,26 +121,26 @@ class Kcleaner():
             options = item.conf["option"]
             items = {}
             total_size = 0
-
+            
             for option in options:
                 option_size = 0
                 option_useful = []
-
+                
                 for element in option["action"]:
                     c = self.action_maps[element["command"]](element)
                     action_useful, action_size = c.scan()
                     
                     option_size += action_size
                     option_useful.append(action_useful)
-
+                    
                 items[Krandom().purely(16)] = [option["label"], Krandom().randint(0, 2), option_size, option_useful]
                 total_size += option_size
-
+                
             kind[i] = {
                 "name" : item.conf["label"],
                 "des" : item.conf["description"],
                 "size" : total_size,
                 "items" : items
             }
-
+            
         return kind
