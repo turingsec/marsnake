@@ -7,7 +7,6 @@ from core.db import Kdatabase
 from core.logger import Klogger
 from utils import common
 from core.configuration import Kconfig
-from core.cleaner import Kcleaner
 
 LAUNCHER = "connect"
 
@@ -20,9 +19,6 @@ def init_config():
 		sys.exit(1)
 		
 	Klogger().init()
-
-	Kcleaner().load_jsons()
-	Kcleaner().scan()
 
 	Kdatabase().init()
 	Ksecurity().init()

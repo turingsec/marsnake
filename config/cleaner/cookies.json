@@ -1,0 +1,532 @@
+{
+    "id": 6,
+    "label": "Cookies",
+    "description": "Delete cookies, which contain information such as web site preferences, authentication, and tracking identification",
+    "option": [
+        {
+            "label": "chromium Cookies",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Cookies"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Extension Cookies"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.cxchromium/chromium/drive_c/windows/profiles/crossover/Local Settings/Application Data/Google/Chrome/User Data/Default/Cookies"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Cookies"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Extension Cookies"
+                },
+                {
+                    "command": "chrome.databases_db",
+                    "search": "glob",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\databases\\Databases.db"
+                },
+                {
+                    "command": "chrome.databases_db",
+                    "search": "glob",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/databases/Databases.db"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Local Storage\\http*localstoragex"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Local Storage/http*localstorage"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\databases\\http*\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/databases/http*/"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Login Data"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Login Data-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Login Data"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Login Data-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Current Session"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Current Tabs"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Last Session"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Last Tabs"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.cxchromium/chromium/drive_c/windows/profiles/crossover/Local Settings/Application Data/Google/Chrome/User Data/Default/Current Session"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Current Session"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Current Tabs"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Last Session"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Last Tabs"
+                }
+            ]
+        },
+        {
+            "label": "ELinks Web browser Cookies",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.elinks/cookies"
+                }
+            ]
+        },
+        {
+            "label": "Epiphany Web browser Cookies",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.gnome2/epiphany/mozilla/epiphany/cookies.txt"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.gnome2/epiphany/mozilla/epiphany/cookies.sqlite"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.gnome2/epiphany/mozilla/epiphany/cookies.sqlite-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/epiphany/cookies.sqlite"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$XDG_DATA_HOME/webkitgtk/localstorage/"
+                }
+            ]
+        },
+        {
+            "label": "Flash Multimedia viewer Cookies",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "$APPDATA\\Macromedia\\Flash Player\\#SharedObjects\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "$APPDATA\\Macromedia\\Flash Player\\macromedia.com\\support\\flashplayer\\sys\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "~/.macromedia/Flash_Player/#SharedObjects/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "~/.macromedia/Flash_Player/macromedia.com/support/flashplayer/sys/"
+                }
+            ]
+        },
+        {
+            "label": "Google Chrome Web browser Cookies",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\*\\Cookies"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\*\\Cookies-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\*\\Extension Cookies"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\*\\Pepper Data\\Shockwave Flash\\WritableRoot\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/*/Cookies"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/*/Cookies-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/*/Extension Cookies"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/*/Pepper Data/Shockwave Flash/WritableRoot/"
+                },
+                {
+                    "command": "chrome.databases_db",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\databases\\Databases.db"
+                },
+                {
+                    "command": "chrome.databases_db",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/databases/Databases.db"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Local Storage\\http*localstorage"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Local Storage\\http*localstorage-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Local Storage/http*localstorage"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Local Storage/http*localstorage-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\databases\\http*\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/databases/http*/"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Current Session"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Current Tabs"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Last Session"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Last Tabs"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Current Session"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Current Tabs"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Last Session"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Last Tabs"
+                }
+            ]
+        },
+        {
+            "label": "Internet Explorer Cookies",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "%USERPROFILE%\\Cookies\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "%APPDATA%\\Microsoft\\Windows\\Cookies\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "%LOCALAPPDATA%\\Microsoft\\Internet Explorer\\DOMStore\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "%USERPROFILE%\\AppData\\LocalLow\\Microsoft\\Internet Explorer\\DOMStore\\"
+                }
+            ]
+        },
+        {
+            "label": "Konqueror Cookies",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.kde/share/apps/kcookiejar/cookies"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.kde4/share/apps/kcookiejar/cookies"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.kde/share/apps/konqueror/autosave/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.kde4/share/apps/konqueror/autosave/"
+                }
+            ]
+        },
+        {
+            "label": "Liferea Cookies",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.liferea_1.4/mozilla/liferea/cookies.sqlite"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.config/liferea/cookies.txt"
+                }
+            ]
+        },
+        {
+            "label": "Opera Web browser Cookies",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$appdata\\Opera\\Opera*\\cookies4.dat"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$appdata\\Opera\\Opera*\\profile\\cookies4.dat"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.opera/cookies4.dat"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$appdata\\Opera\\Opera*\\sessions\\autosave.win"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$appdata\\Opera\\Opera*\\sessions\\autosave.win.bak"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.opera/sessions/autosave.win"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.opera/sessions/autosave.win.bak"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "$appdata\\Opera\\Opera*\\pstorage\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "~/.opera/pstorage/"
+                }
+            ]
+        },
+        {
+            "label": "RealPlayer Cookies",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/real/rpcookies.txt"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$APPDATA\\Real\\RealPlayer\\cookies.txt"
+                }
+            ]
+        },
+        {
+            "label": "Safari Web browser Cookies",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$APPDATA\\Apple Computer\\Safari\\Cookies\\Cookies.plist"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Apple Computer\\Safari\\LocalStorage\\"
+                }
+            ]
+        },
+        {
+            "label": "SeaMonkey Web browser Cookies",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.mozilla/*/????????.slt/cookies.txt"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.mozilla/seamonkey/*.default/cookies.sqlite"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$APPDATA\\Mozilla\\SeaMonkey\\Profiles\\*\\cookies.sqlite"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$APPDATA\\Mozilla\\Profiles\\default\\????????.slt\\cookies.txt"
+                }
+            ]
+        },
+        {
+            "label": "Silverlight Cookies",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "%LOCALAPPDATA%\\Microsoft\\Silverlight\\is\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "%USERPROFILE%\\AppData\\LocalLow\\Microsoft\\Silverlight\\is\\"
+                }
+            ]
+        },
+        {
+            "label": "Thunderbird Cookies",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$APPDATA\\Thunderbird\\Profiles\\????????.default\\cookies.sqlite"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.thunderbird/default/????????.slt/cookies.sqlite"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.thunderbird/????????.default/cookies.sqlite"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.thunderbird/Profiles/????????.default/cookies.sqlite"
+                }
+            ]
+        },
+    ]
+}

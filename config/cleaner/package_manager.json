@@ -1,0 +1,57 @@
+{
+    "id": 4,
+    "os": "linux",
+    "label": "Package manager",
+    "description": "Package manager description",
+    "running": [
+        {
+            "type": "exe",
+            "text": "apt-get"
+        },
+        {
+            "type": "exe",
+            "text": "synaptic"
+        }
+    ],
+    "option": [
+        {
+            "label": "Delete the cache",
+            "action": [
+                {
+                    "command": "apt.clean"
+                }]
+        },
+        {
+            "label": "Delete obsolete files",
+            "action": [
+                {
+                    "command": "apt.autoclean"
+                }]
+        },
+        {
+            "label": "Delete obsolete files",
+            "action": [
+                {
+                    "command": "apt.autoremove"
+                }]
+        },
+        {
+            "label": "Delete the cache Package lists",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "/var/lib/apt/lists/"
+                }
+            ]
+        },
+        {
+            "label": "Delete the cache",
+            "action": [
+                {
+                    "command": "yum.clean_all"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,341 @@
+{
+    "id": 7,
+    "label": "Clean fragmentation",
+    "description": "Clean database fragmentation to reduce space and improve speed without removing any data",
+    "option": [
+        {
+            "label": "Chromium Vacuum",
+            "action": [
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Archived History"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Cookies"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Cookies-journal"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Extension Cookies"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "glob",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\History Index ????-??"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\History"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Thumbnails",
+                    "type": "f"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Top Sites"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Web Data"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Plugin Data\\Google Gears\\localserver.db"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Plugin Data\\Google Gears\\permissions.db"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Archived History"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Cookies"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Cookies-journal"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Extension Cookies"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/History"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Thumbnails",
+                    "type": "f"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Top Sites"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Web Data"
+                }
+            ]
+        },
+        {
+            "label": "Google Chrome Web browser Vacuum",
+            "action": [
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Archived History"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Cookies"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Extension Cookies"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\History"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Plugin Data\\Google Gears\\localserver.db"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Plugin Data\\Google Gears\\permissions.db"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Thumbnails",
+                    "type": "f"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Top Sites"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Web Data"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\databases\\Databases.db"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "glob",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\History Index ????-??"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "glob",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\databases\\http*\\?"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Cookies"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Extension Cookies"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/History"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Thumbnails",
+                    "type": "f"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Top Sites"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Web Data"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/databases/Databases.db"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "glob",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/History Index ????-??"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "glob",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/databases/http*/?"
+                }
+            ]
+        },
+        {
+            "label": "gPodder Cache Vacuum",
+            "action": [
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/gpodder/database.sqlite"
+                }
+            ]
+        },
+        {
+            "label": "Liferea Vacuum",
+            "action": [
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "~/.liferea_1.4/liferea.db"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "~/.liferea_1.4/mozilla/liferea/cookies.sqlite"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "~/.liferea_1.4/mozilla/liferea/permissions.sqlite"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "~/.liferea_1.4/mozilla/liferea/places.sqlite"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "~/.liferea_1.6/liferea.db"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "~/.liferea_1.8/liferea.db"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$XDG_DATA_HOME/liferea/liferea.db"
+                }
+            ]
+        },
+        {
+            "label": "Safari Web browser Vacuum",
+            "action": [
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$APPDATA\\Apple Computer\\Safari\\PubSub\\Database\\Database.sqlite3"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "glob",
+                    "path": "$localappdata\\Apple Computer\\Safari\\Databases\\*\\*db"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$localappdata\\Apple Computer\\Safari\\Databases\\Databases.db"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "glob",
+                    "path": "$localappdata\\Apple Computer\\Safari\\LocalStorage\\*.localstorage"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$localappdata\\Apple Computer\\Safari\\SafeBrowsing.db"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "file",
+                    "path": "$localappdata\\Apple Computer\\Safari\\WebpageIcons.db"
+                }
+            ]
+        },
+        {
+            "label": "Thunderbird Vacuum",
+            "action": [
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "glob",
+                    "path": "$APPDATA\\Thunderbird\\Profiles\\????????.default\\*.sqlite"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "glob",
+                    "path": "~/.thunderbird/default/????????.slt/*.sqlite"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "glob",
+                    "path": "~/.thunderbird/????????.default/*.sqlite"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "glob",
+                    "path": "~/.thunderbird/Profiles/????????.default/*.sqlite"
+                }
+            ]
+        },
+        {
+            "label": "yum Vacuum",
+            "action": [
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "glob",
+                    "path": "/var/cache/yum/*/*.sqlite"
+                }
+            ]
+        }
+    ]
+}

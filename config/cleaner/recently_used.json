@@ -1,0 +1,606 @@
+{
+    "id": 2,
+    "label": "Most recently used",
+    "description": "Delete the list of recently used documents",
+    "option": [
+        {
+            "label": "Adobe Reader recently used",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.adobe/Acrobat/*/Preferences/reader_prefs"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Adobe\\Acrobat Reader\\5.0\\AVGeneral\\cRecentFiles"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Adobe\\Acrobat Reader\\6.0\\AVGeneral\\cRecentFiles"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Adobe\\Acrobat Reader\\7.0\\AVGeneral\\cRecentFiles"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Adobe\\Acrobat Reader\\8.0\\AVGeneral\\cRecentFiles"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Adobe\\Acrobat Reader\\9.0\\AVGeneral\\cRecentFiles"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Adobe\\Acrobat Reader\\10.0\\AVGeneral\\cRecentFiles"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Adobe\\Acrobat Reader\\11.0\\AVGeneral\\cRecentFiles"
+                }
+            ]
+        },
+        {
+            "label": "Audacious Audio player recently used",
+            "action": [{
+                "command": "delete",
+                "search": "file",
+                "path": "$XDG_CONFIG_HOME/audacious/playlist.xspf"
+            }]
+        },
+        {
+            "label": "Filezilla File transfer client recently used",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.filezilla/recentservers.xml"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$APPDATA\\FileZilla\\recentservers.xml"
+                }
+            ]
+        },
+        {
+            "label": "gedit Editor Recent documents list",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CACHE_HOME/gedit/gedit-metadata.xml"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.gnome2/gedit-metadata.xml"
+                }
+            ]
+        },
+        {
+            "label": "Gwenview Recent documents list",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.kde4/share/apps/gwenview/recentfolders/*rc"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.kde4/share/apps/gwenview/recenturls/*rc"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.kde/share/apps/gwenview/recentfolders/*rc"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.kde/share/apps/gwenview/recenturls/*rc"
+                }
+            ]
+        },
+        {
+            "label": "KDE Desktop environment Recent documents list",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.kde/share/apps/RecentDocuments/*.desktop"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.kde4/share/apps/RecentDocuments/*.desktop"
+                }
+            ]
+        },
+        {
+            "label": "Microsoft Office Most recently used",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "%APPDATA%\\Microsoft\\Office\\Recent\\"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\FrontPage\\Editor\\Recently Used URLs"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\FrontPage\\Explorer\\FrontPage Explorer\\Recent File List"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\FrontPage\\Explorer\\FrontPage Explorer\\Recently Created Servers"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\FrontPage\\Explorer\\FrontPage Explorer\\Recent Page List"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\FrontPage\\Explorer\\FrontPage Explorer\\Recent Web List"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\8.0\\Word\\Data"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\9.0\\Excel\\Recent Files"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\9.0\\PowerPoint\\Recent File List"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\9.0\\Publisher\\Recent File List"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\10.0\\Common\\Open Find"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\10.0\\Publisher\\Recent File List"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\11.0\\Common\\Internet\\Server Cache"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\11.0\\Common\\Open Find"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\11.0\\Excel\\Recent Files"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\11.0\\PowerPoint\\Recent File List"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\11.0\\Publisher\\Recent File List"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\11.0\\Query\\Data Sources"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\11.0\\Word\\File MRU"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\11.0\\Common\\Internet",
+                    "name": "UseRWHlinkNavigation"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Common\\HelpViewer\\MRU Query"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Common\\Open Find"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Excel\\File MRU"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\PowerPoint\\File MRU"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Publisher\\Recent File List"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Word\\File MRU"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Access\\Settings",
+                    "name": "MRU1"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Access\\Settings",
+                    "name": "MRU2"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Access\\Settings",
+                    "name": "MRU3"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Access\\Settings",
+                    "name": "MRU4"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Access\\Settings",
+                    "name": "MRU5"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Access\\Settings",
+                    "name": "MRU6"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Access\\Settings",
+                    "name": "MRU7"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Access\\Settings",
+                    "name": "MRU8"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Access\\Settings",
+                    "name": "MRU9"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Access\\Settings",
+                    "name": "MRUDate1"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Access\\Settings",
+                    "name": "MRUDate2"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Access\\Settings",
+                    "name": "MRUDate3"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Access\\Settings",
+                    "name": "MRUDate4"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Access\\Settings",
+                    "name": "MRUDate5"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Access\\Settings",
+                    "name": "MRUDate6"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Access\\Settings",
+                    "name": "MRUDate7"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Access\\Settings",
+                    "name": "MRUDate8"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Access\\Settings",
+                    "name": "MRUDate9"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Visio\\Application",
+                    "name": "LastFile1"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Visio\\Application",
+                    "name": "LastFile2"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Visio\\Application",
+                    "name": "LastFile3"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Visio\\Application",
+                    "name": "LastFile4"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Visio\\Application",
+                    "name": "LastFile5"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Visio\\Application",
+                    "name": "LastFile6"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Visio\\Application",
+                    "name": "LastFile7"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Visio\\Application",
+                    "name": "LastFile8"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Office\\12.0\\Visio\\Application",
+                    "name": "LastFile9"
+                }
+            ]
+        },
+        {
+            "label": "Paint Most recently used",
+            "action": [
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Applets\\Paint\\Recent File List"
+                }
+            ]
+        },
+        {
+            "label": "TeamViewer Most recently used",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$APPDATA\\TeamViewer\\Connections.txt"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\TeamViewer\\Version4",
+                    "name": "Last_Machine_Connections"
+                }
+            ]
+        },
+        {
+            "label": "VLC media player Most recently used",
+            "action": [
+                {
+                    "search": "file",
+                    "path": "$APPDATA\\vlc\\vlc-qt-interface.ini",
+                    "command": "ini",
+                    "section": "General",
+                    "parameter": "filedialog-path"
+                },
+                {
+                    "search": "file",
+                    "path": "$APPDATA\\vlc\\vlc-qt-interface.ini",
+                    "command": "ini",
+                    "section": "RecentsMRL"
+                },
+                {
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/vlc/vlc-qt-interface.conf",
+                    "command": "ini",
+                    "section": "General",
+                    "parameter": "filedialog-path"
+                },
+                {
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/vlc/vlc-qt-interface.conf",
+                    "command": "ini",
+                    "section": "RecentsMRL"
+                },
+                {
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/vlc/vlc-qt-interface.conf",
+                    "command": "ini",
+                    "section": "OpenDialog",
+                    "parameter": "netMRL"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$APPDATA\\vlc\\art\\artistalbum\\*"
+                }
+            ]
+        },
+        {
+            "label": "Winamp Media player Most recently used",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "%APPDATA%\\Winamp\\winamp.m3u"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "%APPDATA%\\Winamp\\winamp.m3u8"
+                }
+            ]
+        },
+        {
+            "label": "Windows Explorer Most recently used",
+            "action": [
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\UserAssist\\{5E6AB780-7743-11CF-A12B-00AA004AE837}\\Count"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\UserAssist\\{75048700-EF1F-11D0-9888-006097DEACF9}\\Count"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\UserAssist\\{CEBFF5CD-ACE2-4F4F-9178-9926F41749EA}\\Count"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\UserAssist\\{F4E57C4B-2036-45F0-A9AB-443BCFE33D9F}\\Count"
+                },
+                {
+                    "command": "win.shell.change.notify"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\ComDlg32\\LastVisitedMRU"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\ComDlg32\\LastVisitedPidlMRU"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\ComDlg32\\OpenSaveMRU"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\ComDlg32\\OpenSavePidlMRU"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Doc Find Spec MRU"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FindComputerMRU"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Map Network Drive MRU"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\PrnPortsMRU"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "%USERPROFILE%\\Recent\\*.lnk"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "%APPDATA%\\Microsoft\\Windows\\Recent\\*.lnk"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\RecentDocs"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "%APPDATA%\\Microsoft\\Windows\\Recent\\AutomaticDestinations\\*.automaticDestinations-ms"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "%APPDATA%\\Microsoft\\Windows\\Recent\\CustomDestinations\\*customDestinations-ms"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\RunMRU"
+                }
+            ]
+        },
+        {
+            "label": "Windows Media Player Most recently used",
+            "action": [
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\MediaPlayer\\Player\\RecentFileList"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\MediaPlayer\\Player\\RecentURLList"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\MediaPlayer\\Player\\Settings",
+                    "name": "OpenDir"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\MediaPlayer\\Player\\Settings",
+                    "name": "SaveAsDir"
+                }
+            ]
+        },
+        {
+            "label": "WinRAR File archiver Most recently used",
+            "action": [
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\WinRAR\\ArcHistory"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\WinRAR\\DialogEditHistory\\ArcName"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\WinRAR\\DialogEditHistory\\ExtrPath"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\WinRAR\\DialogEditHistory\\WizArcName"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\WinRAR\\General",
+                    "name": "LastFolder"
+                }
+            ]
+        },
+        {
+            "label": "WinZip Most recently used",
+            "action": [
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Nico Mak Computing\\WinZip\\mru\\jobs"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Nico Mak Computing\\WinZip\\mru\\archives"
+                }
+            ]
+        },
+        {
+            "label": "WordPad Word processor Most recently used",
+            "action": [
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Applets\\Wordpad\\Recent File List"
+                }
+            ]
+        }
+    ]
+}

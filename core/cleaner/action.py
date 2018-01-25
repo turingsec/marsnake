@@ -25,6 +25,10 @@ class action_base:
 
 	def scan(self):
 		"""Scan size to delete"""
+		return None, 0
+
+	def show(self):
+		"""Show items which will be delete to client"""
 		return 0
 #
 # file base class
@@ -198,12 +202,6 @@ class AptClean(action_base):
 	def __init__(self, action_element):
 		pass
 
-	def scan(self):
-		if common.check_programs_installed('apt-get'):
-			return functions.get_apt_size()
-		else:
-			return 0
-
 	def do(self):
 		# Checking executable allows auto-hide to work for non-APT systems
 		if common.check_programs_installed('apt-get'):
@@ -277,11 +275,19 @@ class Delete(file_action_base):
 	action_key = 'delete'
 	
 	def scan(self):
-		size = 0		
+		action_useful = {
+			"paths" : [],
+			"action_key" : self.action_key
+		}
+		total_size = 0
+
 		for path in self.get_paths():
-			size += file_op.getsize(path)
-			
-		return size
+			size = file_op.getsize(path)
+
+			action_useful["paths"].append(path)
+			total_size += size
+
+		return action_useful, total_size
 		
 	def do(self):
 		for path in self.get_paths():
@@ -416,6 +422,9 @@ class YumCleanAll(action_base):
 
 	def __init__(self, action_element):
 		pass
+
+	#def scan(self):
+	#	return file_op.getsizedir('/var/cache/yum')
 
 	def do(self):
 		# Checking allows auto-hide to work for non-APT systems

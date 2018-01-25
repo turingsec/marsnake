@@ -1,5 +1,6 @@
 from utils.singleton import singleton
 from utils import file_op, common
+from utils.randomize import Krandom
 from config import constant
 from core.logger import Klogger
 import os, stat, sys, json
@@ -116,14 +117,32 @@ class Kcleaner():
                 Klogger().warn('item is not usable on this OS because it has no actions: %s', pathname)
                 
     def scan(self):
+        kind = {}
+
         for i, item in self.holder.items():
             options = item.conf["option"]
-            size = 0
+            items = {}
+            total_size = 0
 
             for option in options:
+                option_size = 0
+                option_useful = []
+
                 for element in option["action"]:
-                    #if self.action_maps.has_key(element["command"]):
                     c = self.action_maps[element["command"]](element)
-                    size += c.scan()
+                    action_useful, action_size = c.scan()
                     
-            print(i, size)
+                    option_size += action_size
+                    option_useful.append(action_useful)
+
+                items[Krandom().purely(16)] = [option["label"], Krandom().randint(0, 2), option_size, option_useful]
+                total_size += option_size
+
+            kind[i] = {
+                "name" : item.conf["label"],
+                "des" : item.conf["description"],
+                "size" : total_size,
+                "items" : items
+            }
+
+        return kind

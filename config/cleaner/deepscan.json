@@ -1,0 +1,88 @@
+{
+  "id": "deepscan",
+  "label": {
+    "translate": "true",
+    "#text": "Deep scan"
+  },
+  "description": "Clean files widely scattered across the disk",
+  "option": [
+    {
+      "id": "backup",
+      "label": "Backup files",
+      "description": "Delete the backup files",
+      "warning": "Inspect the preview for any files you want to keep.",
+      "action": [
+        {
+          "command": "delete",
+          "search": "deep",
+          "regex": "\\.[Bb][Aa][Kk]$",
+          "cache": "false"
+        },
+        {
+          "command": "delete",
+          "search": "deep",
+          "regex": "[a-zA-Z]{1,4}~$",
+          "cache": "false"
+        }
+      ]
+    },
+    {
+      "id": "ds_store",
+      "label": {
+        "translate": "false",
+        "#text": ".DS_Store"
+      },
+      "description": "Delete the files",
+      "warning": "This option is slow.",
+      "action": [{
+        "command": "delete",
+        "search": "deep",
+        "cache": "false",
+        "regex": "^\\.DS_Store$"
+      }]
+    },
+    {
+      "id": "thumbs_db",
+      "label": {
+        "translate": "false",
+        "#text": "Thumbs.db"
+      },
+      "description": "Delete the files",
+      "warning": "This option is slow.",
+      "action": [
+        {
+          "command": "delete",
+          "search": "deep",
+          "regex": "^Thumbs\\.db$",
+          "cache": "false"
+        },
+        {
+          "command": "delete",
+          "search": "deep",
+          "regex": "^Thumbs\\.db:encryptable$",
+          "cache": "false"
+        }
+      ]
+    },
+    {
+      "id": "tmp",
+      "label": "Temporary files",
+      "description": "Delete the temporary files",
+      "warning": "This option is slow.",
+      "action": [
+        {
+          "command": "delete",
+          "search": "deep",
+          "cache": "false",
+          "regex": "^~wr[a-z][0-9]{4}\\.tmp$"
+        },
+        {
+          "command": "delete",
+          "search": "deep",
+          "cache": "false",
+          "regex": "^ppt[0-9]{4}\\.tmp$"
+        }
+      ]
+    }
+  ]
+}

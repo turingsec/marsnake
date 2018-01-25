@@ -1,0 +1,22 @@
+{
+    "id": 8,
+    "label": "Installers",
+    "description": "Delete cached patches and installers",
+    "option": [
+        {
+            "label": "Skype Installers",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$PROGRAMDATA\\Skype\\{*}\\*.msi"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$PROGRAMDATA\\Skype\\{*}\\*.exe"
+                }
+            ]
+        }
+    ]
+}

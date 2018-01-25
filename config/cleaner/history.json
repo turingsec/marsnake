@@ -1,0 +1,1031 @@
+{
+    "id": 5,
+    "label": "History",
+    "description": "Delete the history and web passwords",
+    "option": [
+        {
+            "label": "Bash History",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.bash_history"
+                }
+            ]
+        },
+        {
+            "label": "Chromium Web Form history",
+            "action": [
+                {
+                    "command": "chrome.autofill",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Web Data"
+                },
+                {
+                    "command": "chrome.autofill",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Web Data"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Archived History"
+                },
+                {
+                    "command": "chrome.history",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/History"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.cxchromium/chromium/drive_c/windows/profiles/crossover/Local Settings/Application Data/Google/Chrome/User Data/Default/Archived History"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.cxchromium/chromium/drive_c/windows/profiles/crossover/Local Settings/Application Data/Google/Chrome/User Data/Default/History*"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Archived History"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Archived History-journal"
+                },
+                {
+                    "command": "chrome.history",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\History"
+                },
+                {
+                    "command": "chrome.keywords",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Web Data"
+                },
+                {
+                    "command": "chrome.keywords",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Web Data"
+                },
+            ]
+        },
+        {
+            "label": "d4x Downloader for X History",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.ntrc_2/history*"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.ntrc_2/cookies.txt"
+                }
+            ]
+        },
+        {
+            "label": "EasyTAG Audio files tagger history",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.easytag/*.history"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.easytag/*.mask"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$XDG_CONFIG_HOME/easytag/*.history"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$XDG_CONFIG_HOME/easytag/*.mask"
+                }
+            ]
+        },
+        {
+            "label": "ELinks Web browser History",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.elinks/cookies"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.elinks/globhist"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.elinks/gotohist"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.elinks/searchhist"
+                },
+            ]
+        },
+        {
+            "label": "Epiphany Web browser history",
+            "warning": "This option will delete your saved passwords.",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.gnome2/epiphany/mozilla/epiphany/signons3.txt"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.gnome2/epiphany/mozilla/epiphany/places.sqlite"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.gnome2/epiphany/mozilla/epiphany/places.sqlite-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.gnome2/epiphany/ephy-history.xml"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/epiphany/ephy-history.db"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/epiphany/session_state.xml"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/epiphany/session_state.xml~"
+                }
+            ]
+        },
+        {
+            "label": "GNOME Desktop environment history",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.gconf/apps/gnome-settings/gnome-panel/%gconf.xml"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.gconf/apps/gnome-settings/gnome-search-tool/%gconf.xml"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_DATA_HOME/gnome-shell/application_state"
+                }
+            ]
+        },
+        {
+            "label": "Google Chrome Web browser Form history",
+            "action": [
+                {
+                    "command": "chrome.autofill",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Web Data"
+                },
+                {
+                    "command": "chrome.autofill",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Web Data"
+                },
+                {
+                    "command": "chrome.history",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\History"
+                },
+                {
+                    "command": "chrome.favicons",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Favicons"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\chrome_shutdown_ms.txt"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Safe Browsing Cookies-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Archived History"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Archived History-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\History Provider Cache"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\History-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Network Action Predictor"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Network Action Predictor-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Origin Bound Certs-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\QuotaManager-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Shortcuts"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Shortcuts-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Thumbnails"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Thumbnails"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Thumbnails-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Top Sites"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Top Sites-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Visited Links"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\History Index ????-??"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\History Index ????-??-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Session Storage\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\JumpListIcons\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\JumpListIconsOld\\"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Preferences",
+                    "address": "profile/content_settings/exceptions/site_engagement"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Preferences",
+                    "address": "profile/content_settings/exceptions/media_engagement"
+                },
+                {
+                    "command": "chrome.history",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/History"
+                },
+                {
+                    "command": "chrome.favicons",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Favicons"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/chrome_shutdown_ms.txt"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Safe Browsing Cookies-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Archived History"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Archived History-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/History Provider Cache"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/History-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Network Action Predictor"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Network Action Predictor-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Origin Bound Certs-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Shortcuts"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Shortcuts-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Thumbnails"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Thumbnails"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Thumbnails-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Top Sites"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Top Sites-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Visited Links"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/History Index ????-??"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/History Index ????-??-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Session Storage/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Sync Data Backup/"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Preferences",
+                    "address": "profile/content_settings/exceptions/site_engagement"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Preferences",
+                    "address": "profile/content_settings/exceptions/media_engagement"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Preferences",
+                    "address": "profile/content_settings/exceptions/media_engagement"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Login Data"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Login Data-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Login Data"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Login Data-journal"
+                },
+                {
+                    "command": "chrome.keywords",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Web Data"
+                },
+                {
+                    "command": "chrome.keywords",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Web Data"
+                }
+            ]
+        },
+        {
+            "label": "Google Toolbar Search history",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$APPDATA\\Google\\Local Search History\\"
+                }
+            ]
+        },
+        {
+            "label": "Internet Explorer Form history",
+            "action": [
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Internet Explorer\\IntelliForms\\Storage1"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Internet Explorer\\IntelliForms\\Storage2"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "%USERPROFILE%\\AppData\\Local\\Microsoft\\Windows\\History\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "%USERPROFILE%\\Local Settings\\History\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "%LOCALAPPDATA%\\Microsoft\\Internet Explorer\\Recovery\\Active\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "%LOCALAPPDATA%\\Microsoft\\Internet Explorer\\Recovery\\Immersive\\Active\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "%LOCALAPPDATA%\\Microsoft\\Internet Explorer\\Recovery\\Last Active\\"
+                },
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Internet Explorer\\TypedURLs"
+                }
+            ]
+        },
+        {
+            "label": "Konqueror URL history",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.kde/share/apps/konqueror/closeditems_saved"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.kde/share/apps/konqueror/konq_history"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.kde/share/config/konq_history"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.kde4/share/apps/konqueror/closeditems_saved"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.kde4/share/apps/konqueror/konq_history"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.kde4/share/config/konq_history"
+                }
+            ]
+        },
+        {
+            "label": "LibreOffice History",
+            "action": [
+                {
+                    "command": "office_registrymodifications",
+                    "search": "file",
+                    "path": "$APPDATA\\LibreOffice\\3\\user\\registrymodifications.xcu"
+                },
+                {
+                    "command": "office_registrymodifications",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/libreoffice/3/user/registrymodifications.xcu"
+                },
+                {
+                    "command": "office_registrymodifications",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/libreoffice/4/user/registrymodifications.xcu"
+                },
+                {
+                    "command": "office_registrymodifications",
+                    "search": "file",
+                    "path": "~/.libreoffice/3-suse/user/registrymodifications.xcu"
+                },
+                {
+                    "command": "office_registrymodifications",
+                    "search": "file",
+                    "path": "~/.libreoffice/3/user/registrymodifications.xcu"
+                }
+            ]
+        },
+        {
+            "label": "Links 2 Web browser History",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.links2/links.his"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.links/links.his"
+                }
+            ]
+        },
+        {
+            "label": "Midnight Commander History",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.mc/filepos"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.mc/history"
+                }
+            ]
+        },
+        {
+            "label": "Nautilus File manager History",
+            "warning": "Custom folders will be reset.",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.nautilus/saved-session-??????"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.nautilus/metafiles/*:*.xml"
+                }
+            ]
+        },
+        {
+            "label": "Octave History",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.octave_hist"
+                }
+            ]
+        },
+        {
+            "label": "Opera Web browser history",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$appdata\\Opera\\Opera*\\download.dat"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$appdata\\Opera\\Opera\\profile\\download.dat"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.opera/download.dat"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.opera/wand.dat"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$appdata\\Opera Software\\Opera Stable\\Login Data"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$appdata\\Opera Software\\Opera Stable\\Login Data-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$appdata\\Opera\\Opera*\\search_field_history.dat"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.opera/search_field_history.dat"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$appdata\\Opera\\Opera\\profile\\global.dat"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$appdata\\Opera\\Opera\\profile\\typed_history.xml"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$appdata\\Opera\\Opera\\profile\\vlink4.dat"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Opera\\Opera\\profile\\vps\\????\\md.dat"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$appdata\\Opera\\Opera*\\global_history.dat"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$appdata\\Opera\\Opera*\\typed_history.xml"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$appdata\\Opera\\Opera*\\vlink4.dat"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$localappdata\\Opera\\Opera*\\icons\\*.gif"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$localappdata\\Opera\\Opera*\\icons\\*.ico"
+                },
+                    {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$localappdata\\Opera\\Opera*\\icons\\*.idx"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$localappdata\\Opera\\Opera*\\vps\\????\\md.dat"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.opera/global.dat"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.opera/global_history.dat"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.opera/typed_history.xml"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.opera/vlink4.dat"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.opera/icons/*.gif"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.opera/icons/*.ico"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.opera/icons/*.idx"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.opera/vps/????/md.dat"
+                }
+            ]
+        },
+        {
+            "label": "RealPlayer History",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$APPDATA\\Real\\RealPlayer\\realplayer.ste"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$APPDATA\\Real\\RealPlayer\\History\\*.lnk"
+                }
+            ]
+        },
+        {
+            "label": "Recoll Search tool History",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.recoll/xapiandb/"
+                }
+            ]
+        },
+        {
+            "label": "Safari Web browser History",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$APPDATA\\Apple Computer\\Safari\\History.plist"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$APPDATA\\Apple Computer\\Safari\\LastSession.plist"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Apple Computer\\Safari\\History\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Apple Computer\\Safari\\Webpage Previews\\"
+                }
+            ]
+        },
+        {
+            "label": "SeaMonkey Web browser history",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.mozilla/seamonkey/*.default/downloads.sqlite"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$APPDATA\\Mozilla\\SeaMonkey\\Profiles\\*\\downloads.sqlite"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$APPDATA\\Mozilla\\Profiles\\default\\????????.slt\\history.dat"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.mozilla/*/????????.slt/history.dat"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.mozilla/seamonkey/*.default/urlbarhistory.sqlite"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$APPDATA\\Mozilla\\SeaMonkey\\Profiles\\*\\urlbarhistory.sqlite"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$APPDATA\\Mozilla\\SeaMonkey\\Profiles\\*\\sessionstore.bak"
+                }
+            ]
+        },
+        {
+            "label": "sqlite3 History",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.sqlite_history"
+                }
+            ]
+        },
+        {
+            "label": "Thunderbird history",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$APPDATA\\Thunderbird\\Profiles\\????????.default",
+                    "regex": "\\.msf$"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.thunderbird/",
+                    "regex": "\\.msf$"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$APPDATA\\Thunderbird\\Profiles\\????????.default\\signons.sqlite"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.thunderbird/default/????????.slt/signons.sqlite"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.thunderbird/default/????????.slt/signons.txt"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.thunderbird/default/????????.slt/signons3.txt"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.mozilla-thunderbird/????????.default/signons.txt"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.thunderbird/????????.default/signons.sqlite"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.thunderbird/Profiles/????????.default/signons.sqlite"
+                }
+            ]
+        },
+        {
+            "label": "TortoiseSVN History",
+            "action": [
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\TortoiseSVN\\History"
+                }
+            ]
+        },
+        {
+            "label": "VIM Editor History",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.viminfo"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$USERPROFILE\\_viminfo"
+                }
+            ]
+        },
+        {
+            "label": "Windows Defender Anti-virus History",
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "%COMMONAPPDATA%\\Microsoft\\Windows Defender\\Scans\\History\\Results\\Quick"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "%COMMONAPPDATA%\\Microsoft\\Windows Defender\\Scans\\History\\Results\\Resource"
+                }
+            ]
+        },
+        {
+            "label": "Windows Explorer Search history",
+            "action": [
+                {
+                    "command": "winreg",
+                    "path": "HKCU\\Software\\Microsoft\\Search Assistant\\ACMru"
+                }
+            ]
+        },
+    ]
+}
