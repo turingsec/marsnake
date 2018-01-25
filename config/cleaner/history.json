@@ -70,7 +70,7 @@
                     "command": "chrome.keywords",
                     "search": "file",
                     "path": "$localappdata\\Chromium\\User Data\\Default\\Web Data"
-                },
+                }
             ]
         },
         {
@@ -135,7 +135,7 @@
                     "command": "delete",
                     "search": "file",
                     "path": "~/.elinks/searchhist"
-                },
+                }
             ]
         },
         {
@@ -1026,6 +1026,6 @@
                     "path": "HKCU\\Software\\Microsoft\\Search Assistant\\ACMru"
                 }
             ]
-        },
+        }
     ]
 }
