@@ -7,8 +7,12 @@ import re
 import socket
 import psutil
 import struct
+import getpass
 from datetime import datetime
 from utils import common, file_op
+
+def check_root():
+    return getpass.getuser() == 'root'
 
 def get_boot_time():
     if common.check_programs_installed("systemd-analyze"):

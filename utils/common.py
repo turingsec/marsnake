@@ -222,6 +222,23 @@ def get_last_min(t):
     
     return a - b
 
+#5.2 M
+def sizestring2int(sstr):
+    pattern = re.compile(r"(\S+)\s(\w)")
+    match = pattern.match(sstr.strip())
+    size = 0
+    
+    if match and len(match.groups()) == 2:
+        size = float(match.groups()[0])
+        unit = match.groups()[1].lower()
+        
+        if unit == 'm':
+            size *= 1024 * 1024
+        elif unit == 'k':
+            size *= 1024
+            
+    return int(size)
+    
 # os.path.expandvars does not work well with non-ascii Windows paths.
 # This is a unicode-compatible reimplementation of that function.
 def expandvars(var):
