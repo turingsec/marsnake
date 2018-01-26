@@ -1,5 +1,6 @@
 {
     "id": 0,
+    "unit" : "size",
     "label": "Application Caches",
     "description": "Application Caches description",
     "option": [

@@ -45,29 +45,29 @@ class clean_item():
 @singleton
 class Kcleaner():
     def __init__(self):
-        self.holder = {}
+        self.kinds = {}
         self.jsons = os.path.join(common.get_work_dir(), constant.CLEANER_CONF)
         self.action_maps = {
-            "apt.autoclean" : action.AptAutoclean,
-            "apt.autoremove" : action.AptAutoremove,
-            "apt.clean" : action.AptClean,
-            "chrome.autofill" : action.ChromeAutofill,
-            "chrome.databases_db" : action.ChromeDatabases,
-            "chrome.favicons" : action.ChromeFavicons,
-            "chrome.history" : action.ChromeHistory,
-            "chrome.keywords" : action.ChromeKeywords,
+            #"apt.autoclean" : action.AptAutoclean,
+            #"apt.autoremove" : action.AptAutoremove,
+            #"apt.clean" : action.AptClean,
+            #"chrome.autofill" : action.ChromeAutofill,
+            #"chrome.databases_db" : action.ChromeDatabases,
+            #"chrome.favicons" : action.ChromeFavicons,
+            #"chrome.history" : action.ChromeHistory,
+            #"chrome.keywords" : action.ChromeKeywords,
             "delete" : action.Delete,
-            "ini" : action.Ini,
-            "journald.clean" : action.Journald,
-            "json" : action.Json,
-            "mozilla_url_history" : action.MozillaUrlHistory,
-            "office_registrymodifications" : action.OfficeRegistryModifications,
+            #"ini" : action.Ini,
+            #"journald.clean" : action.Journald,
+            #"json" : action.Json,
+            #"mozilla_url_history" : action.MozillaUrlHistory,
+            #"office_registrymodifications" : action.OfficeRegistryModifications,
             "shred" : action.Shred,
-            "sqlite.vacuum" : action.SqliteVacuum,
-            "truncate" : action.Truncate,
-            "win.shell.change.notify" : action.WinShellChangeNotify,
-            "winreg" : action.Winreg,
-            "yum.clean_all" : action.YumCleanAll
+            #"sqlite.vacuum" : action.SqliteVacuum,
+            #"truncate" : action.Truncate,
+            #"win.shell.change.notify" : action.WinShellChangeNotify,
+            #"winreg" : action.Winreg,
+            #"yum.clean_all" : action.YumCleanAll
         }
 
         # set up environment variables
@@ -110,37 +110,40 @@ class Kcleaner():
                 continue
 
             if item.is_usable():
-                self.holder[item.id] = item
+                self.kinds[item.id] = item
             else:
                 Klogger().warn('item is not usable on this OS because it has no actions: %s', pathname)
                 
     def scan(self):
-        kind = {}
+        kinds = {}
 
-        for i, item in self.holder.items():
+        for i, item in self.kinds.items():
             options = item.conf["option"]
             items = {}
             total_size = 0
-            
+
             for option in options:
-                option_size = 0
                 option_useful = []
-                
+                option_size = 0
+
                 for element in option["action"]:
-                    c = self.action_maps[element["command"]](element)
-                    action_useful, action_size = c.scan()
+                    if self.action_maps.has_key(element["command"]):
+                        c = self.action_maps[element["command"]](element)
+                        action_useful, action_size = c.scan()
+                        
+                        if action_size > 0:
+                            option_useful.append(action_useful)
+                            option_size += action_size
+
+                if option_size > 0:
+                    items[Krandom().purely(16)] = [option["label"], Krandom().randint(0, 2), option_size, option_useful]
+                    total_size += option_size
                     
-                    option_size += action_size
-                    option_useful.append(action_useful)
-                    
-                items[Krandom().purely(16)] = [option["label"], Krandom().randint(0, 2), option_size, option_useful]
-                total_size += option_size
-                
-            kind[i] = {
+            kinds[i] = {
                 "name" : item.conf["label"],
                 "des" : item.conf["description"],
                 "size" : total_size,
                 "items" : items
             }
-            
-        return kind
+
+        return kinds
