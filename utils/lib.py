@@ -167,7 +167,7 @@ def exec_command(cmd):
     if process.returncode == 0:
         return str(stdout).strip(), True, process.returncode
     else:
-        return str(stdout).strip(), False, process.returncode
+        return str(stderr).strip(), False, process.returncode
         #raise Exception("stderr: %s" % str(stderr))
 
 def timestamp2count(tickcount):
