@@ -12,31 +12,32 @@ class Kvuls():
 	def reset(self):
 		self.installed_packages = {}
 		self.upgradable_packages = {}
+		self.upgradable_packages_count = 0
 		self.changelogtool = ""
-
+		
 	def get_upgradable_packages_num(self):
-		return len(self.upgradable_packages.keys())
-
+		return self.upgradable_packages_count
+		
 	def candidate_size(self, package_name, candidate):
 		apt = common.check_programs_installed("apt-get")
 		size = 0
-
+		
 		if apt:
 			data, success, retcode = lib.exec_command(["apt-cache", "show", package_name])
-
+			
 			if success:
 				lines = data.split("\n")
 				pattern_size = re.compile(r'^Size: (\d+)')
-
+				
 				for line in lines:
 					match = pattern_size.match(line)
-
+					
 					if match:
 						size = int(match.groups()[0])
 						break
-
+						
 		yum = common.check_programs_installed("yum")
-
+		
 		#Available Packages
 		#Name        : systemd
 		#Arch        : x86_64
@@ -45,20 +46,20 @@ class Kvuls():
 		#Size        : 5.2 M
 		if yum:
 			data, success, retcode = lib.exec_command(["yum", "info", "available", package_name])
-
+			
 			if success:
 				lines = data.split("\n")
 				pattern = re.compile(r"^Size\s*:\s(.+)")	#need to upgrade
-
+				
 				for line in lines:
 					match = pattern.match(line)
-
+					
 					if match:
 						size = common.sizestring2int(match.groups()[0])
 						break
-
+						
 		return size
-
+		
 	def get_installed_package_version(self, package):
 		if self.installed_packages.has_key(package):
 			return self.installed_packages[package]
@@ -121,6 +122,8 @@ class Kvuls():
 							"release" : release,
 							"fullname" : "{0}-{1}-{2}.{3}".format(package_name, version, release, arch)
 						}
+
+						self.upgradable_packages_count += 1
 
 	def redhat_centos_vulscan(self):
 		cmd = "yum --changelog --assumeno update"
@@ -308,6 +311,7 @@ class Kvuls():
 		cmd = "PAGER=cat {} -q=2 changelog".format(self.changelogtool)
 		cve_obj = re.compile(r'(CVE-\d{4}-\d{4,})')
 		self.upgradable_packages = self.debian_get_upgradable_packages()
+		self.upgradable_packages_count = len(self.upgradable_packages)
 
 		for package_name in self.upgradable_packages:
 			tmp_cmd = "{} {}".format(cmd, package_name)
