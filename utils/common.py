@@ -177,11 +177,13 @@ def localtime2string():
     return "{}{}{}{}{}{}".format(*(time.localtime()[0:6]))
 
 def is_program_running(program):
+    program = program.lower()
+    
     for proc in psutil.process_iter():
         try:
-            if proc.name() == program:
+            if proc.name().lower() == program:
                 return True
-        except Exception as e:
+         except psutil.NoSuchProcess:
             pass
             
     return False

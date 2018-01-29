@@ -7,8 +7,6 @@ import os, stat, sys, json
 import action, functions
 
 class clean_item():
-    """Create a cleaner from CleanerML"""
-
     def __init__(self, pathname):
         self.id = None
         self.usable = False
