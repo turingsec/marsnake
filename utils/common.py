@@ -1,4 +1,4 @@
-import sys, socket, os, platform, time, locale, shutil, re, stat, psutil
+import sys, socket, os, platform, time, locale, shutil, re, stat, psutil, glob, subprocess
 from datetime import datetime
 
 system = sys.platform
@@ -178,15 +178,47 @@ def localtime2string():
 
 def is_program_running(program):
     program = program.lower()
-    
-    for proc in psutil.process_iter():
-        try:
-            if proc.name().lower() == program:
+
+    if is_linux():
+        """Check whether program is running"""
+        for filename in glob.iglob("/proc/*/exe"):
+            try:
+                target = os.path.realpath(filename)
+            except TypeError:
+                # happens, for example, when link points to
+                # '/etc/password\x00 (deleted)'
+                continue
+            except OSError:
+                # 13 = permission denied
+                continue
+
+            if program == os.path.basename(target):
                 return True
-         except psutil.NoSuchProcess:
+
+        return False
+        
+    elif is_darwin():
+        def run_ps():
+            subprocess.check_output(["ps", "aux", "-c"])
+
+        try:
+            processess = (re.split(r"\s+", p, 10)[10] for p in run_ps().split("\n") if p != "")
+            next(processess)  # drop the header
+            return program in processess
+        except IndexError:
             pass
-            
-    return False
+
+        return False
+
+    else:
+        for proc in psutil.process_iter():
+            try:
+                if proc.name().lower() == program:
+                    return True
+            except psutil.NoSuchProcess:
+                pass
+
+        return False
 
 def get_listen_port(ports):
     conns = psutil.net_connections(kind = "inet")

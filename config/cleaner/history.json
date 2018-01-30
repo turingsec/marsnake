@@ -5,6 +5,7 @@
     "option": [
         {
             "label": "Bash History",
+            "icon" : 39,
             "action": [
                 {
                     "command": "delete",
@@ -15,6 +16,7 @@
         },
         {
             "label": "Chromium Web Form history",
+            "icon" : 4,
             "action": [
                 {
                     "command": "chrome.autofill",
@@ -75,6 +77,7 @@
         },
         {
             "label": "d4x Downloader for X History",
+            "icon" : 40,
             "action": [
                 {
                     "command": "delete",
@@ -90,6 +93,7 @@
         },
         {
             "label": "EasyTAG Audio files tagger history",
+            "icon" : 41,
             "action": [
                 {
                     "command": "delete",
@@ -115,6 +119,7 @@
         },
         {
             "label": "ELinks Web browser History",
+            "icon" : 36,
             "action": [
                 {
                     "command": "delete",
@@ -140,6 +145,7 @@
         },
         {
             "label": "Epiphany Web browser history",
+            "icon" : 6,
             "warning": "This option will delete your saved passwords.",
             "action": [
                 {
@@ -180,7 +186,119 @@
             ]
         },
         {
+            "label": "Firefox Web browser history",
+            "icon" : 11,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.mozilla/firefox*/*.default*/downloads.rdf"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.mozilla/firefox*/*.default*/downloads.sqlite"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.mozilla/firefox*/*.default*/formhistory.dat"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.mozilla/firefox*/*.default*/formhistory.sqlite"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.mozilla/firefox*/*.default*/signons.txt"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.mozilla/firefox*/*.default*/signons[2-3].txt"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.mozilla/firefox*/*.default*/signons.sqlite"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.mozilla/firefox*/*.default*/logins.json"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.mozilla/firefox*/*.default*/content-prefs.sqlite"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.mozilla/firefox*/*.default*/history.dat"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.mozilla/firefox*/*.default*/thumbnails/*.png"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\*.default*\\downloads.rdf"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\*.default*\\downloads.sqlite"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\*.default*\\formhistory.dat"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\*.default*\\formhistory.sqlite"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\*.default*\\signons.txt"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\*.default*\\signons[2-3].txt"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\*.default*\\signons.sqlite"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\*.default*\\logins.json"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\*.default*\\content-prefs.sqlite"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\*.default*\\history.dat"
+                }
+            ]
+        },
+        {
             "label": "GNOME Desktop environment history",
+            "icon" : 42,
             "action": [
                 {
                     "command": "delete",
@@ -201,6 +319,7 @@
         },
         {
             "label": "Google Chrome Web browser Form history",
+            "icon" : 12,
             "action": [
                 {
                     "command": "chrome.autofill",
@@ -516,6 +635,7 @@
         },
         {
             "label": "Google Toolbar Search history",
+            "icon" : 43,
             "action": [
                 {
                     "command": "delete",
@@ -526,6 +646,7 @@
         },
         {
             "label": "Internet Explorer Form history",
+            "icon" : 32,
             "action": [
                 {
                     "command": "winreg",
@@ -568,6 +689,7 @@
         },
         {
             "label": "Konqueror URL history",
+            "icon" : 33,
             "action": [
                 {
                     "command": "delete",
@@ -603,6 +725,7 @@
         },
         {
             "label": "LibreOffice History",
+            "icon" : 17,
             "action": [
                 {
                     "command": "office_registrymodifications",
@@ -633,6 +756,7 @@
         },
         {
             "label": "Links 2 Web browser History",
+            "icon" : 36,
             "action": [
                 {
                     "command": "delete",
@@ -648,6 +772,7 @@
         },
         {
             "label": "Midnight Commander History",
+            "icon" : 44,
             "action": [
                 {
                     "command": "delete",
@@ -663,6 +788,7 @@
         },
         {
             "label": "Nautilus File manager History",
+            "icon" : 45,
             "warning": "Custom folders will be reset.",
             "action": [
                 {
@@ -679,6 +805,7 @@
         },
         {
             "label": "Octave History",
+            "icon" : 46,
             "action": [
                 {
                     "command": "delete",
@@ -689,6 +816,7 @@
         },
         {
             "label": "Opera Web browser history",
+            "icon" : 21,
             "action": [
                 {
                     "command": "delete",
@@ -829,6 +957,7 @@
         },
         {
             "label": "RealPlayer History",
+            "icon" : 34,
             "action": [
                 {
                     "command": "delete",
@@ -844,6 +973,7 @@
         },
         {
             "label": "Recoll Search tool History",
+            "icon" : 47,
             "action": [
                 {
                     "command": "delete",
@@ -854,6 +984,7 @@
         },
         {
             "label": "Safari Web browser History",
+            "icon" : 24,
             "action": [
                 {
                     "command": "delete",
@@ -879,6 +1010,7 @@
         },
         {
             "label": "SeaMonkey Web browser history",
+            "icon" : 25,
             "action": [
                 {
                     "command": "delete",
@@ -919,6 +1051,7 @@
         },
         {
             "label": "sqlite3 History",
+            "icon" : 48,
             "action": [
                 {
                     "command": "delete",
@@ -929,6 +1062,7 @@
         },
         {
             "label": "Thunderbird history",
+            "icon" : 28,
             "action": [
                 {
                     "command": "delete",
@@ -981,6 +1115,7 @@
         },
         {
             "label": "TortoiseSVN History",
+            "icon" : 49,
             "action": [
                 {
                     "command": "winreg",
@@ -990,6 +1125,7 @@
         },
         {
             "label": "VIM Editor History",
+            "icon" : 50,
             "action": [
                 {
                     "command": "delete",
@@ -1005,6 +1141,7 @@
         },
         {
             "label": "Windows Defender Anti-virus History",
+            "icon" : 51,
             "action": [
                 {
                     "command": "delete",
@@ -1020,6 +1157,7 @@
         },
         {
             "label": "Windows Explorer Search history",
+            "icon" : 52,
             "action": [
                 {
                     "command": "winreg",

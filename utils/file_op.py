@@ -1,5 +1,5 @@
 from utils import common
-import os, sys, re
+import os, sys, re, shutil, stat
 
 if 'nt' == os.name:
     from pywintypes import error as pywinerror
@@ -184,24 +184,8 @@ def delete(path, shred = False, ignore_missing = False, allow_shred = True):
         if allow_shred and shred:
             delpath = wipe_name(path)
 
-        try:
-            os.rmdir(delpath)
-        except OSError as e:
-            # [Errno 39] Directory not empty
-            # https://bugs.launchpad.net/bleachbit/+bug/1012930
-            if errno.ENOTEMPTY == e.errno:
-                print(__name__, "directory is not empty: %s", path)
-            else:
-                raise
-        except WindowsError as e:
-            # WindowsError: [Error 145] The directory is not empty:
-            # 'C:\\Documents and Settings\\username\\Local Settings\\Temp\\NAILogs'
-            # Error 145 may happen if the files are scheduled for deletion
-            # during reboot.
-            if 145 == e.winerror:
-                print(__name__, "directory is not empty: %s", path)
-            else:
-                raise
+        shutil.rmtree(delpath)
+
     elif os.path.isfile(path):
         # wipe contents
         if allow_shred and shred:
@@ -223,8 +207,8 @@ def delete(path, shred = False, ignore_missing = False, allow_shred = True):
             # unlink
             os.remove(path)
     else:
-        print(__name__, "special file type cannot be deleted: %s", path)
-
+        raise "special file type cannot be deleted: {}".format(path)
+        
 def children_in_directory(top, list_directories=False):
     """Iterate files and, optionally, subdirectories in directory"""
     if type(top) is tuple:

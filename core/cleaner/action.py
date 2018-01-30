@@ -19,7 +19,8 @@ class action_base:
 		"""Return a dictionary used to construct a deep scan"""
 		raise StopIteration
 
-	def do(self):
+	@staticmethod
+	def do(action_useful):
 		"""Yield each command (which can be previewed or executed)"""
 		pass
 
@@ -161,8 +162,9 @@ class file_action_base(action_base):
         for path in func(self.path):
             yield path
 
-    def do(self):
-        raise NotImplementedError('not implemented')
+	@staticmethod
+	def do(action_useful):
+		raise NotImplementedError('not implemented')
 
 class AptAutoclean(action_base):
 
@@ -172,7 +174,8 @@ class AptAutoclean(action_base):
 	def __init__(self, action_element):
 		pass
 
-	def do(self):
+	@staticmethod
+	def do(action_useful):
 		# Checking executable allows auto-hide to work for non-APT systems
 		if common.check_programs_installed('apt-get'):
 			yield command.Function(None,
@@ -187,7 +190,8 @@ class AptAutoremove(action_base):
 	def __init__(self, action_element):
 		pass
 
-	def do(self):
+	@staticmethod
+	def do(action_useful):
 		# Checking executable allows auto-hide to work for non-APT systems
 		if common.check_programs_installed('apt-get'):
 			yield command.Function(None,
@@ -202,7 +206,8 @@ class AptClean(action_base):
 	def __init__(self, action_element):
 		pass
 
-	def do(self):
+	@staticmethod
+	def do(action_useful):
 		# Checking executable allows auto-hide to work for non-APT systems
 		if common.check_programs_installed('apt-get'):
 			yield command.Function(None,
@@ -214,7 +219,8 @@ class ChromeAutofill(file_action_base):
 	"""Action to clean 'autofill' table in Google Chrome/Chromium"""
 	action_key = 'chrome.autofill'
 
-	def do(self):
+	@staticmethod
+	def do(action_useful):
 		for path in self.get_paths():
 			yield command.Function(
 								path,
@@ -226,7 +232,8 @@ class ChromeDatabases(file_action_base):
 	"""Action to clean Databases.db in Google Chrome/Chromium"""
 	action_key = 'chrome.databases_db'
 
-	def do(self):
+	@staticmethod
+	def do(action_useful):
 		for path in self.get_paths():
 			yield command.Function(
 								path,
@@ -238,7 +245,8 @@ class ChromeFavicons(file_action_base):
 	"""Action to clean 'Favicons' file in Google Chrome/Chromium"""
 	action_key = 'chrome.favicons'
 
-	def do(self):
+	@staticmethod
+	def do(action_useful):
 		for path in self.get_paths():
 			yield command.Function(
 								path,
@@ -250,7 +258,8 @@ class ChromeHistory(file_action_base):
 	"""Action to clean 'History' file in Google Chrome/Chromium"""
 	action_key = 'chrome.history'
 
-	def do(self):
+	@staticmethod
+	def do(action_useful):
 		for path in self.get_paths():
 			yield command.Function(
 								path,
@@ -262,7 +271,8 @@ class ChromeKeywords(file_action_base):
 	"""Action to clean 'keywords' table in Google Chrome/Chromium"""
 	action_key = 'chrome.keywords'
 	
-	def do(self):
+	@staticmethod
+	def do(action_useful):
 		for path in self.get_paths():
 			yield command.Function(
 								path,
@@ -275,11 +285,11 @@ class Delete(file_action_base):
 	action_key = 'delete'
 	
 	def scan(self):
+		total_size = 0
 		action_useful = {
 			"paths" : [],
 			"action_key" : self.action_key
 		}
-		total_size = 0
 
 		for path in self.get_paths():
 			size = file_op.getsize(path)
@@ -288,9 +298,10 @@ class Delete(file_action_base):
 			total_size += size
 
 		return action_useful, total_size
-		
-	def do(self):
-		for path in self.get_paths():
+	
+	@staticmethod
+	def do(action_useful):
+		for path in action_useful["paths"]:
 			command.Delete(path).execute()
 
 class Ini(file_action_base):
@@ -307,7 +318,8 @@ class Ini(file_action_base):
 		if self.parameter == "":
 			self.parameter = None
 
-	def do(self):
+	@staticmethod
+	def do(action_useful):
 		for path in self.get_paths():
 			yield command.Ini(path, self.section, self.parameter).execute()
 
@@ -318,7 +330,8 @@ class Journald(action_base):
 	def __init__(self, action_element):
 		pass
 
-	def do(self):
+	@staticmethod
+	def do(action_useful):
 		if common.check_programs_installed('journalctl'):
 			yield command.Function(None, functions.journald_clean, 'journalctl --vacuum-time=1').execute()
 
@@ -332,7 +345,8 @@ class Json(file_action_base):
 
 		self.address = action_element["address"] if action_element.has_key("address") else ""
 
-	def do(self):
+	@staticmethod
+	def do(action_useful):
 		for path in self.get_paths():
 			yield command.Json(path, self.address).execute()
 
@@ -341,7 +355,8 @@ class MozillaUrlHistory(file_action_base):
 	"""Action to clean Mozilla (Firefox) URL history in places.sqlite"""
 	action_key = 'mozilla_url_history'
 
-	def do(self):
+	@staticmethod
+	def do(action_useful):
 		for path in self.get_paths():
 			yield functions.delete_mozilla_url_history(path)
 
@@ -350,7 +365,8 @@ class OfficeRegistryModifications(file_action_base):
 	"""Action to delete LibreOffice history"""
 	action_key = 'office_registrymodifications'
 
-	def do(self):
+	@staticmethod
+	def do(action_useful):
 		for path in self.get_paths():
 			yield command.Function(
 								path,
@@ -362,7 +378,8 @@ class Shred(file_action_base):
 	"""Action to shred files (override preference)"""
 	action_key = 'shred'
 
-	def do(self):
+	@staticmethod
+	def do(action_useful):
 		for path in self.get_paths():
 			yield command.Shred(path).execute()
 
@@ -371,7 +388,8 @@ class SqliteVacuum(file_action_base):
 	"""Action to vacuum SQLite databases"""
 	action_key = 'sqlite.vacuum'
 
-	def do(self):
+	@staticmethod
+	def do(action_useful):
 		for path in self.get_paths():
 			yield command.Function(
 								path,
@@ -387,7 +405,8 @@ class Truncate(file_action_base):
 	"""Action to truncate files"""
 	action_key = 'truncate'
 
-	def do(self):
+	@staticmethod
+	def do(action_useful):
 		for path in self.get_paths():
 			yield command.Truncate(path).execute()
 
@@ -396,7 +415,8 @@ class WinShellChangeNotify(action_base):
 	"""Action to clean the Windows Registry"""
 	action_key = 'win.shell.change.notify'
 
-	def do(self):
+	@staticmethod
+	def do(action_useful):
 		from bleachbit import Windows
 		yield command.Function(
 							None,
@@ -412,7 +432,8 @@ class Winreg(action_base):
 		self.keyname = action_element["path"] if action_element.has_key("path") else ""
 		self.name = action_element["name"] if action_element.has_key("name") else ""
 
-	def do(self):
+	@staticmethod
+	def do(action_useful):
 		yield command.Winreg(self.keyname, self.name).execute()
 
 class YumCleanAll(action_base):
@@ -425,8 +446,8 @@ class YumCleanAll(action_base):
 
 	#def scan(self):
 	#	return file_op.getsizedir('/var/cache/yum')
-
-	def do(self):
+	@staticmethod
+	def do(action_useful):
 		# Checking allows auto-hide to work for non-APT systems
 		if not common.check_programs_installed('yum'):
 			raise StopIteration

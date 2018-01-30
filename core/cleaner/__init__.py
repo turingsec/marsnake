@@ -143,5 +143,11 @@ class Kcleaner():
                 "size" : total_size,
                 "items" : items
             }
-
+            
         return kinds
+        
+    def do(self, action_useful):
+        action_key = action_useful["action_key"]
+        
+        if self.action_maps.has_key(action_key):
+            self.action_maps[action_key].do(action_useful)

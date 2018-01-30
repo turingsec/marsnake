@@ -5,6 +5,7 @@
     "option": [
         {
             "label": "chromium Cookies",
+            "icon" : 4,
             "action": [
                 {
                     "command": "delete",
@@ -130,6 +131,7 @@
         },
         {
             "label": "ELinks Web browser Cookies",
+            "icon" : 36,
             "action": [
                 {
                     "command": "delete",
@@ -140,6 +142,7 @@
         },
         {
             "label": "Epiphany Web browser Cookies",
+            "icon" : 6,
             "action": [
                 {
                     "command": "delete",
@@ -170,6 +173,7 @@
         },
         {
             "label": "Flash Multimedia viewer Cookies",
+            "icon" : 9,
             "action": [
                 {
                     "command": "delete",
@@ -194,7 +198,24 @@
             ]
         },
         {
+            "label": "Firefox Web browser Cookies",
+            "icon" : 11,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.mozilla/firefox*/*.default*/cookies.txt"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.mozilla/firefox*/*.default*/cookies.sqlite"
+                },
+            ]
+        },
+        {
             "label": "Google Chrome Web browser Cookies",
+            "icon" : 12,
             "action": [
                 {
                     "command": "delete",
@@ -320,6 +341,7 @@
         },
         {
             "label": "Internet Explorer Cookies",
+            "icon" : 32,
             "action": [
                 {
                     "command": "delete",
@@ -345,6 +367,7 @@
         },
         {
             "label": "Konqueror Cookies",
+            "icon" : 33,
             "action": [
                 {
                     "command": "delete",
@@ -370,6 +393,7 @@
         },
         {
             "label": "Liferea Cookies",
+            "icon" : 18,
             "action": [
                 {
                     "command": "delete",
@@ -385,6 +409,7 @@
         },
         {
             "label": "Opera Web browser Cookies",
+            "icon" : 21,
             "action": [
                 {
                     "command": "delete",
@@ -435,6 +460,7 @@
         },
         {
             "label": "RealPlayer Cookies",
+            "icon" : 34,
             "action": [
                 {
                     "command": "delete",
@@ -450,6 +476,7 @@
         },
         {
             "label": "Safari Web browser Cookies",
+            "icon" : 24,
             "action": [
                 {
                     "command": "delete",
@@ -465,6 +492,7 @@
         },
         {
             "label": "SeaMonkey Web browser Cookies",
+            "icon" : 25,
             "action": [
                 {
                     "command": "delete",
@@ -490,6 +518,7 @@
         },
         {
             "label": "Silverlight Cookies",
+            "icon" : 35,
             "action": [
                 {
                     "command": "delete",
@@ -505,6 +534,7 @@
         },
         {
             "label": "Thunderbird Cookies",
+            "icon" : 28,
             "action": [
                 {
                     "command": "delete",

@@ -4,6 +4,7 @@ from core import logger
 from core import exceptions
 import os
 import types
+import re
 
 def whitelist(path):
     """Return information that this file was whitelisted"""
@@ -17,7 +18,7 @@ def whitelist(path):
         'size': 0}
     return ret
 
-def whitelisted(self, pathname):
+def whitelisted(pathname):
     """Return boolean whether file is whitelisted"""
     regexes = [
         '^/tmp/.X0-lock$',
@@ -66,17 +67,7 @@ class Delete:
     def execute(self):
         """Make changes and return results"""
         if whitelisted(self.path):
-            yield whitelist(self.path)
             return
-            
-        ret = {
-            # TRANSLATORS: This is the label in the log indicating will be
-            # deleted (for previews) or was actually deleted
-            'label': _('Delete'),
-            'n_deleted': 1,
-            'n_special': 0,
-            'path': self.path,
-            'size': file_op.getsize(self.path)}
             
         try:
             file_op.delete(self.path, self.shred)
@@ -97,7 +88,6 @@ class Delete:
                         _('At least one file was locked by another process, so its contents could not be overwritten. It will be marked for deletion upon system reboot.'))
                 # TRANSLATORS: The file will be deleted when the
                 # system reboots
-                ret['label'] = _('Mark for deletion')
 
 class Function:
 

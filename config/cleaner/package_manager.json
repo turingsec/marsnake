@@ -16,6 +16,7 @@
     "option": [
         {
             "label": "Delete the cache",
+            "icon" : 36,
             "action": [
                 {
                     "command": "apt.clean"
@@ -23,6 +24,7 @@
         },
         {
             "label": "Delete obsolete files",
+            "icon" : 36,
             "action": [
                 {
                     "command": "apt.autoclean"
@@ -30,6 +32,7 @@
         },
         {
             "label": "Delete obsolete files",
+            "icon" : 36,
             "action": [
                 {
                     "command": "apt.autoremove"
@@ -37,6 +40,7 @@
         },
         {
             "label": "Delete the cache Package lists",
+            "icon" : 36,
             "action": [
                 {
                     "command": "delete",
@@ -47,6 +51,7 @@
         },
         {
             "label": "Delete the cache",
+            "icon" : 37,
             "action": [
                 {
                     "command": "yum.clean_all"

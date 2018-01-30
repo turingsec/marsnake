@@ -5,6 +5,7 @@
     "option": [
         {
             "label": "aMSN Chat logs",
+            "icon" : 1,
             "action": [
                 {
                     "command": "delete",
@@ -20,6 +21,7 @@
         },
         {
             "label": "aMule transfer client Logs",
+            "icon" : 54,
             "action": [
                 {
                     "command": "delete",
@@ -45,6 +47,7 @@
         },
         {
             "label": "Audacious Audio player Logs",
+            "icon" : 2,
             "action": [
                 {
                     "command": "delete",
@@ -55,6 +58,7 @@
         },
         {
             "label": "Beagle Search tool Debug logs",
+            "icon" : 3,
             "action": [
                 {
                     "command": "delete",
@@ -65,6 +69,7 @@
         },
         {
             "label": "EasyTAG Audio files tagger Logs",
+            "icon" : 41,
             "action": [
                 {
                     "command": "delete",
@@ -80,6 +85,7 @@
         },
         {
             "label": "emesene Chat Client Chat logs",
+            "icon" : 5,
             "action": [
                 {
                     "command": "delete",
@@ -100,6 +106,7 @@
         },
         {
             "label": "Exaile Logs",
+            "icon" : 8,
             "action": [
                 {
                     "command": "delete",
@@ -110,6 +117,7 @@
         },
         {
             "label": "gFTP File transfer client Logs",
+            "icon" : 10,
             "action": [
                 {
                     "command": "delete",
@@ -120,6 +128,7 @@
         },
         {
             "label": "GL-117 Game Debug logs",
+            "icon" : 36,
             "action": [
                 {
                     "command": "delete",
@@ -130,6 +139,7 @@
         },
         {
             "label": "HexChat Chat logs",
+            "icon" : 55,
             "action": [
                 {
                     "command": "delete",
@@ -160,6 +170,7 @@
         },
         {
             "label": "Hippo OpenSim Viewer Game Logs",
+            "icon" : 14,
             "action": [
                 {
                     "command": "delete",
@@ -175,6 +186,7 @@
         },
         {
             "label": "Clean old system journals",
+            "icon" : 56,
             "action": [
                 {
                     "command": "journald.clean"
@@ -183,6 +195,7 @@
         },
         {
             "label": "Microsoft Office logs",
+            "icon" : 57,
             "action": [
                 {
                     "command": "delete",
@@ -193,6 +206,7 @@
         },
         {
             "label": "Miro Multimedia viewer Logs",
+            "icon" : 19,
             "action": [
                 {
                     "command": "delete",
@@ -233,6 +247,7 @@
         },
         {
             "label": "Pidgin Chat client logs",
+            "icon" : 22,
             "action": [
                 {
                     "command": "delete",
@@ -248,6 +263,7 @@
         },
         {
             "label": "RealPlayer Logs",
+            "icon" : 34,
             "action": [
                 {
                     "command": "delete",
@@ -263,6 +279,7 @@
         },
         {
             "label": "Screenlets Widgets for the desktop Logs",
+            "icon" : 58,
             "action": [
                 {
                     "search": "glob",
@@ -273,6 +290,7 @@
         },
         {
             "label": "SeaMonkey Web browser Chat logs",
+            "icon" : 25,
             "action": [
                 {
                     "command": "delete",
@@ -303,6 +321,7 @@
         },
         {
             "label": "Second Life Viewer Game Debug logs",
+            "icon" : 26,
             "action": [
                 {
                     "command": "delete",
@@ -318,6 +337,7 @@
         },
         {
             "label": "Skype Chat logs",
+            "icon" : 53,
             "action": [
                 {
                     "command": "delete",
@@ -343,6 +363,7 @@
         },
         {
             "label": "TeamViewer Logs",
+            "icon" : 59,
             "action": [
                 {
                     "command": "delete",
@@ -353,6 +374,7 @@
         },
         {
             "label": "Vuze / Azureus Logs",
+            "icon" : 29,
             "action": [
                 {
                     "command": "delete",
@@ -378,6 +400,7 @@
         },
         {
             "label": "Warzone2100 Game Logs",
+            "icon" : 60,
             "action": [
                 {
                     "command": "delete",
@@ -393,6 +416,7 @@
         },
         {
             "label": "X11 Windows system Debug logs",
+            "icon" : 61,
             "action": [
                 {
                     "command": "delete",
@@ -413,6 +437,7 @@
         },
         {
             "label": "Yahoo! Messenger Chat logs",
+            "icon" : 31,
             "action": [
                 {
                     "command": "delete",
@@ -433,6 +458,42 @@
                     "command": "delete",
                     "search": "file",
                     "path": "%LOCALAPPDATA%\\Yahoo\\Y!Msgr\\merlin.log.old"
+                }
+            ]
+        },
+        {
+            "label": "System rotated logs",
+            "icon" : 36,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "/var/log/*.[0-9]"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "/var/log/*/*.[0-9]"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "/var/log/*.gz"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "/var/log/*/*gz"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "/var/log/*/*.old"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "/var/log/*.old"
                 }
             ]
         }

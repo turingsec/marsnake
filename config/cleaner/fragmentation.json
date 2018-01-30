@@ -5,6 +5,7 @@
     "option": [
         {
             "label": "Chromium Vacuum",
+            "icon" : 4,
             "action": [
                 {
                     "command": "sqlite.vacuum",
@@ -106,7 +107,24 @@
             ]
         },
         {
+            "label": "Firefox Web browser Vacuum",
+            "icon" : 11,
+            "action": [
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "glob",
+                    "path": "~/.mozilla/firefox*/*.default*/*.sqlite"
+                },
+                {
+                    "command": "sqlite.vacuum",
+                    "search": "glob",
+                    "path": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\*.default*\\*.sqlite"
+                }
+            ]
+        },
+        {
             "label": "Google Chrome Web browser Vacuum",
+            "icon" : 12,
             "action": [
                 {
                     "command": "sqlite.vacuum",
@@ -219,6 +237,7 @@
         },
         {
             "label": "gPodder Cache Vacuum",
+            "icon" : 13,
             "action": [
                 {
                     "command": "sqlite.vacuum",
@@ -229,6 +248,7 @@
         },
         {
             "label": "Liferea Vacuum",
+            "icon" : 18,
             "action": [
                 {
                     "command": "sqlite.vacuum",
@@ -269,6 +289,7 @@
         },
         {
             "label": "Safari Web browser Vacuum",
+            "icon" : 24,
             "action": [
                 {
                     "command": "sqlite.vacuum",
@@ -304,6 +325,7 @@
         },
         {
             "label": "Thunderbird Vacuum",
+            "icon" : 28,
             "action": [
                 {
                     "command": "sqlite.vacuum",
@@ -329,6 +351,7 @@
         },
         {
             "label": "yum Vacuum",
+            "icon" : 37,
             "action": [
                 {
                     "command": "sqlite.vacuum",

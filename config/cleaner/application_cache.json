@@ -10,6 +10,7 @@
                 "type": "exe",
                 "text": "acroread"
             },
+            "icon" : 0,
             "action": [
                 {
                     "command": "delete",
@@ -30,6 +31,7 @@
         },
         {
             "label": "aMSN Cache",
+            "icon" : 1,
             "action": [
                 {
                     "command": "delete",
@@ -45,6 +47,7 @@
         },
         {
             "label": "Audacious Audio player Cache",
+            "icon" : 2,
             "action": [
                 {
                     "command": "delete",
@@ -55,6 +58,7 @@
         },
         {
             "label": "Beagle Search tool Cache",
+            "icon" : 3,
             "action": [
                 {
                     "command": "delete",
@@ -70,6 +74,7 @@
         },
         {
             "label": "Chromium Web browser Cache",
+            "icon" : 4,
             "action": [
                 {
                     "command": "delete",
@@ -352,6 +357,7 @@
         },
         {
             "label": "emesene Chat Client Cache",
+            "icon" : 5,
             "action": [
                 {
                     "command": "delete",
@@ -373,6 +379,7 @@
         },
         {
             "label": "Epiphany Web browser Cache",
+            "icon" : 6,
             "action": [
                 {
                     "command": "delete",
@@ -398,6 +405,7 @@
         },
         {
             "label": "Evolution Email Client Cache",
+            "icon" : 7,
             "action": [
                 {
                     "command": "delete",
@@ -413,6 +421,7 @@
         },
         {
             "label": "Exaile Cache",
+            "icon" : 8,
             "action": [
                 {
                     "command": "delete",
@@ -433,6 +442,7 @@
         },
         {
             "label": "Flash Multimedia viewer Cache",
+            "icon" : 9,
             "action": [
                 {
                     "command": "delete",
@@ -463,6 +473,7 @@
         },
         {
             "label": "gFTP File transfer client Cache",
+            "icon" : 10,
             "action": [
                 {
                     "command": "delete",
@@ -472,7 +483,44 @@
             ]
         },
         {
+            "label": "Firefox Web browser Cache",
+            "icon" : 11,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.mozilla/firefox*/*.default*/Cache*"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.mozilla/firefox*/*.default*/OfflineCache"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.cache/mozilla"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Mozilla\\Firefox\\Profiles\\*.default*\\Cache*"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Mozilla\\Firefox\\Profiles\\*.default*\\OfflineCache"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Mozilla\\Firefox\\Profiles\\*.default*\\jumpListCache"
+                }
+            ]
+        },
+        {
             "label": "Google Chrome Web browser Cache",
+            "icon" : 12,
             "action": [
                 {
                     "command": "delete",
@@ -583,6 +631,7 @@
         },
         {
             "label": "gPodder Cache",
+            "icon" : 13,
             "action": [
                 {
                     "command": "delete",
@@ -593,6 +642,7 @@
         },
         {
             "label": "Hippo OpenSim Viewer Game Cache",
+            "icon" : 14,
             "action": [
                 {
                     "command": "delete",
@@ -608,6 +658,7 @@
         },
         {
             "label": "Java Cache",
+            "icon" : 15,
             "action": [
                 {
                     "command": "delete",
@@ -633,6 +684,7 @@
         },
         {
             "label": "KDE Desktop environment Cache",
+            "icon" : 16,
             "action": [
                 {
                     "command": "delete",
@@ -658,6 +710,7 @@
         },
         {
             "label": "LibreOffice Cache",
+            "icon" : 17,
             "action": [
                 {
                     "command": "delete",
@@ -683,6 +736,7 @@
         },
         {
             "label": "Liferea Cache",
+            "icon" : 18,
             "action": [
                 {
                     "command": "delete",
@@ -713,6 +767,7 @@
         },
         {
             "label": "Miro Multimedia viewer Cache",
+            "icon" : 19,
             "action": [
                 {
                     "command": "delete",
@@ -733,6 +788,7 @@
         },
         {
             "label": "Nexuiz by Alientrap Games Cache",
+            "icon" : 20,
             "action": [
                 {
                     "command": "delete",
@@ -743,6 +799,7 @@
         },
         {
             "label": "Opera Web browser Cache",
+            "icon" : 21,
             "action": [
                 {
                     "command": "delete",
@@ -793,6 +850,7 @@
         },
         {
             "label": "Pidgin Chat client Cache",
+            "icon" : 22,
             "action": [
                 {
                     "command": "delete",
@@ -808,6 +866,7 @@
         },
         {
             "label": "Rhythmbox Cache",
+            "icon" : 23,
             "action": [
                 {
                     "command": "delete",
@@ -823,6 +882,7 @@
         },
         {
             "label": "Safari Web browser Cache",
+            "icon" : 24,
             "action": [
                 {
                     "command": "delete",
@@ -833,6 +893,7 @@
         },
         {
             "label": "SeaMonkey Web browser Cache",
+            "icon" : 25,
             "action": [
                 {
                     "command": "delete",
@@ -873,6 +934,7 @@
         },
         {
             "label": "Second Life Viewer Game Cache",
+            "icon" : 26,
             "action": [
                 {
                     "command": "delete",
@@ -888,6 +950,7 @@
         },
         {
             "label": "System thumbnails",
+            "icon" : 27,
             "action": [
                 {
                     "command": "delete",
@@ -903,6 +966,7 @@
         },
         {
             "label": "Thunderbird Cache",
+            "icon" : 28,
             "action": [
                 {
                     "command": "delete",
@@ -928,6 +992,7 @@
         },
         {
             "label": "Vuze / Azureus Cache",
+            "icon" : 29,
             "action": [
                 {
                     "command": "delete",
@@ -943,6 +1008,7 @@
         },
         {
             "label": "Xine Multimedia viewer Cache",
+            "icon" : 30,
             "action": [
                 {
                     "command": "delete",
@@ -953,6 +1019,7 @@
         },
         {
             "label": "Yahoo! Messenger Chat client Cache",
+            "icon" : 31,
             "action": [
                 {
                     "command": "delete",

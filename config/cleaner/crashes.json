@@ -1,0 +1,60 @@
+{
+    "id": 10,
+    "label": "Crash Reports",
+    "description": "Crash Reports",
+    "option": [
+        {
+            "label": "Firefox Crash Reports",
+            "icon" : 11,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.mozilla/firefox/Crash Reports"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$USERPROFILE\\Application Data\\Mozilla\\Firefox\\Crash Reports"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.mozilla/firefox*/*.default*/*.dmp"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\*.default*\\minidumps\\*.dmp"
+                }
+            ]
+        },
+        {
+            "label": "Kernel Crash Reports",
+            "icon" : 38,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "/var/crash"
+                }
+            ]
+        },
+        {
+            "label": "Windows memory dump",
+            "icon" : 38,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$windir\\memory.dmp"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$windir\\Minidump\\*.dmp"
+                },
+            ]
+        }
+    ]
+}

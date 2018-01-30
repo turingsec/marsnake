@@ -5,6 +5,7 @@
     "option": [
         {
             "label": "Adobe Reader recently used",
+            "icon" : 0,
             "action": [
                 {
                     "command": "delete",
@@ -43,6 +44,7 @@
         },
         {
             "label": "Audacious Audio player recently used",
+            "icon" : 2,
             "action": [{
                 "command": "delete",
                 "search": "file",
@@ -51,6 +53,7 @@
         },
         {
             "label": "Filezilla File transfer client recently used",
+            "icon" : 62,
             "action": [
                 {
                     "command": "delete",
@@ -66,6 +69,7 @@
         },
         {
             "label": "gedit Editor Recent documents list",
+            "icon" : 63,
             "action": [
                 {
                     "command": "delete",
@@ -81,6 +85,7 @@
         },
         {
             "label": "Gwenview Recent documents list",
+            "icon" : 64,
             "action": [
                 {
                     "command": "delete",
@@ -106,6 +111,7 @@
         },
         {
             "label": "KDE Desktop environment Recent documents list",
+            "icon" : 16,
             "action": [
                 {
                     "command": "delete",
@@ -121,6 +127,7 @@
         },
         {
             "label": "Microsoft Office Most recently used",
+            "icon" : 57,
             "action": [
                 {
                     "command": "delete",
@@ -367,6 +374,7 @@
         },
         {
             "label": "Paint Most recently used",
+            "icon" : 65,
             "action": [
                 {
                     "command": "winreg",
@@ -376,6 +384,7 @@
         },
         {
             "label": "TeamViewer Most recently used",
+            "icon" : 59,
             "action": [
                 {
                     "command": "delete",
@@ -391,6 +400,7 @@
         },
         {
             "label": "VLC media player Most recently used",
+            "icon" : 66,
             "action": [
                 {
                     "search": "file",
@@ -434,6 +444,7 @@
         },
         {
             "label": "Winamp Media player Most recently used",
+            "icon" : 67,
             "action": [
                 {
                     "command": "delete",
@@ -449,6 +460,7 @@
         },
         {
             "label": "Windows Explorer Most recently used",
+            "icon" : 52,
             "action": [
                 {
                     "command": "winreg",
@@ -533,6 +545,7 @@
         },
         {
             "label": "Windows Media Player Most recently used",
+            "icon" : 68,
             "action": [
                 {
                     "command": "winreg",
@@ -556,6 +569,7 @@
         },
         {
             "label": "WinRAR File archiver Most recently used",
+            "icon" : 69,
             "action": [
                 {
                     "command": "winreg",
@@ -582,6 +596,7 @@
         },
         {
             "label": "WinZip Most recently used",
+            "icon" : 70,
             "action": [
                 {
                     "command": "winreg",
@@ -595,6 +610,7 @@
         },
         {
             "label": "WordPad Word processor Most recently used",
+            "icon" : 71,
             "action": [
                 {
                     "command": "winreg",

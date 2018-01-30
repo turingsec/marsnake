@@ -10,6 +10,7 @@ class Kvuls():
 		self.reset()
 		
 	def reset(self):
+		self.vuls = {}
 		self.installed_packages = {}
 		self.upgradable_packages = {}
 		self.upgradable_packages_count = 0
@@ -359,17 +360,15 @@ class Kvuls():
 			
 	############################################## Redhat and Debian send function ####################################################
 	def common_response(self, cveid, package_name, installed, candidate):
-		vuls = Kdatabase().get_obj("vuls")
-		
-		if vuls["items"].has_key(package_name):
+		if self.vuls.has_key(package_name):
 			
-			cves = vuls["items"][package_name]["cves"]
+			cves = self.vuls[package_name]["cves"]
 			
 			if cveid not in cves:
 				cves.append(cveid)
 				
 		else:
-			vuls["items"][package_name] = {
+			self.vuls[package_name] = {
 				"installed" : installed,
 				"candidate" : candidate,
 				"candidate_size" : self.candidate_size(package_name, candidate),
@@ -377,16 +376,16 @@ class Kvuls():
 			}
 			
 			print("package : {} cve : {}".format(package_name, cveid))
-
+			
 	#yum install yum-changelog
 	def vulscan(self):
 		self.reset()
-
+		
 		distro, distro_release = lib.detect_distribution()
-
+		
 		yum = common.check_programs_installed("yum")
 		apt = common.check_programs_installed("apt-get")
-
+		
 		if yum:
 			self.redhat_get_installed_packages()
 			
@@ -396,9 +395,14 @@ class Kvuls():
 			else:
 				self.redhat_common_checkupdate()
 				self.redhat_common_vulscan()
-
+				
 		if apt:
 			self.debian_update_packages()
 			self.debian_check_dependencies()
 			self.debian_get_installed_packages()
 			self.debian_scan_cveid_from_changelog()
+			
+		vuls = Kdatabase().get_obj("vuls")
+		vuls["items"] = self.vuls
+		
+		#self.vuls = {}

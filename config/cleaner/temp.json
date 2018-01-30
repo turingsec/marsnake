@@ -5,6 +5,7 @@
     "option": [
         {
             "label": "Adobe Reader Temporary files",
+            "icon" : 0,
             "action": [{
                 "command": "delete",
                 "search": "glob",
@@ -13,6 +14,7 @@
         },
         {
             "label": "aMule File transfer client Temporary files",
+            "icon" : 54,
             "action": [
                 {
                     "command": "delete",
@@ -28,6 +30,7 @@
         },
         {
             "label": "GIMP Graphics editor Temporary files",
+            "icon" : 72,
             "action": [
                 {
                     "command": "delete",
@@ -48,6 +51,7 @@
         },
         {
             "label": "Google Earth Temporary files",
+            "icon" : 73,
             "action": [
                 {
                     "command": "delete",
@@ -78,6 +82,7 @@
         },
         {
             "label": "Internet Explorer Temporary files",
+            "icon" : 32,
             "action": [
                 {
                     "command": "delete",
@@ -103,6 +108,7 @@
         },
         {
             "label": "KDE Desktop environment Temporary files",
+            "icon" : 16,
             "action": [
                 {
                     "command": "delete",
@@ -132,6 +138,7 @@
         },
         {
             "label": "Vuze / Azureus Temporary files",
+            "icon" : 29,
             "action": [
                 {
                     "command": "delete",
@@ -147,6 +154,7 @@
         },
         {
             "label": "WINE Compatibility layer for Windows software Temporary files",
+            "icon" : 74,
             "action": [
                 {
                     "command": "delete",
@@ -157,6 +165,7 @@
         },
         {
             "label": "winetricks Temporary files",
+            "icon" : 74,
             "action": [
                 {
                     "command": "delete",
@@ -167,6 +176,22 @@
                     "command": "delete",
                     "search": "walk.files",
                     "path": "~/.winetrickscache/"
+                }
+            ]
+        },
+        {
+            "label": "Windows Temporary files",
+            "icon" : 79,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "$USERPROFILE\\Local Settings\\Temp\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "$windir\\temp\\"
                 }
             ]
         }
