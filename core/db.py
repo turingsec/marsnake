@@ -79,7 +79,6 @@ class Kdatabase():
 			self.db_objs["cleaner"] = self.db_maps["cleaner"].load()
 		except Exception as e:
 			self.db_objs["cleaner"] = {
-				"items" : {},
 				"kinds" : {},
 				"record" : [],
 				"lasttime" : 0
