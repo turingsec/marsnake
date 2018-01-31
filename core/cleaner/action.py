@@ -302,6 +302,7 @@ class Delete(file_action_base):
 	@staticmethod
 	def do(action_useful):
 		for path in action_useful["paths"]:
+			print(path)
 			command.Delete(path).execute()
 
 class Ini(file_action_base):

@@ -67,6 +67,7 @@ class Delete:
     def execute(self):
         """Make changes and return results"""
         if whitelisted(self.path):
+            print("i am white")
             return
             
         try:

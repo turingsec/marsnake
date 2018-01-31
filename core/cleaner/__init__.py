@@ -27,19 +27,19 @@ class clean_item():
         # If blank or if in .pot-creation-mode, return true.
         if len(os_str) == 0:
             return True
-            
+
         # Otherwise, check platform.
         if os_str == 'linux' and common.is_linux():
             return True
-            
+
         if os_str == 'windows' and common.is_windows():
             return True
-            
+
         return False
-        
+
     def is_usable(self):
         return self.usable
-        
+
 @singleton
 class Kcleaner():
     def __init__(self):
@@ -67,12 +67,12 @@ class Kcleaner():
             #"winreg" : action.Winreg,
             #"yum.clean_all" : action.YumCleanAll
         }
-        
+
         # set up environment variables
         if 'nt' == os.name:
             import windows
             windows.setup_environment()
-            
+
         if 'posix' == os.name:
             # XDG base directory specification
             envs = {
@@ -80,24 +80,24 @@ class Kcleaner():
                 'XDG_CONFIG_HOME': os.path.expanduser('~/.config'),
                 'XDG_CACHE_HOME': os.path.expanduser('~/.cache')
             }
-            
+
             for varname, value in envs.iteritems():
                 if not os.getenv(varname):
                     os.environ[varname] = value
-                    
+
     def list_cleaner_jsons(self):
         for pathname in file_op.listdir(self.jsons):
             if not pathname.lower().endswith('.json'):
                 continue
-                
+
             st = os.stat(pathname)
-            
+
             if sys.platform != 'win32' and stat.S_IMODE(st[stat.ST_MODE]) & 2:
                 Klogger().warn("ignoring cleaner because it is world writable: %s", pathname)
                 continue
-                
+
             yield pathname
-            
+
     def load_jsons(self):
         """Scan for CleanerML and load them"""
         for pathname in self.list_cleaner_jsons():
@@ -106,7 +106,7 @@ class Kcleaner():
             except Exception as e:
                 Klogger().warn('error reading item: %s %s', pathname, e)
                 continue
-                
+
             if item.is_usable():
                 self.kinds[item.id] = item
             else:
@@ -114,17 +114,17 @@ class Kcleaner():
                 
     def scan(self):
         kinds = {}
-        
+
         for i, item in self.kinds.items():
             options = item.conf["option"]
             items = {}
             total_size = 0
-            
+
             for option in options:
                 option_useful = []
                 option_size = 0
                 icon = option["icon"]
-                
+
                 for element in option["action"]:
                     if self.action_maps.has_key(element["command"]):
                         c = self.action_maps[element["command"]](element)
@@ -133,7 +133,7 @@ class Kcleaner():
                         if action_size > 0:
                             option_useful.append(action_useful)
                             option_size += action_size
-                            
+
                 if option_size > 0:
                     items[Krandom().purely(16)] = [option["label"], icon, option_size, option_useful]
                     total_size += option_size
