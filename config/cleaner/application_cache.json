@@ -2,7 +2,7 @@
     "id": 0,
     "unit" : "size",
     "label": "Application Caches",
-    "description": "Application Caches description",
+    "description": "A cache file is a temporary data file created by apps, browsers and many other programs ",
     "option": [
         {
             "label": "Adobe Reader Cache",

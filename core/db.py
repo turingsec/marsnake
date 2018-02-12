@@ -1,7 +1,11 @@
 from core.configuration import Kconfig
 from utils import common
 from utils.singleton import singleton
-import cPickle, os, threading
+import os, threading
+try:
+	import cPickle as pickle
+except ImportError:
+	import pickle
 
 class Kpickle():
 	def __init__(self, path):
@@ -14,11 +18,11 @@ class Kpickle():
 		
 	def dump(self, obj):
 		with open(self.path, 'wb') as f:
-			cPickle.dump(obj, f, cPickle.HIGHEST_PROTOCOL)
+			pickle.dump(obj, f, pickle.HIGHEST_PROTOCOL)
 			
 	def load(self):
 		with open(self.path, 'rb') as f:
-			return cPickle.load(f)
+			return pickle.load(f)
 			
 @singleton
 class Kdatabase():
@@ -99,11 +103,11 @@ class Kdatabase():
 		return self.monitor_second
 
 	def get_obj(self, key):
-		if self.db_objs.has_key(key):
+		if key in self.db_objs:
 			return self.db_objs[key]
 			
 	def dump(self, key):
-		if self.db_objs.has_key(key):
+		if key in self.db_objs:
 			self.db_maps[key].dump(self.db_objs[key])
 
 	def dump_minute(self):

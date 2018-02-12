@@ -210,7 +210,7 @@
                     "command": "delete",
                     "search": "glob",
                     "path": "~/.mozilla/firefox*/*.default*/cookies.sqlite"
-                },
+                }
             ]
         },
         {

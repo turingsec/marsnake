@@ -310,7 +310,7 @@ class PtyProcess():
             offset = str(len(self.lastline)+self.curpoint+1)
             self.write_pipe("\x1b\x5b{}\x47".format(offset))
 
-        elif self.keyboardMap.has_key(cmd):
+	elif cmd in self.keyboardMap:
             self.writelock = 1
             self.keyboardMap[cmd]()
 

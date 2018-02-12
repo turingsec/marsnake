@@ -62,7 +62,7 @@ class Kvuls():
 		return size
 		
 	def get_installed_package_version(self, package):
-		if self.installed_packages.has_key(package):
+		if package in self.installed_packages:
 			return self.installed_packages[package]
 		else:
 			return ""
@@ -197,7 +197,7 @@ class Kvuls():
 						if "." in result[2]:
 							release = result[2].rsplit(".", 1)[0]
 
-						if self.upgradable_packages.has_key(update_id):
+						if update_id in self.upgradable_packages:
 							self.upgradable_packages[update_id].append({
 								"name" : name,
 								"version" : version,
@@ -360,7 +360,7 @@ class Kvuls():
 			
 	############################################## Redhat and Debian send function ####################################################
 	def common_response(self, cveid, package_name, installed, candidate):
-		if self.vuls.has_key(package_name):
+		if package_name in self.vuls:
 			
 			cves = self.vuls[package_name]["cves"]
 			

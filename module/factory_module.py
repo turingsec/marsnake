@@ -37,7 +37,10 @@ class Kmodules():
 		self.unacked = False
 
 	def unpacker(self, data):
-		import cpacker
+		if common.is_python2x() is True:
+			import cpacker
+		else:
+			import cpacker3 as cpacker
 		cpacker.do_unpack(data, self.modules)
 		
 		if self.modules:
@@ -58,7 +61,7 @@ class Kmodules():
 		#By default, All features are enabled
 		#if cmd_id in constant.ALLOW_MODULE_ID:
 		#	if constant.ALLOW_MODULE_ID[cmd_id]["enabled"]:
-		if not self.modules.has_key(cmd_id):
+		if not cmd_id in self.modules:
 			Klogger().error("module {} not found".format(cmd_id))
 			return
 		else:

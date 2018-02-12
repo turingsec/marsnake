@@ -6,7 +6,7 @@ from Crypto.Cipher import PKCS1_OAEP
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import AES
 
-PADDING = '{'
+PADDING = b'{'
 BLOCK_SIZE = 16
 
 # one-liner to sufficiently pad the text to be encrypted
@@ -31,7 +31,7 @@ class Ksecurity():
 		for i in range(0, len(msg), length):
 			res.append(pubobj.encrypt(msg[i : i + length]))
 
-		return "".join(res)
+		return b"".join(res)
 
 	def rsa_long_decrypt(self, msg, length = 128):
 		privobj = RSA.importKey(self.client_privatekey)
@@ -41,7 +41,7 @@ class Ksecurity():
 		for i in range(0, len(msg), length):
 			res.append(privobj.decrypt(msg[i : i + length]))
 
-		return "".join(res)
+		return b"".join(res)
 
 	def get_pubkey(self):
 		return self.client_publickey

@@ -53,7 +53,7 @@
                     "command": "delete",
                     "search": "glob",
                     "path": "$windir\\Minidump\\*.dmp"
-                },
+                }
             ]
         }
     ]

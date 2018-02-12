@@ -1,13 +1,13 @@
 from utils import common, file_op
-import functions, command, glob
+from . import functions, command
+import glob
 import re
-import types
 import os
 
 if 'posix' == os.name:
-    re_flags = 0
+	re_flags = 0
 else:
-    re_flags = re.IGNORECASE
+	re_flags = re.IGNORECASE
 
 class action_base:
 
@@ -36,131 +36,135 @@ class action_base:
 #
 class file_action_base(action_base):
 
-    """Base class for providers which work on individual files"""
-    action_key = '_file'
+	"""Base class for providers which work on individual files"""
+	action_key = '_file'
 
-    def __init__(self, element):
-        """Initialize file search"""
-        self.regex = element["regex"] if element.has_key("regex") else ""
-        assert(isinstance(self.regex, (str, unicode, types.NoneType)))
+	def __init__(self, element):
+		"""Initialize file search"""
+		self.regex = element["regex"] if "regex" in element else ""
+		assert(isinstance(self.regex, (str, unicode, type(None)) if common.is_python2x() else (str, type(None))))
 
-        self.nregex = element["nregex"] if element.has_key("nregex") else ""
-        assert(isinstance(self.nregex, (str, unicode, types.NoneType)))
+		self.nregex = element["nregex"] if "nregex" in element else ""
+		assert(isinstance(self.nregex, (str, unicode, type(None)) if common.is_python2x() else (str, type(None))))
 
-        self.wholeregex = element["wholeregex"] if element.has_key("wholeregex") else ""
-        assert(isinstance(self.wholeregex, (str, unicode, types.NoneType)))
+		self.wholeregex = element["wholeregex"] if "wholeregex" in element else ""
+		assert(isinstance(self.wholeregex, (str, unicode, type(None)) if common.is_python2x() else (str, type(None))))
 
-        self.nwholeregex = element["nwholeregex"] if element.has_key("nwholeregex") else ""
-        assert(isinstance(self.nwholeregex, (str, unicode, types.NoneType)))
+		self.nwholeregex = element["nwholeregex"] if "nwholeregex" in element else ""
+		assert(isinstance(self.nwholeregex, (str, unicode, type(None)) if common.is_python2x() else (str, type(None))))
 
-        self.search = element["search"] if element.has_key("search") else ""
-        self.object_type = element["type"] if element.has_key("type") else ""
-        self.path = common.expanduser(common.expandvars(element["path"] if element.has_key("path") else ""))
+		self.search = element["search"] if "search" in element else ""
+		self.object_type = element["type"] if "type" in element else ""
+		self.path = common.expanduser(common.expandvars(element["path"] if "path" in element else ""))
 
-        if 'nt' == os.name and self.path:
-            # convert forward slash to backslash for compatibility with getsize()
-            # and for display.  Do not convert an empty path, or it will become
-            # the current directory (.).
-            self.path = os.path.normpath(self.path)
+		if 'nt' == os.name and self.path:
+			# convert forward slash to backslash for compatibility with getsize()
+			# and for display.  Do not convert an empty path, or it will become
+			# the current directory (.).
+			self.path = os.path.normpath(self.path)
 
-        self.ds = {}
+		self.ds = {}
 
-        if 'deep' == self.search:
-            self.ds['regex'] = self.regex
-            self.ds['nregex'] = self.nregex
-            self.ds['cache'] = common.boolstr_to_bool(element["cache"])
-            self.ds['command'] = element["command"]
-            self.ds['path'] = self.path
+		if 'deep' == self.search:
+			self.ds['regex'] = self.regex
+			self.ds['nregex'] = self.nregex
+			self.ds['cache'] = common.boolstr_to_bool(element["cache"])
+			self.ds['command'] = element["command"]
+			self.ds['path'] = self.path
 
-        if not any([self.object_type, self.regex, self.nregex,
-                    self.wholeregex, self.nwholeregex]):
-            # If the filter is not needed, bypass it for speed.
-            self.get_paths = self._get_paths
+		if not any([self.object_type, self.regex, self.nregex,
+					self.wholeregex, self.nwholeregex]):
+			# If the filter is not needed, bypass it for speed.
+			self.get_paths = self._get_paths
 
-    def get_deep_scan(self):
-        if 0 == len(self.ds):
-            raise StopIteration
-        yield self.ds
+	def get_deep_scan(self):
+		if 0 == len(self.ds):
+			raise StopIteration
+		yield self.ds
 
-    def path_filter(self, path):
-        """Process the filters: regex, nregex, type
+	def path_filter(self, path):
+		"""Process the filters: regex, nregex, type
 		
-        If a filter is defined and it fails to match, this function
-        returns False. Otherwise, this function returns True."""
+		If a filter is defined and it fails to match, this function
+		returns False. Otherwise, this function returns True."""
 
-        if self.regex:
-            if not self.regex_c.search(os.path.basename(path)):
-                return False
+		if self.regex:
+			if not self.regex_c.search(os.path.basename(path)):
+				return False
 
-        if self.nregex:
-            if self.nregex_c.search(os.path.basename(path)):
-                return False
+		if self.nregex:
+			if self.nregex_c.search(os.path.basename(path)):
+				return False
 
-        if self.wholeregex:
-            if not self.wholeregex_c.search(path):
-                return False
+		if self.wholeregex:
+			if not self.wholeregex_c.search(path):
+				return False
 
-        if self.nwholeregex:
-            if self.nwholeregex_c.search(path):
-                return False
+		if self.nwholeregex:
+			if self.nwholeregex_c.search(path):
+				return False
 
-        if self.object_type:
-            if 'f' == self.object_type and not os.path.isfile(path):
-                return False
-            elif 'd' == self.object_type and not os.path.isdir(path):
-                return False
+		if self.object_type:
+			if 'f' == self.object_type and not os.path.isfile(path):
+				return False
+			elif 'd' == self.object_type and not os.path.isdir(path):
+				return False
 
-        return True
+		return True
 
-    def get_paths(self):
-        import itertools
-        for f in itertools.ifilter(self.path_filter, self._get_paths()):
-            yield f
+	def get_paths(self):
+		if common.is_python2x():
+			import itertools
+			for f in itertools.ifilter(self.path_filter, self._get_paths()):
+				yield f
+		else:
+			for f in filter(self.path_filter, self._get_paths()):
+				yield f
 
-    def _get_paths(self):
-        """Return a filtered list of files"""
+	def _get_paths(self):
+		"""Return a filtered list of files"""
 
-        def get_file(path):
-            if os.path.lexists(path):
-                yield path
+		def get_file(path):
+			if os.path.lexists(path):
+				yield path
 
-        def get_walk_all(top):
-            for expanded in glob.iglob(top):
-                for path in file_op.children_in_directory(expanded, True):
-                    yield path
+		def get_walk_all(top):
+			for expanded in glob.iglob(top):
+				for path in file_op.children_in_directory(expanded, True):
+					yield path
 
-        def get_walk_files(top):
-            for expanded in glob.iglob(top):
-                for path in file_op.children_in_directory(expanded, False):
-                    yield path
+		def get_walk_files(top):
+			for expanded in glob.iglob(top):
+				for path in file_op.children_in_directory(expanded, False):
+					yield path
 
-        if 'deep' == self.search:
-            raise StopIteration
-        elif 'file' == self.search:
-            func = get_file
-        elif 'glob' == self.search:
-            func = glob.iglob
-        elif 'walk.all' == self.search:
-            func = get_walk_all
-        elif 'walk.files' == self.search:
-            func = get_walk_files
-        else:
-            raise RuntimeError("invalid search='%s'" % self.search)
+		if 'deep' == self.search:
+			raise StopIteration
+		elif 'file' == self.search:
+			func = get_file
+		elif 'glob' == self.search:
+			func = glob.iglob
+		elif 'walk.all' == self.search:
+			func = get_walk_all
+		elif 'walk.files' == self.search:
+			func = get_walk_files
+		else:
+			raise RuntimeError("invalid search='%s'" % self.search)
 
-        if self.regex:
-            self.regex_c = re.compile(self.regex, re_flags)
+		if self.regex:
+			self.regex_c = re.compile(self.regex, re_flags)
 
-        if self.nregex:
-            self.nregex_c = re.compile(self.nregex, re_flags)
+		if self.nregex:
+			self.nregex_c = re.compile(self.nregex, re_flags)
 
-        if self.wholeregex:
-            self.wholeregex_c = re.compile(self.wholeregex, re_flags)
+		if self.wholeregex:
+			self.wholeregex_c = re.compile(self.wholeregex, re_flags)
 
-        if self.nwholeregex:
-            self.nwholeregex_c = re.compile(self.nwholeregex, re_flags)
+		if self.nwholeregex:
+			self.nwholeregex_c = re.compile(self.nwholeregex, re_flags)
 
-        for path in func(self.path):
-            yield path
+		for path in func(self.path):
+			yield path
 
 	@staticmethod
 	def do(action_useful):
@@ -313,8 +317,8 @@ class Ini(file_action_base):
 	def __init__(self, action_element):
 		file_action_base.__init__(self, action_element)
 
-		self.section = action_element["section"] if action_element.has_key("section") else ""
-		self.parameter = action_element["parameter"] if action_element.has_key("parameter") else ""
+		self.section = action_element["section"] if "section" in action_element else ""
+		self.parameter = action_element["parameter"] if "parameter" in action_element else ""
 
 		if self.parameter == "":
 			self.parameter = None
@@ -344,7 +348,7 @@ class Json(file_action_base):
 	def __init__(self, action_element):
 		file_action_base.__init__(self, action_element)
 
-		self.address = action_element["address"] if action_element.has_key("address") else ""
+		self.address = action_element["address"] if "address" in action_element else ""
 
 	@staticmethod
 	def do(action_useful):
@@ -430,8 +434,8 @@ class Winreg(action_base):
 	action_key = 'winreg'
 
 	def __init__(self, action_element):
-		self.keyname = action_element["path"] if action_element.has_key("path") else ""
-		self.name = action_element["name"] if action_element.has_key("name") else ""
+		self.keyname = action_element["path"] if "path" in action_element else ""
+		self.name = action_element["name"] if "name" in action_element else ""
 
 	@staticmethod
 	def do(action_useful):

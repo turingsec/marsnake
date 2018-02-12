@@ -4,7 +4,7 @@ from utils.randomize import Krandom
 from config import constant
 from core.logger import Klogger
 import os, stat, sys, json
-import action, functions
+from . import action, functions
 
 class clean_item():
     def __init__(self, pathname):
@@ -19,7 +19,7 @@ class clean_item():
     def handle_json(self):
         self.id = self.conf["id"]
 
-        if self.os_match(self.conf["os"] if self.conf.has_key("os") else ""):
+        if self.os_match(self.conf["os"] if "os" in self.conf else ""):
             self.usable = True
 
     def os_match(self, os_str):
@@ -81,7 +81,7 @@ class Kcleaner():
                 'XDG_CACHE_HOME': os.path.expanduser('~/.cache')
             }
 
-            for varname, value in envs.iteritems():
+            for varname, value in envs.items():
                 if not os.getenv(varname):
                     os.environ[varname] = value
 
@@ -126,7 +126,7 @@ class Kcleaner():
                 icon = option["icon"]
 
                 for element in option["action"]:
-                    if self.action_maps.has_key(element["command"]):
+                    if element["command"] in self.action_maps:
                         c = self.action_maps[element["command"]](element)
                         action_useful, action_size = c.scan()
                         
@@ -150,5 +150,5 @@ class Kcleaner():
     def do(self, action_useful):
         action_key = action_useful["action_key"]
         
-        if self.action_maps.has_key(action_key):
+        if action_key in self.action_maps:
             self.action_maps[action_key].do(action_useful)

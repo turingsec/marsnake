@@ -44,15 +44,19 @@ class Khttp():
 			data = res.read()
 			data = Ksecurity().rsa_long_decrypt(data, 256)
 			
-			if ":" in data:
-				host, port, en_mods = data.split(":", 2)
-				pattern = re.compile(r"<data>(.*)</data>", re.S)
+			if b":" in data:
+				host, port, en_mods = data.split(b":", 2)
+				pattern = re.compile(b"<data>(.*)</data>", re.S)
 				match = re.search(pattern, en_mods)
 
 				if match and len(match.groups()):
 					en_mods = match.groups()[0]
 
 		conn.close()
+
+		if common.is_python2x() is False:
+			host = host.decode("ascii")
+			port = port.decode("ascii")
 		
 		Klogger().info("Logic Server Host:{} Port:{}".format(host, port))
 		

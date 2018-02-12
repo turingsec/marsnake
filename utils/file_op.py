@@ -73,12 +73,12 @@ def get_directory_size(start_path = '.'):
             
     return total_size
 
-def cat(path):
+def cat(path, mode = "rb"):
     data = ""
     
     try:
         if os.path.exists(path):
-            with open(path, "rb") as fin:
+            with open(path, mode) as fin:
                 data = fin.read()
     except Exception as e:
         pass

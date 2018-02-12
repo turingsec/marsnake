@@ -45,13 +45,13 @@ class Kconfig():
 		return True
 		
 	def read_server_publickey(self):
-		return file_op.cat(os.path.join(common.get_work_dir(), constant.SERVER_PUBLIC_KEY))
+		return file_op.cat(os.path.join(common.get_work_dir(), constant.SERVER_PUBLIC_KEY), "r")
 		
 	def read_client_publickey(self):
-		return file_op.cat(os.path.join(common.get_work_dir(), constant.RSA_PUBLIC_KEY))
+		return file_op.cat(os.path.join(common.get_work_dir(), constant.RSA_PUBLIC_KEY), "r")
 		
 	def read_client_privatekey(self):
-		return file_op.cat(os.path.join(common.get_work_dir(), constant.RSA_PRIVATE_KEY))
+		return file_op.cat(os.path.join(common.get_work_dir(), constant.RSA_PRIVATE_KEY), "r")
 		
 	def read_credential(self):
-		return file_op.cat(os.path.join(common.get_work_dir(), constant.CREDENTIAL))
+		return file_op.cat(os.path.join(common.get_work_dir(), constant.CREDENTIAL), "r")

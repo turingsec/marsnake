@@ -48,7 +48,7 @@ def get_description_by_name(service, kind):
             unit_path = os.path.join(path, service)
 
             if os.path.exists(unit_path):
-                data = file_op.cat(unit_path)
+                data = file_op.cat(unit_path, "r")
 
                 if data:
                     lines = data.split("\n")
@@ -66,7 +66,7 @@ def get_description_by_name(service, kind):
         initscript_path = os.path.join("/etc/init.d", service)
 
         if os.path.exists(initscript_path):
-                data = file_op.cat(initscript_path)
+                data = file_op.cat(initscript_path, "r")
 
                 if data:
                     lines = data.split("\n")
@@ -129,7 +129,7 @@ def find_useradd_users():
     uid_min = 1000
     uid_max = 60000
 
-    data = file_op.cat("/etc/login.defs")
+    data = file_op.cat("/etc/login.defs", "r")
 
     if data:
         lines = data.split("\n")
@@ -146,7 +146,7 @@ def find_useradd_users():
                     uid_max = tmp
                     continue
 
-    data = file_op.cat("/etc/passwd")
+    data = file_op.cat("/etc/passwd", "r")
     usernames = []
 
     if data:
@@ -168,9 +168,9 @@ def exec_command(cmd):
     stdout, stderr = process.communicate()
     
     if process.returncode == 0:
-        return str(stdout).strip(), True, process.returncode
+        return str(stdout).strip() if common.is_python2x() else stdout.decode(common.os_encoding).strip(), True, process.returncode
     else:
-        return str(stderr).strip(), False, process.returncode
+        return str(stderr).strip() if common.is_python2x() else stderr.decode(common.os_encoding).strip(), True, process.returncode
         #raise Exception("stderr: %s" % str(stderr))
 
 def timestamp2count(tickcount):
@@ -311,7 +311,7 @@ def detect_distribution():
     #NAME="Ubuntu"
     #VERSION="16.04.2 LTS (Xenial Xerus)"
     items = {"NAME" : None, "VERSION" : None}
-    data = file_op.cat('/etc/os-release')
+    data = file_op.cat('/etc/os-release', 'r')
 
     if data:
         lines = data.split("\n")
@@ -320,7 +320,7 @@ def detect_distribution():
             if line:
                 k, v = line.split("=")
 
-                if items.has_key(k):
+                if k in items:
                     items[k] = v.lstrip('"').rstrip('"')
 
         distro = items["NAME"]
@@ -338,7 +338,7 @@ def detect_distribution():
 
     for i in identification:
         if os.path.exists(i):
-            data = file_op.cat(i)
+            data = file_op.cat(i, 'r')
 
             if data:
                 pattern = re.compile(r'(.*) release (\d[\d.]*)')
@@ -351,7 +351,7 @@ def detect_distribution():
                     if distro and distro_release:
                         return distro, distro_release
         
-    data = file_op.cat('/etc/issue')
+    data = file_op.cat('/etc/issue', 'r')
     
     #raspbian
     if success:
@@ -376,7 +376,7 @@ def detect_distribution():
             if distro and distro_release:
                 return distro, distro_release
             
-    data = file_op.cat('/etc/lsb-release')
+    data = file_op.cat('/etc/lsb-release', 'r')
     
     #DISTRIB_ID=Ubuntu
     #DISTRIB_RELEASE=16.04

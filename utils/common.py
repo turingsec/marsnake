@@ -12,10 +12,19 @@ def check_obj_is_string(s):
         return isinstance(s, str)
         
 def decode2utf8(data):
-    return data.decode(os_encoding)
+    if is_python2x():
+        if isinstance(data, str):
+    	    return data.decode(os_encoding)
+        else:
+            return data
+    else:
+        if isinstance(data, bytes):
+            return data.decode(os_encoding)
+        else:
+            return data
 
 def print_obj(obj):
-    print '\n'.join(['%s:%s' % item for item in obj.__dict__.items()])
+    print('\n'.join(['%s:%s' % item for item in obj.__dict__.items()]))
 
 def add_module_path(path):
     sys.path.append(os.path.join(get_work_dir(), path))
@@ -50,7 +59,7 @@ def get_work_dir():
 
 def is_linux():
 	global system
-	return system == "linux2"
+	return system == "linux2" or system == "linux"
 
 def is_windows():
 	global system
@@ -151,7 +160,7 @@ def size_human_readable(num, suffix = 'B'):
         return '0.00 B'
 
 def try_unicode(path):
-    if type(path) != unicode:
+    if not isinstance(path, unicode if is_python2x() else str):
         try:
             return path.decode(os_encoding)
         except UnicodeDecodeError:
@@ -167,7 +176,10 @@ def timestamp2string(timestamp, dateandtime = False):
 		#return str(d.strftime("%y/%m/%d %H:%M:%S"))
 
 		if dateandtime:
-			return "{} {}".format(d.strftime("%c"), time.strftime('%Z', time.localtime()).decode(os_encoding))
+			if is_python2x():
+				return "{} {}".format(d.strftime("%c"), time.tzname[0].decode(os_encoding))
+			else:
+				return "{} {}".format(d.strftime("%c"), bytes([ord(c) for c in time.tzname[0]]).decode(os_encoding))
 		else:
 			return str(d.strftime("%Y-%m-%d %H:%M:%S"))
 	except Exception as e:
@@ -281,7 +293,7 @@ def expandvars(var):
     Return the argument with environment variables expanded. Substrings of the
     form $name or ${name} or %name% are replaced by the value of environment
     variable name."""
-    if isinstance(var, str):
+    if is_python2x() and isinstance(var, str):
         final = var.decode('utf-8')
     else:
         final = var
@@ -316,7 +328,7 @@ def expanduser(path):
     Return the argument with an initial component of "~" replaced by
     that user's home directory.
     """
-    if isinstance(path, str):
+    if is_python2x() and isinstance(path, str):
         final = path.decode('utf-8')
     else:
         final = path
