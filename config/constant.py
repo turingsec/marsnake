@@ -1,6 +1,6 @@
 VERSION = "v1.0"
 
-RELEASE = False
+RELEASE = True
 TMP_DIRECTORY = ".marsnake"
 TMP_FILE = "tmp_file.zip"
 
