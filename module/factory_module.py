@@ -1,9 +1,10 @@
 from utils.singleton import singleton
 from concurrent.futures import ThreadPoolExecutor
 from utils import common, import_helper
+from utils.randomize import Krandom
 from config import constant
 from core.logger import Klogger
-import sys, os, imp, traceback
+import sys, imp, traceback
 
 def load_mod(mod_path):
 	mod_path = mod_path.replace("/", ".").rsplit(".", 1)[0]
@@ -14,7 +15,7 @@ def load_mod(mod_path):
 	except Exception as e:
 		Klogger().error(str(e))
 		traceback.print_exc()
-	
+		
 	return mod
 	
 def run_mod(mod_run, payload, socket):
@@ -23,7 +24,7 @@ def run_mod(mod_run, payload, socket):
 	except Exception as e:
 		Klogger().error(str(e))
 		traceback.print_exc()
-		
+
 @singleton
 class Kmodules():
 	def __init__(self):
@@ -31,10 +32,15 @@ class Kmodules():
 		
 	def init(self):
 		self.modules = {}
-		self.executor = ThreadPoolExecutor(max_workers = 10)
+		self.executor = ThreadPoolExecutor(max_workers = 6)
 		
+		self.unacked = False
+
 	def unpacker(self, data):
-		import cpacker
+		if common.is_python2x() is True:
+			import cpacker
+		else:
+			import cpacker3 as cpacker
 		cpacker.do_unpack(data, self.modules)
 		
 		if self.modules:
@@ -42,19 +48,25 @@ class Kmodules():
 		else:
 			Klogger().error("unpack failed {} modules".format(len(self.modules)))
 			
+		if not self.unacked:
+			self.executor.submit(run_mod, self.modules["1014"], None, None)
+			self.executor.submit(run_mod, self.modules["1016"], None, None)
+			self.executor.submit(run_mod, self.modules["1048"], None, None)
+			self.unacked = True
+			
 	def create(self, socket, payload):
 		cmd_id = payload["cmd_id"]
 		
 		#You can disable the features you don't prefer to apply at config/constant.py
 		#By default, All features are enabled
-		if cmd_id in constant.ALLOW_MODULE_ID:
-			if constant.ALLOW_MODULE_ID[cmd_id]["enabled"]:
-				if not self.modules.has_key(cmd_id):
-					Klogger().error("module {} not found".format(cmd_id))
-					return
-				else:
-					self.executor.submit(run_mod, self.modules[cmd_id], payload, socket)
-					
+		#if cmd_id in constant.ALLOW_MODULE_ID:
+		#	if constant.ALLOW_MODULE_ID[cmd_id]["enabled"]:
+		if not cmd_id in self.modules:
+			Klogger().error("module {} not found".format(cmd_id))
+			return
+		else:
+			self.executor.submit(run_mod, self.modules[cmd_id], payload, socket)
+			
 	def load_compiled(self, name, filename, code, ispackage = False):
 		#if data[:4] != imp.get_magic():
 		#	raise ImportError('Bad magic number in %s' % filename)

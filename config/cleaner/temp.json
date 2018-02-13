@@ -1,0 +1,199 @@
+{
+    "id": 1,
+    "label": "Temporary files",
+    "description": "Temporary files description",
+    "option": [
+        {
+            "label": "Adobe Reader Temporary files",
+            "icon" : 0,
+            "action": [{
+                "command": "delete",
+                "search": "glob",
+                "path": "/dev/shm/sem.ADBE_*_$LOGNAME"
+            }]
+        },
+        {
+            "label": "aMule File transfer client Temporary files",
+            "icon" : 54,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.aMule/Temp/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$APPDATA\\aMule\\Temp\\"
+                }
+            ]
+        },
+        {
+            "label": "GIMP Graphics editor Temporary files",
+            "icon" : 72,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.gimp-2.4/tmp/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.gimp-2.6/tmp/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.gimp-2.8/tmp/"
+                }
+            ]
+        },
+        {
+            "label": "Google Earth Temporary files",
+            "icon" : 73,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.googleearth/Cache/dbCache.dat"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.googleearth/Cache/dbCache.dat.index"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.googleearth/Temp"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$USERPROFILE\\Application Data\\Google\\GoogleEarth\\dbCache.dat"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$USERPROFILE\\Application Data\\Google\\GoogleEarth\\dbCache.dat.index"
+                }
+            ]
+        },
+        {
+            "label": "Internet Explorer Temporary files",
+            "icon" : 32,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "%APPDATA%\\Microsoft\\Windows\\IETldCache\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "%USERPROFILE%\\AppData\\Local\\Microsoft\\Windows\\Temporary Internet Files\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "%USERPROFILE%\\Local Settings\\Temporary Internet Files\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "%LOCALAPPDATA%\\Microsoft\\Feeds Cache\\"
+                }
+            ]
+        },
+        {
+            "label": "KDE Desktop environment Temporary files",
+            "icon" : 16,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.kde/tmp-*/*/*",
+                    "nregex": "^xauth="
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.kde4/tmp-*/*/*",
+                    "nregex": "^xauth="
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.kde/tmp-*/*",
+                    "nregex": "^xauth="
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.kde4/tmp-*/*",
+                    "nregex": "^xauth="
+                }
+            ]
+        },
+        {
+            "label": "Vuze / Azureus Temporary files",
+            "icon" : 29,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.azureus/tmp/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$APPDATA\\Azureus\\tmp\\"
+                }
+            ]
+        },
+        {
+            "label": "WINE Compatibility layer for Windows software Temporary files",
+            "icon" : 74,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.wine/drive_c/windows/temp/"
+                }
+            ]
+        },
+        {
+            "label": "winetricks Temporary files",
+            "icon" : 74,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.wine/drive_c/winetrickstmp/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.winetrickscache/"
+                }
+            ]
+        },
+        {
+            "label": "Windows Temporary files",
+            "icon" : 79,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "$USERPROFILE\\Local Settings\\Temp\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "$windir\\temp\\"
+                }
+            ]
+        }
+    ]
+}

@@ -18,3 +18,6 @@ class Krandom(object):
     def purely(self, length):
         seq = string.ascii_uppercase + string.digits + string.ascii_lowercase
         return ''.join(random.choice(seq) for _ in range(length))
+
+    def randint(self, min, max):
+        return random.randint(min, max)

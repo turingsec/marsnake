@@ -1,11 +1,11 @@
-VERSION = "v0.2"
+VERSION = "v1.0"
 
-RELEASE = True
+RELEASE = False
 TMP_DIRECTORY = ".marsnake"
 TMP_FILE = "tmp_file.zip"
 
 FILE_TRANSFER_SIZE_PER_TIME = 1 * 512 * 1024
-SOCKET_BUFFER_SIZE = 4 * 1024 * 1024
+SOCKET_BUFFER_SIZE = 10 * 1024 * 1024
 SOCKET_RECV_SIZE = 1 * 1024 * 1024
 
 RSA_PRIVATE_KEY = "config/private_key_2048.pem"
@@ -17,6 +17,15 @@ SERVER_PUBLIC_KEY = "config/server_public_key.pem"
 LOG_PATH = "log/marsnake.log"
 LOG_MAX_BYTES = 10 * 1024 * 1024
 LOG_BACKUP_COUNT = 5
+
+#DB
+DB_MONITOR = "config/monitor.pkl"
+DB_BASIC = "config/basic.pkl"
+DB_CLEANER = "config/cleaner.pkl"
+DB_VULS = "config/vuls.pkl"
+
+#CLEANER
+CLEANER_CONF = "config/cleaner"
 
 if RELEASE:
 	SERVER_URL = "gateway.turingsec.com:443"
@@ -94,6 +103,10 @@ ALLOW_MODULE_ID = {
 		"des" : "module/hardening/vulscan.py",
 		"enabled" : True
 	},
+	"1017" : {
+		"des" : "module/basic/remark.py",
+		"enabled" : True
+	},
 	"1018" : {
 		"des" : "module/filesystem/list_directory.py",
 		"enabled" : True
@@ -168,6 +181,18 @@ ALLOW_MODULE_ID = {
 	},
 	"1037" : {
 		"des" : "module/vnc/init_vnc.py",
+		"enabled" : True
+	},
+	"1038" : {
+		"des" : "module/hardening/enable_service.py",
+		"enabled" : True
+	},
+	"1039" : {
+		"des" : "module/status/usage.py",
+		"enabled" : True
+	},
+	"1040" : {
+		"des" : "module/status/usage_proc.py",
 		"enabled" : True
 	}
 }

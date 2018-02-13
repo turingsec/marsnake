@@ -1,5 +1,6 @@
 from module.factory_module import Kmodules
 from utils.randomize import Krandom
+from utils import common
 from config import constant
 from ctypes import create_string_buffer
 from core.security import Ksecurity
@@ -122,12 +123,16 @@ class Ksocket():
 		
 	def handle_package_2(self, payload):
 		if self.recv_count == 0:
+			if not common.is_python2x():
+				payload = payload.decode("ascii")
 			payload = json.loads(payload)
 			Klogger().info("recv:{}".format(payload))
 			if payload["cmd_id"] == "10000":
 				Ksecurity().swap_publickey_with_server(self)		
 				
 		elif self.recv_count == 1:
+			if not common.is_python2x():
+				payload = payload.decode("ascii")
 			payload = json.loads(payload)
 			Klogger().info("recv:{}".format(payload))
 			if payload["cmd_id"] == "1000":
@@ -135,11 +140,13 @@ class Ksocket():
 				Kmodules().create(self, payload)
 		else:
 			payload = Ksecurity().aes_decrypt(payload)
+			if not common.is_python2x():
+				payload = payload.decode("ascii")
 			payload = json.loads(payload)
-
-			if payload["cmd_id"] in ["1000", "1008", "10081"]:
+			
+			if payload["cmd_id"] in ["1000", "1051"]:
 				Klogger().info("recv:{}".format(payload))
-
+				
 			if payload["args"]["user_id"] == self.userid:
 				Kmodules().create(self, payload)
 				
@@ -154,12 +161,12 @@ class Ksocket():
 				print("")
 			'''
 			with self.lock:
-				if payload["cmd_id"] in ["1000", "1008", "10081"]:
+				if payload["cmd_id"] in ["1000", "1051", "1052"]:
 					Klogger().info(payload)
-				
-				prefix = struct.pack("32s", Krandom().purely(32))
-				suffix = struct.pack("16s", Krandom().purely(16))
-				payload = json.dumps(payload)
+					
+				prefix = struct.pack("32s", Krandom().purely(32).encode("ascii"))
+				suffix = struct.pack("16s", Krandom().purely(16).encode("ascii"))
+				payload = json.dumps(payload).encode("ascii")
 				
 				if Ksecurity().can_aes_encrypt():
 					payload = Ksecurity().aes_encrypt(payload)

@@ -1,0 +1,155 @@
+{
+    "id": 9,
+    "unit" : "size",
+    "label": "Special Json",
+    "description": "Application Caches description",
+    "option": [
+    	{
+            "label": "Chromium Web browser Cache",
+            "action": [
+            	{
+                    "command": "json",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Preferences",
+                    "address": "dns_prefetching/host_referral_list"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Preferences",
+                    "address": "dns_prefetching/startup_list"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Preferences",
+                    "address": "net/http_server_properties/servers"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Preferences",
+                    "address": "dns_prefetching/host_referral_list"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Preferences",
+                    "address": "dns_prefetching/startup_list"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Preferences",
+                    "address": "net/http_server_properties/servers"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Local State",
+                    "address": "HostReferralList"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Local State",
+                    "address": "StartupDNSPrefetchList"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Preferences",
+                    "address": "profile/content_settings/exceptions/site_engagement"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Preferences",
+                    "address": "profile/content_settings/exceptions/media_engagement"
+                },
+                {
+                    "command": "chrome.favicons",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Favicons"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Preferences",
+                    "address": "profile/content_settings/exceptions/site_engagement"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Preferences",
+                    "address": "profile/content_settings/exceptions/media_engagement"
+                }
+            ]
+        },
+        {
+            "label": "Google Chrome Web browser Cache",
+            "action": [
+            	{
+                    "command": "json",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Preferences",
+                    "address": "dns_prefetching/host_referral_list"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Preferences",
+                    "address": "dns_prefetching/startup_list"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Preferences",
+                    "address": "net/http_server_properties/servers"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Local State",
+                    "address": "HostReferralList"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Local State",
+                    "address": "StartupDNSPrefetchList"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Preferences",
+                    "address": "dns_prefetching/host_referral_list"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Preferences",
+                    "address": "dns_prefetching/startup_list"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Preferences",
+                    "address": "net/http_server_properties/servers"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Local State",
+                    "address": "HostReferralList"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Local State",
+                    "address": "StartupDNSPrefetchList"
+                }
+            ]
+        }
+    ]
+}

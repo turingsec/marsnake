@@ -1,0 +1,33 @@
+{
+    "id": 9,
+    "label": "Trash",
+    "description": "Trash",
+    "option": [
+        {
+            "label": "Linux Trash",
+            "icon" : 80,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.Trash"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "~/.local/share/Trash/files"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "~/.local/share/Trash/info"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "~/.local/share/Trash/expunged"
+                }
+            ]
+        }
+    ]
+}

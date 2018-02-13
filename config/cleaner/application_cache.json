@@ -1,0 +1,1032 @@
+{
+    "id": 0,
+    "unit" : "size",
+    "label": "Application Caches",
+    "description": "A cache file is a temporary data file created by apps, browsers and many other programs ",
+    "option": [
+        {
+            "label": "Adobe Reader Cache",
+            "running": {
+                "type": "exe",
+                "text": "acroread"
+            },
+            "icon" : 0,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.adobe/Acrobat/*/Cache"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Adobe\\Acrobat\\*\\Cache"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$USERPROFILE\\AppData\\LocalLow\\Adobe\\Acrobat\\9.0\\Search\\*.idx"
+                }
+            ]
+        },
+        {
+            "label": "aMSN Cache",
+            "icon" : 1,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.amsn/*/displaypic/cache/*.dat"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.amsn/*/displaypic/cache/*.png"
+                }
+            ]
+        },
+        {
+            "label": "Audacious Audio player Cache",
+            "icon" : 2,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$XDG_CACHE_HOME/audacious/thumbs/"
+                }
+            ]
+        },
+        {
+            "label": "Beagle Search tool Cache",
+            "icon" : 3,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.beagle/TextCache"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "~/.beagle/Indexes"
+                }
+            ]
+        },
+        {
+            "label": "Chromium Web browser Cache",
+            "icon" : 4,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Application Cache/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Application Cache\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Cache\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$XDG_CACHE_HOME/chromium/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.cxchromium/chromium/drive_c/windows/profiles/crossover/Local Settings/Application Data/Google/Chrome/User Data/Default/Cache"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Preferences",
+                    "address": "dns_prefetching/host_referral_list"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Preferences",
+                    "address": "dns_prefetching/startup_list"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Preferences",
+                    "address": "net/http_server_properties/servers"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Preferences",
+                    "address": "dns_prefetching/host_referral_list"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Preferences",
+                    "address": "dns_prefetching/startup_list"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Preferences",
+                    "address": "net/http_server_properties/servers"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Local State",
+                    "address": "HostReferralList"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Local State",
+                    "address": "StartupDNSPrefetchList"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\History Provider Cache"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\History-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Network Action Predictor"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Network Action Predictor-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Origin Bound Certs-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Shortcuts"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Shortcuts-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Thumbnails"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Thumbnails"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Thumbnails-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Top Sites"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Top Sites-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Visited Links"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\History Index ????-??"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\History Index ????-??-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Session Storage\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\JumpListIcons\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\JumpListIconsOld\\"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Preferences",
+                    "address": "profile/content_settings/exceptions/site_engagement"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$localappdata\\Chromium\\User Data\\Default\\Preferences",
+                    "address": "profile/content_settings/exceptions/media_engagement"
+                },
+                {
+                    "command": "chrome.favicons",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Favicons"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Archived History-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/History Provider Cache"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/History-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Network Action Predictor"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Network Action Predictor-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Origin Bound Certs-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Shortcuts"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Shortcuts-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Thumbnails"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Thumbnails"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Thumbnails-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Top Sites"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Top Sites-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Visited Links"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/History Index ????-??"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/History Index ????-??-journal"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Session Storage/"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Preferences",
+                    "address": "profile/content_settings/exceptions/site_engagement"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/chromium/Default/Preferences",
+                    "address": "profile/content_settings/exceptions/media_engagement"
+                }
+            ]
+        },
+        {
+            "label": "emesene Chat Client Cache",
+            "icon" : 5,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$XDG_CONFIG_HOME/emesene1.0/*/cache/*.tmp"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$XDG_CONFIG_HOME/emesene1.0/*/cache/.*_*.tmp"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$XDG_CONFIG_HOME/emesene1.0/*/cache/*_[0-9a-f]*[0-9a-f]",
+                    "regex": "_[0-9a-f]{40}$"
+                }
+            ]
+        },
+        {
+            "label": "Epiphany Web browser Cache",
+            "icon" : 6,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.gnome2/epiphany/ephy-favicon-cache.xml"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.gnome2/epiphany/favicon_cache/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.gnome2/epiphany/mozilla/epiphany/Cache/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$XDG_CACHE_HOME/epiphany-browser/"
+                }
+            ]
+        },
+        {
+            "label": "Evolution Email Client Cache",
+            "icon" : 7,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "~/.evolution/cache/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "$XDG_CACHE_HOME/evolution/"
+                }
+            ]
+        },
+        {
+            "label": "Exaile Cache",
+            "icon" : 8,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.exaile/cache/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.exaile/covers/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.exaile/podcasts/"
+                }
+            ]
+        },
+        {
+            "label": "Flash Multimedia viewer Cache",
+            "icon" : 9,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "$APPDATA\\Adobe\\Flash Player\\AssetCache\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "$APPDATA\\Adobe\\Flash Player\\APSPrivateData2\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "$APPDATA\\Adobe\\Flash Player\\NativeCache\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "~/.adobe/Flash_Player/AssetCache/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "~/.adobe/Flash_Player/NativeCache/"
+                }
+            ]
+        },
+        {
+            "label": "gFTP File transfer client Cache",
+            "icon" : 10,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.gftp/cache"
+                }
+            ]
+        },
+        {
+            "label": "Firefox Web browser Cache",
+            "icon" : 11,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.mozilla/firefox*/*.default*/Cache*"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.mozilla/firefox*/*.default*/OfflineCache"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.cache/mozilla"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Mozilla\\Firefox\\Profiles\\*.default*\\Cache*"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Mozilla\\Firefox\\Profiles\\*.default*\\OfflineCache"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Mozilla\\Firefox\\Profiles\\*.default*\\jumpListCache"
+                }
+            ]
+        },
+        {
+            "label": "Google Chrome Web browser Cache",
+            "icon" : 12,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\B*.tmp"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Application Cache\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Pepper Data\\Shockwave Flash\\CacheWritableAdobeRoot\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Cache\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\GPUCache\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Media Cache\\"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Preferences",
+                    "address": "dns_prefetching/host_referral_list"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Preferences",
+                    "address": "dns_prefetching/startup_list"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Default\\Preferences",
+                    "address": "net/http_server_properties/servers"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Local State",
+                    "address": "HostReferralList"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$localappdata\\Google\\Chrome\\User Data\\Local State",
+                    "address": "StartupDNSPrefetchList"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Pepper Data/Shockwave Flash/CacheWritableAdobeRoot/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Application Cache/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$XDG_CACHE_HOME/google-chrome/"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Preferences",
+                    "address": "dns_prefetching/host_referral_list"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Preferences",
+                    "address": "dns_prefetching/startup_list"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Default/Preferences",
+                    "address": "net/http_server_properties/servers"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Local State",
+                    "address": "HostReferralList"
+                },
+                {
+                    "command": "json",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/google-chrome/Local State",
+                    "address": "StartupDNSPrefetchList"
+                }
+            ]
+        },
+        {
+            "label": "gPodder Cache",
+            "icon" : 13,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$XDG_CONFIG_HOME/gpodder/cache/*xml"
+                }
+            ]
+        },
+        {
+            "label": "Hippo OpenSim Viewer Game Cache",
+            "icon" : 14,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.hippo_opensim_viewer/cache/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$USERPROFILE\\Application Data\\Hippo_OpenSim_Viewer\\cache\\"
+                }
+            ]
+        },
+        {
+            "label": "Java Cache",
+            "icon" : 15,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.java/deployment/cache/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "~/.icedteaplugin/cache/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$APPDATA\\Sun\\Java\\Deployment\\cache\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$USERPROFILE\\AppData\\LocalLow\\Sun\\Java\\Deployment\\cache\\"
+                }
+            ]
+        },
+        {
+            "label": "KDE Desktop environment Cache",
+            "icon" : 16,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.kde/cache-*/*/*"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.kde4/cache-*/*/*"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.kde/cache-*/*"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.kde4/cache-*/*"
+                }
+            ]
+        },
+        {
+            "label": "LibreOffice Cache",
+            "icon" : 17,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "$APPDATA\\.libreoffice\\3\\user\\uno_packages\\cache\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "$XDG_CONFIG_HOME/libreoffice/3/user/uno_packages/cache/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "~/.libreoffice/3/user/uno_packages/cache/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "~/.libreoffice/3-suse/user/config/uno_packages/cache/"
+                }
+            ]
+        },
+        {
+            "label": "Liferea Cache",
+            "icon" : 18,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.liferea_1.4/cache/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.liferea_1.6/cache/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.liferea_1.8/cache/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.liferea_1.4/mozilla/liferea/Cache/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.cache/liferea/"
+                }
+            ]
+        },
+        {
+            "label": "Miro Multimedia viewer Cache",
+            "icon" : 19,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.miro/icon-cache/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.miro/mozilla/Cache/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$APPDATA\\Participatory Culture Foundation\\Miro\\Support\\icon-cache\\"
+                }
+            ]
+        },
+        {
+            "label": "Nexuiz by Alientrap Games Cache",
+            "icon" : 20,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.nexuiz/data/dlcache/"
+                }
+            ]
+        },
+        {
+            "label": "Opera Web browser Cache",
+            "icon" : 21,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Opera\\Opera*\\cache\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Opera\\Opera*\\opcache\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Opera\\Opera*\\thumbnails\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Opera\\Opera*\\profile\\cache4\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Opera\\Opera*\\profile\\opcache\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.opera/cache/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.opera/cache4/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.opera/opcache/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.opera/thumbnails/"
+                }
+            ]
+        },
+        {
+            "label": "Pidgin Chat client Cache",
+            "icon" : 22,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "~/.purple/icons/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "$APPDATA\\.purple\\icons\\"
+                }
+            ]
+        },
+        {
+            "label": "Rhythmbox Cache",
+            "icon" : 23,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.gnome2/rhythmbox/jamendo/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.gnome2/rhythmbox/magnatune/"
+                }
+            ]
+        },
+        {
+            "label": "Safari Web browser Cache",
+            "icon" : 24,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$localappdata\\Apple Computer\\Safari\\Cache.db"
+                }
+            ]
+        },
+        {
+            "label": "SeaMonkey Web browser Cache",
+            "icon" : 25,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.mozilla/default/Cache/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.mozilla/seamonkey/*/Cache/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Mozilla\\Profiles\\default\\Cache\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Mozilla\\Profiles\\default\\cache2\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Mozilla\\SeaMonkey\\Profiles\\*\\Cache\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Mozilla\\SeaMonkey\\Profiles\\*\\cache2\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$localappdata\\Mozilla\\SeaMonkey\\Profiles\\*\\startupCache\\"
+                }
+            ]
+        },
+        {
+            "label": "Second Life Viewer Game Cache",
+            "icon" : 26,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.secondlife/cache/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$USERPROFILE\\Application Data\\SecondLife\\cache\\"
+                }
+            ]
+        },
+        {
+            "label": "System thumbnails",
+            "icon" : 27,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.thumbnails/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$XDG_CACHE_HOME/thumbnails/"
+                }
+            ]
+        },
+        {
+            "label": "Thunderbird Cache",
+            "icon" : 28,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "$localappdata\\Thunderbird\\Profiles\\????????.default\\Cache\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "~/.thunderbird/default/????????.slt/Cache/"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.thunderbird/????????.default/Cache/*"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.thunderbird/Profiles/????????.default/Cache/*"
+                }
+            ]
+        },
+        {
+            "label": "Vuze / Azureus Cache",
+            "icon" : 29,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.azureus/ipfilter.cache"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$APPDATA\\Azureus\\ipfilter.cache"
+                }
+            ]
+        },
+        {
+            "label": "Xine Multimedia viewer Cache",
+            "icon" : 30,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.xine/catalog.cache"
+                }
+            ]
+        },
+        {
+            "label": "Yahoo! Messenger Chat client Cache",
+            "icon" : 31,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "%PROGRAMFILES%\\Yahoo!\\Messenger\\Cache\\"
+                }
+            ]
+        }
+    ]
+}

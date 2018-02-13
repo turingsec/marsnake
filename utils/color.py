@@ -1,10 +1,11 @@
+from . import common
 import random
 
 def colorize(s, color):
     if s is None:
         return ""
 
-    if type(s) not in (str, unicode):
+    if not isinstance(s, (str, unicode) if common.is_python2x() else (str, bytes)):
         s = str(s)
 
     res = s

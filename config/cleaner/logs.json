@@ -1,0 +1,501 @@
+{
+    "id": 3,
+    "label": "Logs",
+    "description": "Delete the logs",
+    "option": [
+        {
+            "label": "aMSN Chat logs",
+            "icon" : 1,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.amsn/*/logs/date"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.amsn/*/logs/*.log"
+                }
+            ]
+        },
+        {
+            "label": "aMule transfer client Logs",
+            "icon" : 54,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.aMule/logfile"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.aMule/logfile.bak"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$APPDATA\\aMule\\logfile"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$APPDATA\\aMule\\logfile.bak"
+                }
+            ]
+        },
+        {
+            "label": "Audacious Audio player Logs",
+            "icon" : 2,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CONFIG_HOME/audacious/log"
+                }
+            ]
+        },
+        {
+            "label": "Beagle Search tool Debug logs",
+            "icon" : 3,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.beagle/Log"
+                }
+            ]
+        },
+        {
+            "label": "EasyTAG Audio files tagger Logs",
+            "icon" : 41,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.easytag/easytag.log"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$XDG_CACHE_HOME/easytag/easytag.log"
+                }
+            ]
+        },
+        {
+            "label": "emesene Chat Client Chat logs",
+            "icon" : 5,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$XDG_CONFIG_HOME/emesene1.0/*/logs/*"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$XDG_CONFIG_HOME/emesene2/*/log"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$XDG_CONFIG_HOME/emesene2/*/log-journal"
+                }
+            ]
+        },
+        {
+            "label": "Exaile Logs",
+            "icon" : 8,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.exaile/exaile.log"
+                }
+            ]
+        },
+        {
+            "label": "gFTP File transfer client Logs",
+            "icon" : 10,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.gftp/gftp.log"
+                }
+            ]
+        },
+        {
+            "label": "GL-117 Game Debug logs",
+            "icon" : 36,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.gl-117/logfile.txt"
+                }
+            ]
+        },
+        {
+            "label": "HexChat Chat logs",
+            "icon" : 55,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "~/.xchat2/scrollback/"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.xchat2/logs/*log"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.xchat2/xchatlogs/*log"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "$APPDATA\\X-Chat 2\\scrollback\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$APPDATA\\X-Chat 2\\xchatlogs\\*log"
+                }
+            ]
+        },
+        {
+            "label": "Hippo OpenSim Viewer Game Logs",
+            "icon" : 14,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.hippo_opensim_viewer/logs/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$USERPROFILE\\Application Data\\Hippo_OpenSim_Viewer\\logs\\"
+                }
+            ]
+        },
+        {
+            "label": "Clean old system journals",
+            "icon" : 56,
+            "action": [
+                {
+                    "command": "journald.clean"
+                }
+            ]
+        },
+        {
+            "label": "Microsoft Office logs",
+            "icon" : 57,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "%LOCALAPPDATA%\\Microsoft\\Office\\OffDiag\\"
+                }
+            ]
+        },
+        {
+            "label": "Miro Multimedia viewer Logs",
+            "icon" : 19,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.miro/miro-downloader-log"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.miro/miro-log"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.miro/miro-log.1"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$USERPROFILE\\Local Settings\\Temp\\Miro-downloader.log"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$USERPROFILE\\Local Settings\\Temp\\Miro.log"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$USERPROFILE\\Local Settings\\Temp\\Miro.log.1"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$USERPROFILE\\Local Settings\\Temp\\Miro_Download_Daemon_a.txt"
+                }
+            ]
+        },
+        {
+            "label": "Pidgin Chat client logs",
+            "icon" : 22,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "~/.purple/logs/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "$APPDATA\\.purple\\logs\\"
+                }
+            ]
+        },
+        {
+            "label": "RealPlayer Logs",
+            "icon" : 34,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$APPDATA\\Real\\RealPlayer\\RealPlayer-log.txt"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$APPDATA\\Real\\RealPlayer\\ErrorLogs\\"
+                }
+            ]
+        },
+        {
+            "label": "Screenlets Widgets for the desktop Logs",
+            "icon" : 58,
+            "action": [
+                {
+                    "search": "glob",
+                    "command": "delete",
+                    "path": "$XDG_CONFIG_HOME/Screenlets/*.log"
+                }
+            ]
+        },
+        {
+            "label": "SeaMonkey Web browser Chat logs",
+            "icon" : 25,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$APPDATA\\Mozilla\\Profiles\\default\\????????.slt\\chatzilla\\logs\\*log"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$APPDATA\\Mozilla\\SeaMonkey\\Profiles\\*\\chatzilla\\inputHistory.txt"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$APPDATA\\Mozilla\\SeaMonkey\\Profiles\\*\\chatzilla\\urls.txt"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.mozilla/*/????????.slt/chatzilla/logs/*log"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$APPDATA\\Mozilla\\SeaMonkey\\Profiles\\*\\chatzilla\\logs\\"
+                }
+            ]
+        },
+        {
+            "label": "Second Life Viewer Game Debug logs",
+            "icon" : 26,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "~/.secondlife/logs/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$USERPROFILE\\Application Data\\SecondLife\\logs\\"
+                }
+            ]
+        },
+        {
+            "label": "Skype Chat logs",
+            "icon" : 53,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.Skype/*/chatmsg[0-9]*.dbb"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.Skype/*/chatsync/*/*.dat"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$APPDATA\\Skype\\*\\chatmsg[0-9]*.dbb"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "$APPDATA\\Skype\\*\\chatsync\\*\\*.dat"
+                }
+            ]
+        },
+        {
+            "label": "TeamViewer Logs",
+            "icon" : 59,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "$APPDATA\\TeamViewer\\TeamViewer4_Logfile.log"
+                }
+            ]
+        },
+        {
+            "label": "Vuze / Azureus Logs",
+            "icon" : 29,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "~/.azureus/logs/"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.azureus/update.log"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.azureus/tracker.log"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "$APPDATA\\Azureus\\logs\\"
+                }
+            ]
+        },
+        {
+            "label": "Warzone2100 Game Logs",
+            "icon" : 60,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "~/.warzone2100*/logs/"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.all",
+                    "path": "$USERPROFILE\\My Documents\\Warzone 2100*\\logs\\"
+                }
+            ]
+        },
+        {
+            "label": "X11 Windows system Debug logs",
+            "icon" : 61,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.xsession-errors"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "~/.xsession-errors.old"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "$XDG_DATA_HOME/xorg/"
+                }
+            ]
+        },
+        {
+            "label": "Yahoo! Messenger Chat logs",
+            "icon" : 31,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "%PROGRAMFILES%\\Yahoo!\\Messenger\\Profiles\\*\\Archive\\Messages\\*\\*.dat"
+                },
+                {
+                    "command": "delete",
+                    "search": "walk.files",
+                    "path": "%PROGRAMFILES%\\Yahoo!\\Messenger\\logs\\"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "%LOCALAPPDATA%\\Yahoo\\Y!Msgr\\merlin.log"
+                },
+                {
+                    "command": "delete",
+                    "search": "file",
+                    "path": "%LOCALAPPDATA%\\Yahoo\\Y!Msgr\\merlin.log.old"
+                }
+            ]
+        },
+        {
+            "label": "System rotated logs",
+            "icon" : 36,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "/var/log/*.[0-9]"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "/var/log/*/*.[0-9]"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "/var/log/*.gz"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "/var/log/*/*gz"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "/var/log/*/*.old"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "/var/log/*.old"
+                }
+            ]
+        }
+    ]
+}

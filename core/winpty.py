@@ -1,13 +1,17 @@
 import threading
 from subprocess import Popen, STDOUT, CREATE_NEW_CONSOLE, STARTUPINFO, STARTF_USESHOWWINDOW, SW_HIDE, CREATE_NEW_PROCESS_GROUP
-import os
 from time import sleep
 import win32process
 import win32con
 import win32gui
 import win32api
 import psutil
+import win32pipe
+import win32security
+import win32file
 
+def DebugOutput(x):
+    win32api.OutputDebugString(x)
 
 def get_hwnds_for_pid(pid):
     def callback(hwnd, hwnds):
@@ -16,12 +20,9 @@ def get_hwnds_for_pid(pid):
         # print hwnd
         if found_pid == pid:
             hwnds.append(hwnd)
-
         return True
-
     hwnds = []
     win32gui.EnumWindows(callback, hwnds)
-
     return hwnds
 
 
@@ -30,7 +31,11 @@ class PtyProcess():
     def __init__(self):
         self.writelock = 0
         self.Console_hwnd = []
-        self.proc = None
+        self.dwProcessID=0
+        self.hProcess=0
+        self.write_handle=0
+        self.read_handle=0
+        self.stdin_write=0
         self.ascii = """abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789
         ,./;'[]\\`-=<>?:\"{}|!@#$%^&*()_+~ \x09"""
         self.keyboardMap = {
@@ -65,7 +70,7 @@ class PtyProcess():
         try:
             for i in pids:
                 p = psutil.Process(i)
-                if p.ppid() == self.proc.pid:
+                if p.ppid() == self.dwProcessID:
                     if p.name() == "conhost.exe":
                         continue
                     childpid.append(i)
@@ -86,7 +91,7 @@ class PtyProcess():
             pass
         else:
             offset = str(len(self.lastline)+self.curpoint-1+1)
-            os.write(self.pipein, "\x1b\x5b{}\x47".format(
+            self.write_pipe("\x1b\x5b{}\x47".format(
                 offset))  # relocate point
             self.curpoint -= 1
 
@@ -95,7 +100,7 @@ class PtyProcess():
             pass
         else:
             offset = str(len(self.lastline)+self.curpoint+1+1)
-            os.write(self.pipein, "\x1b\x5b{}\x47".format(
+            self.write_pipe("\x1b\x5b{}\x47".format(
                 offset))  # relocate point
             self.curpoint += 1
 
@@ -104,16 +109,16 @@ class PtyProcess():
             self.clearLine()
             self.writeline = self.writeline[
                 :self.curpoint-1]+self.writeline[self.curpoint:]
-            os.write(self.pipein, '\r'+self.lastline+self.writeline)
+            self.write_pipe('\r'+self.lastline+self.writeline)
             self.curpoint -= 1
             offset = str(len(self.lastline)+1+self.curpoint)
-            os.write(self.pipein, "\x1b\x5b{}\x47".format(
+            self.write_pipe("\x1b\x5b{}\x47".format(
                 offset))  # relocate point
 
     def keyHome(self):
         if self.curpoint:
             offset = str(len(self.lastline)+1)
-            os.write(self.pipein, "\x1b\x5b{}\x47".format(
+            self.write_pipe("\x1b\x5b{}\x47".format(
                 offset))  # relocate point
             self.curpoint = 0
 
@@ -124,9 +129,9 @@ class PtyProcess():
             self.clearLine()
             self.writeline = '{}{}'.format(self.writeline[:self.curpoint],
                                            self.writeline[self.curpoint+1:])
-            os.write(self.pipein, '\r'+self.lastline+self.writeline)
+            self.write_pipe('\r'+self.lastline+self.writeline)
             offset = str(len(self.lastline)+self.curpoint+1)
-            os.write(self.pipein, "\x1b\x5b{}\x47".format(
+            self.write_pipe("\x1b\x5b{}\x47".format(
                 offset))  # relocate point
 
     def keyInset(self):
@@ -137,7 +142,7 @@ class PtyProcess():
 
     def keyEnd(self):
         offset = len(self.writeline)+len(self.lastline)+1
-        os.write(self.pipein, "\x1b\x5b{}\x47".format(offset))
+        self.write_pipe("\x1b\x5b{}\x47".format(offset))
         self.curpoint = len(self.writeline)
 
     def keyUP(self):
@@ -145,7 +150,7 @@ class PtyProcess():
         if not content == None:
             self.clearLine()
             self.writeline = content
-            os.write(self.pipein, '\r'+self.lastline+self.writeline)
+            self.write_pipe('\r'+self.lastline+self.writeline)
             self.keyEnd()
 
     def keyDown(self):
@@ -153,13 +158,13 @@ class PtyProcess():
         if not content == None:
             self.clearLine()
             self.writeline = content
-            os.write(self.pipein, '\r'+self.lastline+self.writeline)
+            self.write_pipe('\r'+self.lastline+self.writeline)
             self.keyEnd()
 
     def clearLine(self):
         # overflow old output with blank
         length = len(self.writeline)+len(self.lastline)+1
-        os.write(self.pipein, '\r{}'.format(' '*length))
+        self.write_pipe('\r{}'.format(' '*length))
 
     def InsertWriteBuffer(self):
         if len(self.writeline):
@@ -171,7 +176,7 @@ class PtyProcess():
             self.writeBufferIndex = self.writeBufferIndexDefault
 
     def PopWriteBufferContent(self, up=True):
-        print self.writeBuffer
+        DebugOutput(self.writeBuffer)
         length = len(self.writeBuffer)
         content = None
         if 0 == length:
@@ -180,7 +185,7 @@ class PtyProcess():
             if self.isInsertCurrentUnfinishedLine == 0:
                 self.tempUnfinishedLine = self.writeline
                 self.isInsertCurrentUnfinishedLine = 1
-                print "is inserted"
+                # print "is inserted"
 
             self.writeBufferIndex += 1
             if self.writeBufferIndex >= length:
@@ -201,10 +206,11 @@ class PtyProcess():
         return content
 
     def sendkey(self, char):
-        hwnd = self.Console_hwnd[0]
-        code = ord(char)
+        win32file.WriteFile(self.stdin_write, char, None)
+        # hwnd = self.Console_hwnd[0]
+        # code = ord(char)
 
-        win32api.SendMessage(hwnd, win32con.WM_CHAR, code, 0)
+        # win32api.SendMessage(hwnd, win32con.WM_CHAR, code, 0)
 
     def sendkeypress(self, key):
         hwnd = self.Console_hwnd[0]
@@ -213,41 +219,63 @@ class PtyProcess():
         win32gui.PostMessage(hwnd, win32con.WM_KEYUP, key, 0)
 
     def start(self, cmd):
-        si = STARTUPINFO()
-        si.dwFlags |= STARTF_USESHOWWINDOW
-        si.wShowWindow = SW_HIDE
-        r, w = os.pipe()
-        self.pipeout = r
-        self.pipein = w
+        sAttr = win32security.SECURITY_ATTRIBUTES()
+        sAttr.bInheritHandle = True
 
-        self.proc = Popen(cmd, stdout=w, stderr=w,
-                          creationflags=CREATE_NEW_CONSOLE, startupinfo=si)
+        stdout_r, stdout_w = win32pipe.CreatePipe(sAttr,0)
+        stdin_r, stdin_w = win32pipe.CreatePipe(sAttr,0)
+        self.read_handle=stdout_r
+        self.write_handle=stdout_w
+        self.stdin_write=stdin_w
+
+        si = win32process.STARTUPINFO()
+        si.dwFlags = win32process.STARTF_USESHOWWINDOW | win32process.STARTF_USESTDHANDLES
+        si.wShowWindow = win32con.SW_HIDE
+        si.hStdInput = stdin_r            # file descriptor of origin stdin
+        si.hStdOutput = stdout_w
+        si.hStdError = stdout_w
+        hProcess, hThread, dwProcessID, dwThreadID = win32process.CreateProcess(None,"cmd", None, None, True, win32process.CREATE_NEW_CONSOLE, None, None, si)
+        self.dwProcessID=dwProcessID
+        self.hProcess=hProcess
         sleep(0.5)
-        print '[*] pid: ', hex(self.proc.pid)
+        if self.hProcess == 0:
+            DebugOutput("Start Process Fail:{:d}".format(win32api.GetLastError()))
+        DebugOutput('[*] pid: {:x}'.format(self.dwProcessID))
+        self.Console_hwnd = get_hwnds_for_pid(self.dwProcessID)
+        if len(self.Console_hwnd)==0:
+            raise Exception("Fail to run,No Process!")
+        DebugOutput('[*] hwnd:{:x}'.format(self.Console_hwnd[0]))
 
-        self.Console_hwnd = get_hwnds_for_pid(self.proc.pid)
-        print '[*] hwnd:', self.Console_hwnd[0]
+    def isalive(self):
+        return win32process.GetExitCodeProcess(self.hProcess) == win32con.STILL_ACTIVE
+
+    def read_pipe(self,size):
+        return win32file.ReadFile(self.read_handle, size, None)[1]
+
+    def write_pipe(self,data):
+        return win32file.WriteFile(self.write_handle, data, None)
 
     @classmethod
     def spawn(self, argv, env=None, cwd=None):
         myself = self()
-        myself.start(argv[0])
+        DebugOutput(str(argv))
+        try:
+            myself.start(argv[0])
+        except Exception as e:
+            DebugOutput("Create Error:")
+            DebugOutput(str(e))
+            DebugOutput(self.read_pipe(1024))
+            DebugOutput("finish")
 
         return myself
 
     def kill(self, sig):
-        Popen("taskkill /F /T /PID %i" % self.proc.pid, shell=True)
+        Popen("taskkill /F /T /PID %i" % self.dwProcessID, shell=True)
+        win32api.CloseHandle(self.stdin_write)
+        win32api.CloseHandle(self.write_handle)
 
     def close(self):
         pass
-
-    def isalive(self):
-        r = self.proc.poll()
-
-        if r == None:
-            return True
-
-        return False
 
     def write(self, cmd):
         i = cmd[0]
@@ -256,7 +284,7 @@ class PtyProcess():
             for char in self.writeline:
                 self.sendkey(char)
 
-            os.write(self.pipein, '\x0d\x0a')
+            self.write_pipe('\x0d\x0a')
             self.sendkey('\x0d')
             self.sendkey('\x0a')
             self.writeline = ''
@@ -278,21 +306,21 @@ class PtyProcess():
                 self.curpoint += 2
             else:
                 self.curpoint += 1
-            os.write(self.pipein, '\r'+self.lastline+self.writeline)
+            self.write_pipe('\r'+self.lastline+self.writeline)
             offset = str(len(self.lastline)+self.curpoint+1)
-            os.write(self.pipein, "\x1b\x5b{}\x47".format(offset))
+            self.write_pipe("\x1b\x5b{}\x47".format(offset))
 
-        elif self.keyboardMap.has_key(cmd):
+	elif cmd in self.keyboardMap:
             self.writelock = 1
             self.keyboardMap[cmd]()
 
         else:
-            print 'drop: '+cmd.encode('hex')
+            DebugOutput('drop: '+cmd.encode('hex'))
 
     def read(self, size):
         if not self.isalive():
             raise Exception
-        line = os.read(self.pipeout, size)
+        line = self.read_pipe(size)
         if not self.writelock:
             self.lastline = line.split('\n')[-1]
             # print "\nLAST:"+self.lastline+'\n'
