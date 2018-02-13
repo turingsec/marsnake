@@ -1,4 +1,4 @@
-VERSION = "v0.2"
+VERSION = "v1.0"
 
 RELEASE = False
 TMP_DIRECTORY = ".marsnake"
