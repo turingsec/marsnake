@@ -7,7 +7,10 @@ import sys
 import subprocess
 
 if 'win32' == sys.platform:
-    import _winreg
+    if sys.version_info[0] == 2:
+        import _winreg
+    else:
+        import winreg as _winreg
     import pywintypes
     import win32api
     import win32con

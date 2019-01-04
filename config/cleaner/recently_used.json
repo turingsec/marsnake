@@ -1,11 +1,10 @@
 {
-    "id": 2,
-    "label": "Most recently used",
-    "description": "Delete the list of recently used documents",
+    "id": 3,
+    "label": 1048030,
+    "description": 1048031,
     "option": [
         {
-            "label": "Adobe Reader recently used",
-            "icon" : 0,
+            "app": 1,
             "action": [
                 {
                     "command": "delete",
@@ -43,8 +42,7 @@
             ]
         },
         {
-            "label": "Audacious Audio player recently used",
-            "icon" : 2,
+            "app": 4,
             "action": [{
                 "command": "delete",
                 "search": "file",
@@ -52,8 +50,7 @@
             }]
         },
         {
-            "label": "Filezilla File transfer client recently used",
-            "icon" : 62,
+            "app": 15,
             "action": [
                 {
                     "command": "delete",
@@ -68,8 +65,7 @@
             ]
         },
         {
-            "label": "gedit Editor Recent documents list",
-            "icon" : 63,
+            "app": 17,
             "action": [
                 {
                     "command": "delete",
@@ -84,8 +80,7 @@
             ]
         },
         {
-            "label": "Gwenview Recent documents list",
-            "icon" : 64,
+            "app": 25,
             "action": [
                 {
                     "command": "delete",
@@ -110,8 +105,7 @@
             ]
         },
         {
-            "label": "KDE Desktop environment Recent documents list",
-            "icon" : 16,
+            "app": 30,
             "action": [
                 {
                     "command": "delete",
@@ -126,8 +120,7 @@
             ]
         },
         {
-            "label": "Microsoft Office Most recently used",
-            "icon" : 57,
+            "app": 36,
             "action": [
                 {
                     "command": "delete",
@@ -373,8 +366,7 @@
             ]
         },
         {
-            "label": "Paint Most recently used",
-            "icon" : 65,
+            "app": 41,
             "action": [
                 {
                     "command": "winreg",
@@ -383,8 +375,7 @@
             ]
         },
         {
-            "label": "TeamViewer Most recently used",
-            "icon" : 59,
+            "app": 52,
             "action": [
                 {
                     "command": "delete",
@@ -399,8 +390,7 @@
             ]
         },
         {
-            "label": "VLC media player Most recently used",
-            "icon" : 66,
+            "app": 58,
             "action": [
                 {
                     "search": "file",
@@ -443,8 +433,7 @@
             ]
         },
         {
-            "label": "Winamp Media player Most recently used",
-            "icon" : 67,
+            "app": 60,
             "action": [
                 {
                     "command": "delete",
@@ -459,8 +448,7 @@
             ]
         },
         {
-            "label": "Windows Explorer Most recently used",
-            "icon" : 52,
+            "app": 62,
             "action": [
                 {
                     "command": "winreg",
@@ -544,8 +532,7 @@
             ]
         },
         {
-            "label": "Windows Media Player Most recently used",
-            "icon" : 68,
+            "app": 63,
             "action": [
                 {
                     "command": "winreg",
@@ -568,8 +555,7 @@
             ]
         },
         {
-            "label": "WinRAR File archiver Most recently used",
-            "icon" : 69,
+            "app": 66,
             "action": [
                 {
                     "command": "winreg",
@@ -595,8 +581,7 @@
             ]
         },
         {
-            "label": "WinZip Most recently used",
-            "icon" : 70,
+            "app": 67,
             "action": [
                 {
                     "command": "winreg",
@@ -609,8 +594,7 @@
             ]
         },
         {
-            "label": "WordPad Word processor Most recently used",
-            "icon" : 71,
+            "app": 68,
             "action": [
                 {
                     "command": "winreg",

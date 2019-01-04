@@ -1,5 +1,5 @@
 class InvalidOptions(Exception):
-    pass
+	pass
 
 class WindowsError(Exception):
 

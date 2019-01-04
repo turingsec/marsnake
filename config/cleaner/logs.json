@@ -1,11 +1,11 @@
 {
-    "id": 3,
-    "label": "Logs",
-    "description": "Delete the logs",
+    "id": 4,
+    "label": 1048040,
+    "description": 1048041,
+    "autoclean": true,
     "option": [
         {
-            "label": "aMSN Chat logs",
-            "icon" : 1,
+            "app": 2,
             "action": [
                 {
                     "command": "delete",
@@ -20,8 +20,7 @@
             ]
         },
         {
-            "label": "aMule transfer client Logs",
-            "icon" : 54,
+            "app": 3,
             "action": [
                 {
                     "command": "delete",
@@ -46,8 +45,7 @@
             ]
         },
         {
-            "label": "Audacious Audio player Logs",
-            "icon" : 2,
+            "app": 4,
             "action": [
                 {
                     "command": "delete",
@@ -57,8 +55,7 @@
             ]
         },
         {
-            "label": "Beagle Search tool Debug logs",
-            "icon" : 3,
+            "app": 6,
             "action": [
                 {
                     "command": "delete",
@@ -68,8 +65,7 @@
             ]
         },
         {
-            "label": "EasyTAG Audio files tagger Logs",
-            "icon" : 41,
+            "app": 9,
             "action": [
                 {
                     "command": "delete",
@@ -84,8 +80,7 @@
             ]
         },
         {
-            "label": "emesene Chat Client Chat logs",
-            "icon" : 5,
+            "app": 11,
             "action": [
                 {
                     "command": "delete",
@@ -105,8 +100,7 @@
             ]
         },
         {
-            "label": "Exaile Logs",
-            "icon" : 8,
+            "app": 14,
             "action": [
                 {
                     "command": "delete",
@@ -116,8 +110,7 @@
             ]
         },
         {
-            "label": "gFTP File transfer client Logs",
-            "icon" : 10,
+            "app": 18,
             "action": [
                 {
                     "command": "delete",
@@ -127,19 +120,7 @@
             ]
         },
         {
-            "label": "GL-117 Game Debug logs",
-            "icon" : 36,
-            "action": [
-                {
-                    "command": "delete",
-                    "search": "file",
-                    "path": "~/.gl-117/logfile.txt"
-                }
-            ]
-        },
-        {
-            "label": "HexChat Chat logs",
-            "icon" : 55,
+            "app": 26,
             "action": [
                 {
                     "command": "delete",
@@ -169,24 +150,7 @@
             ]
         },
         {
-            "label": "Hippo OpenSim Viewer Game Logs",
-            "icon" : 14,
-            "action": [
-                {
-                    "command": "delete",
-                    "search": "walk.files",
-                    "path": "~/.hippo_opensim_viewer/logs/"
-                },
-                {
-                    "command": "delete",
-                    "search": "walk.files",
-                    "path": "$USERPROFILE\\Application Data\\Hippo_OpenSim_Viewer\\logs\\"
-                }
-            ]
-        },
-        {
-            "label": "Clean old system journals",
-            "icon" : 56,
+            "app": 29,
             "action": [
                 {
                     "command": "journald.clean"
@@ -194,8 +158,7 @@
             ]
         },
         {
-            "label": "Microsoft Office logs",
-            "icon" : 57,
+            "app": 36,
             "action": [
                 {
                     "command": "delete",
@@ -205,8 +168,7 @@
             ]
         },
         {
-            "label": "Miro Multimedia viewer Logs",
-            "icon" : 19,
+            "app": 37,
             "action": [
                 {
                     "command": "delete",
@@ -246,8 +208,7 @@
             ]
         },
         {
-            "label": "Pidgin Chat client logs",
-            "icon" : 22,
+            "app": 42,
             "action": [
                 {
                     "command": "delete",
@@ -262,8 +223,7 @@
             ]
         },
         {
-            "label": "RealPlayer Logs",
-            "icon" : 34,
+            "app": 43,
             "action": [
                 {
                     "command": "delete",
@@ -278,8 +238,7 @@
             ]
         },
         {
-            "label": "Screenlets Widgets for the desktop Logs",
-            "icon" : 58,
+            "app": 47,
             "action": [
                 {
                     "search": "glob",
@@ -289,8 +248,7 @@
             ]
         },
         {
-            "label": "SeaMonkey Web browser Chat logs",
-            "icon" : 25,
+            "app": 48,
             "action": [
                 {
                     "command": "delete",
@@ -320,24 +278,7 @@
             ]
         },
         {
-            "label": "Second Life Viewer Game Debug logs",
-            "icon" : 26,
-            "action": [
-                {
-                    "command": "delete",
-                    "search": "walk.files",
-                    "path": "~/.secondlife/logs/"
-                },
-                {
-                    "command": "delete",
-                    "search": "walk.files",
-                    "path": "$USERPROFILE\\Application Data\\SecondLife\\logs\\"
-                }
-            ]
-        },
-        {
-            "label": "Skype Chat logs",
-            "icon" : 53,
+            "app": 50,
             "action": [
                 {
                     "command": "delete",
@@ -362,8 +303,7 @@
             ]
         },
         {
-            "label": "TeamViewer Logs",
-            "icon" : 59,
+            "app": 52,
             "action": [
                 {
                     "command": "delete",
@@ -373,8 +313,7 @@
             ]
         },
         {
-            "label": "Vuze / Azureus Logs",
-            "icon" : 29,
+            "app": 59,
             "action": [
                 {
                     "command": "delete",
@@ -399,24 +338,7 @@
             ]
         },
         {
-            "label": "Warzone2100 Game Logs",
-            "icon" : 60,
-            "action": [
-                {
-                    "command": "delete",
-                    "search": "walk.all",
-                    "path": "~/.warzone2100*/logs/"
-                },
-                {
-                    "command": "delete",
-                    "search": "walk.all",
-                    "path": "$USERPROFILE\\My Documents\\Warzone 2100*\\logs\\"
-                }
-            ]
-        },
-        {
-            "label": "X11 Windows system Debug logs",
-            "icon" : 61,
+            "app": 69,
             "action": [
                 {
                     "command": "delete",
@@ -436,8 +358,7 @@
             ]
         },
         {
-            "label": "Yahoo! Messenger Chat logs",
-            "icon" : 31,
+            "app": 71,
             "action": [
                 {
                     "command": "delete",
@@ -462,8 +383,7 @@
             ]
         },
         {
-            "label": "System rotated logs",
-            "icon" : 36,
+            "app": 74,
             "action": [
                 {
                     "command": "delete",

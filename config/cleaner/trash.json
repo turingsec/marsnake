@@ -1,11 +1,10 @@
 {
-    "id": 9,
-    "label": "Trash",
-    "description": "Trash",
+    "id": 7,
+    "label": 1048070,
+    "description": 1048071,
     "option": [
         {
-            "label": "Linux Trash",
-            "icon" : 80,
+            "app": 73,
             "action": [
                 {
                     "command": "delete",

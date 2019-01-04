@@ -34,17 +34,17 @@ def whitelisted(pathname):
         '^/tmp/orbit-[^/]+/bonobo-activation-server-[a-z0-9-]*ior$',
         '^/tmp/pulse-[^/]+/pid$',
         '^/var/tmp/kdecache-',
-        '^' + common.expanduser('~/.cache/wallpaper/'),
+        '^' + re.escape(common.expanduser('~/.cache/wallpaper/')),
         # Clean Firefox cache from Firefox cleaner (LP#1295826)
-        '^' + common.expanduser('~/.cache/mozilla'),
+        '^' + re.escape(common.expanduser('~/.cache/mozilla')),
         # Clean Google Chrome cache from Google Chrome cleaner (LP#656104)
-        '^' + common.expanduser('~/.cache/google-chrome'),
-        '^' + common.expanduser('~/.cache/gnome-control-center/'),
+        '^' + re.escape(common.expanduser('~/.cache/google-chrome')),
+        '^' + re.escape(common.expanduser('~/.cache/gnome-control-center/')),
         # iBus Pinyin
         # https://bugs.launchpad.net/bleachbit/+bug/1538919
-        '^' + common.expanduser('~/.cache/ibus/'),
+        '^' + re.escape(common.expanduser('~/.cache/ibus/')),
         # Linux Bluetooth daemon obexd
-        '^' + common.expanduser('~/.cache/obexd/')]
+        '^' + re.escape(common.expanduser('~/.cache/obexd/'))]
 
     for regex in regexes:
         if re.match(regex, pathname) is not None:
@@ -67,21 +67,25 @@ class Delete:
     def execute(self):
         """Make changes and return results"""
         if whitelisted(self.path):
-            print("i am white")
+            print("whitelist " + self.path)
             return
             
         try:
-            file_op.delete(self.path, self.shred)
-        except exceptions.WindowsError as e:
+            file_op.delete(self.path, self.shred, ignore_missing = True)
+        except OSError as e:
             # WindowsError: [Error 32] The process cannot access the file because it is being
             # used by another process: u'C:\\Documents and
             # Settings\\username\\Cookies\\index.dat'
-            if 32 != e.winerror and 5 != e.winerror:
+            if 32 != e.args[0] and 5 != e.args[0] and 2 != e.args[0]:
                 raise
-            try:
-                file_op.delete_locked_file(self.path)
-            except:
-                raise
+
+            if e.args[0] == 32:
+                try:
+                    file_op.delete_locked_file(self.path)
+                except OSError as e:
+                    if e.args[0] == 5:
+                        print("No permission to delete: ", self.path)
+                    raise
             else:
                 if self.shred:
                     import warnings
@@ -89,6 +93,8 @@ class Delete:
                         _('At least one file was locked by another process, so its contents could not be overwritten. It will be marked for deletion upon system reboot.'))
                 # TRANSLATORS: The file will be deleted when the
                 # system reboots
+
+                raise
 
 class Function:
 

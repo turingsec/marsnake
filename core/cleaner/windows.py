@@ -1,21 +1,26 @@
 from utils import common, file_op
 from core import logger
+import os
 
-if 'win32' == sys.platform:
-    import _winreg
+if common.is_windows():
+    import sys
+    if sys.version_info[0] == 2:
+        import _winreg
+    else:
+        import winreg as _winreg
     import pywintypes
     import win32api
     import win32con
     import win32file
     import win32gui
     import win32process
-
+    
     from ctypes import windll, c_ulong, c_buffer, byref, sizeof
     from win32com.shell import shell, shellcon
-
+    
     psapi = windll.psapi
     kernel = windll.kernel32
-
+    
 def setup_environment():
     """Define any extra environment variables for use in CleanerML and Winapp2.ini"""
     csidl_to_environ('commonappdata', shellcon.CSIDL_COMMON_APPDATA)
@@ -55,14 +60,20 @@ def set_environ(varname, path):
     if varname in os.environ:
         #logger.debug('set_environ(%s, %s): skipping because environment variable is already defined', varname, path)
         if 'nt' == os.name:
-            os.environ[varname] = common.expandvars(u'%%%s%%' % varname).encode('utf-8')
+            if common.is_python2x():
+                os.environ[varname] = common.expandvars(u'%%%s%%' % varname).encode('utf-8')
+            else:
+                os.environ[varname] = common.expandvars(u'%%%s%%' % varname)
         # Do not redefine the environment variable when it already exists
         # But re-encode them with utf-8 instead of mbcs
         return
     try:
         if not os.path.exists(path):
             raise RuntimeError('Variable %s points to a non-existent path %s' % (varname, path))
-        os.environ[varname] = path.encode('utf8')
+        if common.is_python2x():
+            os.environ[varname] = path.encode('utf8')
+        else:
+            os.environ[varname] = path
     except:
         logger().error('set_environ(%s, %s): exception when setting environment variable', varname, path)
 

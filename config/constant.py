@@ -1,199 +1,76 @@
-VERSION = "v1.0"
-
 RELEASE = True
-TMP_DIRECTORY = ".marsnake"
-TMP_FILE = "tmp_file.zip"
+APP_NAME = "Marsnake"
 
-FILE_TRANSFER_SIZE_PER_TIME = 1 * 512 * 1024
+#MACRO
+FILE_TRANSFER_SIZE_PER_TIME = 1 * 1024 * 1024
 SOCKET_BUFFER_SIZE = 10 * 1024 * 1024
 SOCKET_RECV_SIZE = 1 * 1024 * 1024
 
-RSA_PRIVATE_KEY = "config/private_key_2048.pem"
-RSA_PUBLIC_KEY = "config/public_key_2048.pem"
-CREDENTIAL = "config/credential"
-SERVER_PUBLIC_KEY = "config/server_public_key.pem"
-
-#LOG
-LOG_PATH = "log/marsnake.log"
-LOG_MAX_BYTES = 10 * 1024 * 1024
-LOG_BACKUP_COUNT = 5
-
-#DB
-DB_MONITOR = "config/monitor.pkl"
-DB_BASIC = "config/basic.pkl"
-DB_CLEANER = "config/cleaner.pkl"
-DB_VULS = "config/vuls.pkl"
+#VULS
+VULS_SCAN_PERIOD = 2 * 24 * 60 * 60
+VULS_REPAIR_PERIOD = 3 * 24 * 60 * 60
 
 #CLEANER
+CLEANER_SCAN_PERIOD = 2 * 24 * 60 * 60
+CLEANER_CLEAN_PERIOD = 3 * 24 * 60 * 60
+
+#SECURITY AUDIT
+AUDIT_SCAN_PERIOD = 5 * 60
+
+#VIRUS
+VIRUS_SCAN_PERIOD = 3 * 24 * 60 * 60
+
+#
+PORT_SCAN_PERIOD = 10 * 60
+ACCOUNT_SCAN_PERIOD = 10 * 60
+
+#FILE TRANSFER
+TMP_DIRECTORY = '.tmp'
+
+#RSA KEYS
+SERVER_PUBLIC_KEY = "config/server_public_key.pem"
+
+#CONFIG
 CLEANER_CONF = "config/cleaner"
+LANGUAGE_CONF = "config/language"
+VERSION_CONF = "config/version"
+PCIDB_CONF = "config/pci.ids"
+
+#APPLICATION SETTINGS
+SETTINGS_INFO = "settings.conf"
+
+#LOG
+LOG_DIR = "logs"
+LOG_NAME = "marsnake.log"
+LOG_MAX_BYTES = 20 * 1024 * 1024
+LOG_BACKUP_COUNT = 1
+
+#DB
+DB_DIR = "db"
+DB_MONITOR = "monitor.pkl"
+DB_BASIC = "basic.pkl"
+DB_BASELINE = "baseline.pkl"
+DB_CLEANER = "cleaner.pkl"
+DB_FINGERPRINT = "fingerprint.pkl"
+DB_VULS = "vuls.pkl"
+DB_UEBA = "ueba.pkl"
+DB_AUDIT = "audit.pkl"
+DB_VIRUS = "virus.pkl"
+DB_VIRUS_WHITELIST = "whitelist.pkl"
+
+#ISOLATION
+ISOLATION_PATH = "isolation"
+
+#CYBERTEK
+MALWARE_FILE_MAX_SIZE = 30 * 1024 * 1024
 
 if RELEASE:
-	SERVER_URL = "gateway.turingsec.com:443"
+	SERVER_HOST = "marsnake.com"
+	SERVER_PORT = 443
+	CYBERTEK_URL = "cybertek.turingsec.com:443"
+	UPDATE_SERVER_URL = "https://marsnake.com"
 else:
-	SERVER_URL = "10.16.60.203:443"
-	
-MSG_ID = []
-
-ALLOW_MODULE_ID = {
-	"1000" : {
-		"des" : "module/basic/get_info.py",
-		"enabled" : True
-	},
-	"1001" : {
-		"des" : "module/filesystem/open_dir.py",
-		"enabled" : True
-	},
-	"1002" : {
-		"des" : "module/filesystem/download_files.py",
-		"enabled" : True
-	},
-	"1003" : {
-		"des" : "module/filesystem/mkdir.py",
-		"enabled" : True
-	},
-	"1004" : {
-		"des" : "module/filesystem/delete_file_or_folder.py",
-		"enabled" : True
-	},
-	"1005" : {
-		"des" : "module/filesystem/upload.py",
-		"enabled" : True
-	},
-	"1006" : {
-		"des" : "module/filesystem/rename.py",
-		"enabled" : True
-	},
-	"1007" : {
-		"des" : "module/status/network_status.py",
-		"enabled" : True
-	},
-	"1008" : {
-		"des" : "module/basic/overview.py",
-		"enabled" : True
-	},
-	"10081" : {
-		"des" : "module/basic/overview_win.py",
-		"enabled" : True
-	},
-	"1009" : {
-		"des" : "module/basic/system_status.py",
-		"enabled" : True
-	},
-	"1010" : {
-		"des" : "module/status/cpu_status.py",
-		"enabled" : True
-	},
-	"1011" : {
-		"des" : "module/status/ram_status.py",
-		"enabled" : True
-	},
-	"1012" : {
-		"des" : "module/status/disk_status.py",
-		"enabled" : True
-	},
-	"1013" : {
-		"des" : "module/status/user_status.py",
-		"enabled" : True
-	},
-	"1015" : {
-		"des" : "module/hardening/web_scan.py",
-		"enabled" : True
-	},
-	"1016" : {
-		"des" : "module/hardening/vulscan.py",
-		"enabled" : True
-	},
-	"1017" : {
-		"des" : "module/basic/remark.py",
-		"enabled" : True
-	},
-	"1018" : {
-		"des" : "module/filesystem/list_directory.py",
-		"enabled" : True
-	},
-	"1019" : {
-		"des" : "module/filesystem/paste.py",
-		"enabled" : True
-	},
-	"1020" : {
-		"des" : "module/filesystem/chmod.py",
-		"enabled" : True
-	},
-	"1021" : {
-		"des" : "module/filesystem/sync.py",
-		"enabled" : True
-	},
-	"1022" : {
-		"des" : "module/hardening/boot_services.py",
-		"enabled" : True
-	},
-	"1023" : {
-		"des" : "module/hardening/kernel.py",
-		"enabled" : True
-	},
-	"1025" : {
-		"des" : "module/hardening/authentication.py",
-		"enabled" : True
-	},
-	"1026" : {
-		"des" : "module/hardening/network_audit.py",
-		"enabled" : True
-	},
-	"1027" : {
-		"des" : "module/status/service_status.py",
-		"enabled" : True
-	},
-	"1028" : {
-		"des" : "module/hardening/weakpwd_scan.py",
-		"enabled" : True
-	},
-	"1029" : {
-		"des" : "module/filesystem/execute.py",
-		"enabled" : True
-	},
-	"1030" : {
-		"des" : "module/status/process_detail.py",
-		"enabled" : True
-	},
-	"1031" : {
-		"des" : "module/filesystem/compress.py",
-		"enabled" : True
-	},
-	"1032" : {
-		"des" : "module/filesystem/decompress.py",
-		"enabled" : True
-	},
-	"1033" : {
-		"des" : "module/terminal/new_pty.py",
-		"enabled" : True
-	},
-	"1034" : {
-		"des" : "module/terminal/write_pty.py",
-		"enabled" : True
-	},
-	"1035" : {
-		"des" : "module/terminal/resize_pty.py",
-		"enabled" : True
-	},
-	"1036" : {
-		"des" : "module/terminal/kill_pty.py",
-		"enabled" : True
-	},
-	"1037" : {
-		"des" : "module/vnc/init_vnc.py",
-		"enabled" : True
-	},
-	"1038" : {
-		"des" : "module/hardening/enable_service.py",
-		"enabled" : True
-	},
-	"1039" : {
-		"des" : "module/status/usage.py",
-		"enabled" : True
-	},
-	"1040" : {
-		"des" : "module/status/usage_proc.py",
-		"enabled" : True
-	}
-}
-
+	SERVER_HOST = "10.16.60.202"
+	SERVER_PORT = 8080
+	CYBERTEK_URL = "cybertek.turingsec.com:80"
+	UPDATE_SERVER_URL = "http://10.16.60.202:8080"

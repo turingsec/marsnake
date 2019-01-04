@@ -7,18 +7,23 @@ Marsnake is an IT Infrastructure Security Operations Platform
 | Supported Versions | ![Supported Versions][vi]   |
 
 ## Essential required packages
-* Python2.7
+* Python Environment(Python2.7 or Python 3.6)
 * python-devel
 * pip
 * lshw
 * openssl
 * gcc
+* imlib2
 
 ## Essential required python modules
+* rsa
 * pycrypto
 * psutil
 * futures
 * ptyprocess
+* pystun
+* pywinpty
+* vcruntime 2015 x32 x64
 
 ## Support OS
 | Distribution  | Release | Basic Info| Monitor | Vulscan | Hardening

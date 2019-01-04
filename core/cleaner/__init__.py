@@ -1,9 +1,9 @@
 from utils.singleton import singleton
-from utils import file_op, common
+from utils import file_op, common, time_op
 from utils.randomize import Krandom
 from config import constant
 from core.logger import Klogger
-import os, stat, sys, json
+import os, stat, sys, json, threading
 from . import action, functions
 
 class clean_item():
@@ -19,32 +19,14 @@ class clean_item():
     def handle_json(self):
         self.id = self.conf["id"]
 
-        if self.os_match(self.conf["os"] if "os" in self.conf else ""):
-            self.usable = True
-
-    def os_match(self, os_str):
-        """Return boolean whether operating system matches"""
-        # If blank or if in .pot-creation-mode, return true.
-        if len(os_str) == 0:
-            return True
-
-        # Otherwise, check platform.
-        if os_str == 'linux' and common.is_linux():
-            return True
-
-        if os_str == 'windows' and common.is_windows():
-            return True
-
-        return False
-
-    def is_usable(self):
-        return self.usable
-
 @singleton
 class Kcleaner():
     def __init__(self):
         self.kinds = {}
-        self.jsons = os.path.join(common.get_work_dir(), constant.CLEANER_CONF)
+        self.apps_list = {}
+        self.json_path = os.path.join(common.get_work_dir(), constant.CLEANER_CONF)
+        self.json_files = ('application_cache.json', 'cookies.json', 'crashes.json',                'history.json', 'logs.json', 'recently_used.json', 'temp.json', 'trash.json')
+        self.lock = threading.Lock()
         self.action_maps = {
             #"apt.autoclean" : action.AptAutoclean,
             #"apt.autoremove" : action.AptAutoremove,
@@ -60,7 +42,7 @@ class Kcleaner():
             #"json" : action.Json,
             #"mozilla_url_history" : action.MozillaUrlHistory,
             #"office_registrymodifications" : action.OfficeRegistryModifications,
-            "shred" : action.Shred,
+            #"shred" : action.Shred,
             #"sqlite.vacuum" : action.SqliteVacuum,
             #"truncate" : action.Truncate,
             #"win.shell.change.notify" : action.WinShellChangeNotify,
@@ -70,7 +52,7 @@ class Kcleaner():
 
         # set up environment variables
         if 'nt' == os.name:
-            import windows
+            from . import windows
             windows.setup_environment()
 
         if 'posix' == os.name:
@@ -85,70 +67,140 @@ class Kcleaner():
                 if not os.getenv(varname):
                     os.environ[varname] = value
 
-    def list_cleaner_jsons(self):
-        for pathname in file_op.listdir(self.jsons):
-            if not pathname.lower().endswith('.json'):
-                continue
-
-            st = os.stat(pathname)
-
-            if sys.platform != 'win32' and stat.S_IMODE(st[stat.ST_MODE]) & 2:
-                Klogger().warn("ignoring cleaner because it is world writable: %s", pathname)
-                continue
-
-            yield pathname
+    def get_lock(self):
+        return self.lock
 
     def load_jsons(self):
-        """Scan for CleanerML and load them"""
-        for pathname in self.list_cleaner_jsons():
+        apps_path = os.path.join(self.json_path, "apps.json")
+        if not os.path.exists(apps_path):
+            Klogger().debug("apps.json does not exist")
+            raise Exception
+
+        try:
+            with open(apps_path, "r") as f:
+                raw_apps_list = json.load(f)
+        except Exception as e:
+            Klogger().debug("read apps.json fails with %s" % (str(e)))
+            raise
+
+        for each in raw_apps_list:
+            if (not 'id' in each or not 'label' in each or not 'description' in each or not 'icon' in each):
+                Klogger().debug("Corrupted item in apps.json")
+                continue
+
+            if 'os' in each:
+                if each['os'] == "windows":
+                    if not common.is_windows():
+                        continue
+                elif each['os'] == "linux":
+                    if not common.is_linux():
+                        continue
+                else:
+                    Klogger().debug("Unknown os in apps.json, id %s" % (each['id']))
+                    continue
+
+            item = {"label": each['label'],
+                    "description": each['description'],
+                    "icon": each['icon']}
+            
+            if 'running' in each:
+                item['running'] = each['running']
+
+            self.apps_list[each['id']] = item
+
+        for pathname in self.json_files:
             try:
-                item = clean_item(pathname)
+                item = clean_item(os.path.join(self.json_path, pathname))
             except Exception as e:
                 Klogger().warn('error reading item: %s %s', pathname, e)
                 continue
 
-            if item.is_usable():
-                self.kinds[item.id] = item
-            else:
-                Klogger().warn('item is not usable on this OS because it has no actions: %s', pathname)
-                
+            self.kinds[item.id] = item
+
     def scan(self):
         kinds = {}
 
         for i, item in self.kinds.items():
             options = item.conf["option"]
+            autoclean = False if not "autoclean" in item.conf else item.conf["autoclean"]
             items = {}
             total_size = 0
 
             for option in options:
+                if not option['app'] in self.apps_list:
+                    continue
+
                 option_useful = []
                 option_size = 0
-                icon = option["icon"]
+                icon = self.apps_list[option["app"]]["icon"]
 
                 for element in option["action"]:
                     if element["command"] in self.action_maps:
                         c = self.action_maps[element["command"]](element)
                         action_useful, action_size = c.scan()
-                        
+
                         if action_size > 0:
                             option_useful.append(action_useful)
                             option_size += action_size
 
                 if option_size > 0:
-                    items[Krandom().purely(16)] = [option["label"], icon, option_size, option_useful]
+                    label = self.apps_list[option['app']]["label"]
+                    icon = self.apps_list[option['app']]['icon']
+                    items[Krandom().purely(16)] = [label, icon, option_size, option_useful]
                     total_size += option_size
-                    
+
             kinds[i] = {
                 "name" : item.conf["label"],
                 "des" : item.conf["description"],
+                "autoclean" : autoclean, 
                 "size" : total_size,
                 "items" : items
             }
-            
+
         return kinds
-        
+
     def do(self, action_useful):
         action_key = action_useful["action_key"]
-        
+
         if action_key in self.action_maps:
-            self.action_maps[action_key].do(action_useful)
+            return self.action_maps[action_key].do(action_useful)
+
+        print("clean file: No action")
+        return 0
+
+    def clean_option(self, info, option_id, record):
+        option = info["items"][option_id]
+        option_size, option_useful = option[2 : 4]
+        failed_count = 0
+        total_size = 0
+
+        for action_useful in option_useful:
+            failed_count += self.do(action_useful)
+
+        total_size = option_size
+        info["size"] -= option_size
+        del info["items"][option_id]
+
+        self.update_record(record, total_size)
+
+        return total_size, failed_count
+
+    def update_record(self, record, total_size):
+        today = time_op.get_last_day()
+
+        if len(record) > 0:
+            last_record = record[-1]
+            lastday = time_op.get_last_day(last_record["time"])
+
+            if today == lastday:
+                last_record["size"] += total_size
+            else:
+                record.append({
+                    "time" : today,
+                    "size" : total_size
+                })
+        else:
+            record.append({
+                "time" : today,
+                "size" : total_size
+            })

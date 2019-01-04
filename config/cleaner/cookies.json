@@ -1,11 +1,10 @@
 {
     "id": 6,
-    "label": "Cookies",
-    "description": "Delete cookies, which contain information such as web site preferences, authentication, and tracking identification",
+    "label": 1048060,
+    "description": 1048061,
     "option": [
         {
-            "label": "chromium Cookies",
-            "icon" : 4,
+            "app": 7,
             "action": [
                 {
                     "command": "delete",
@@ -130,8 +129,7 @@
             ]
         },
         {
-            "label": "ELinks Web browser Cookies",
-            "icon" : 36,
+            "app": 10,
             "action": [
                 {
                     "command": "delete",
@@ -141,8 +139,7 @@
             ]
         },
         {
-            "label": "Epiphany Web browser Cookies",
-            "icon" : 6,
+            "app": 12,
             "action": [
                 {
                     "command": "delete",
@@ -172,8 +169,7 @@
             ]
         },
         {
-            "label": "Flash Multimedia viewer Cookies",
-            "icon" : 9,
+            "app": 16,
             "action": [
                 {
                     "command": "delete",
@@ -198,24 +194,7 @@
             ]
         },
         {
-            "label": "Firefox Web browser Cookies",
-            "icon" : 11,
-            "action": [
-                {
-                    "command": "delete",
-                    "search": "glob",
-                    "path": "~/.mozilla/firefox*/*.default*/cookies.txt"
-                },
-                {
-                    "command": "delete",
-                    "search": "glob",
-                    "path": "~/.mozilla/firefox*/*.default*/cookies.sqlite"
-                }
-            ]
-        },
-        {
-            "label": "Google Chrome Web browser Cookies",
-            "icon" : 12,
+            "app": 21,
             "action": [
                 {
                     "command": "delete",
@@ -340,8 +319,7 @@
             ]
         },
         {
-            "label": "Internet Explorer Cookies",
-            "icon" : 32,
+            "app": 27,
             "action": [
                 {
                     "command": "delete",
@@ -366,8 +344,7 @@
             ]
         },
         {
-            "label": "Konqueror Cookies",
-            "icon" : 33,
+            "app": 31,
             "action": [
                 {
                     "command": "delete",
@@ -392,8 +369,7 @@
             ]
         },
         {
-            "label": "Liferea Cookies",
-            "icon" : 18,
+            "app": 33,
             "action": [
                 {
                     "command": "delete",
@@ -408,8 +384,7 @@
             ]
         },
         {
-            "label": "Opera Web browser Cookies",
-            "icon" : 21,
+            "app": 40,
             "action": [
                 {
                     "command": "delete",
@@ -459,8 +434,7 @@
             ]
         },
         {
-            "label": "RealPlayer Cookies",
-            "icon" : 34,
+            "app": 43,
             "action": [
                 {
                     "command": "delete",
@@ -475,8 +449,7 @@
             ]
         },
         {
-            "label": "Safari Web browser Cookies",
-            "icon" : 24,
+            "app": 46,
             "action": [
                 {
                     "command": "delete",
@@ -491,8 +464,7 @@
             ]
         },
         {
-            "label": "SeaMonkey Web browser Cookies",
-            "icon" : 25,
+            "app": 48,
             "action": [
                 {
                     "command": "delete",
@@ -517,8 +489,7 @@
             ]
         },
         {
-            "label": "Silverlight Cookies",
-            "icon" : 35,
+            "app": 49,
             "action": [
                 {
                     "command": "delete",
@@ -533,8 +504,7 @@
             ]
         },
         {
-            "label": "Thunderbird Cookies",
-            "icon" : 28,
+            "app": 54,
             "action": [
                 {
                     "command": "delete",
@@ -555,6 +525,21 @@
                     "command": "delete",
                     "search": "glob",
                     "path": "~/.thunderbird/Profiles/????????.default/cookies.sqlite"
+                }
+            ]
+        },
+        {
+            "app": 72,
+            "action": [
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.mozilla/firefox*/*.default*/cookies.txt"
+                },
+                {
+                    "command": "delete",
+                    "search": "glob",
+                    "path": "~/.mozilla/firefox*/*.default*/cookies.sqlite"
                 }
             ]
         }

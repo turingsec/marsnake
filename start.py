@@ -1,41 +1,29 @@
-import sys, traceback
-from network.launcher.launchers import Klauncher
-from module.factory_module import Kmodules
+import os, sys, psutil, time
 from core.threads import Kthreads
-from core.security import Ksecurity
-from core.db import Kdatabase
-from core.logger import Klogger
 from utils import common
-from core.configuration import Kconfig
+from core.event import Kevent
+from core.pipe import KPipe
+from core import addition_import
+import traceback
 
-LAUNCHER = "connect"
-
-def init_config():
-	common.setdefaultencoding("utf8")
-	common.set_work_dir()
-	common.add_module_path("lib")
-	
-	if not Kconfig().init():
-		sys.exit(1)
-		
-	Klogger().init()
-
-	Kdatabase().init()
-	Ksecurity().init()
-	Kmodules().init()
-	
-def init_network():
-	Klauncher().set_launcher(LAUNCHER)
-
-if __name__ == '__main__':
+def python_main(child_end):
 	try:
-		init_config()
-		init_network()
-		
-		Klauncher().start()
-		#Kthreads().apply_async(Klauncher().start, ())
-		#Kthreads().join()
+		common.set_work_dir()
+		common.setdefaultencoding("utf8")
+
+		Kevent().init_signal()
+
+		if not Kevent().do_initializing():
+			sys.exit(1)
+
+		if child_end:
+			Kthreads().apply_async(KPipe().start, (child_end, ))
+
+		Kthreads().apply_async(Kevent().do_start, ())
+		Kthreads().join()
 
 	except Exception as e:
-		traceback.print_exc()
-		Klogger().error(e)
+		traceback.print_exc(file = sys.stdout)
+
+if __name__ == '__main__':
+	python_main(None)

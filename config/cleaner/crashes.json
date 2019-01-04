@@ -1,11 +1,11 @@
 {
-    "id": 10,
-    "label": "Crash Reports",
-    "description": "Crash Reports",
+    "id": 8,
+    "label": 1048080,
+    "description": 1048081,
+    "autoclean": true,
     "option": [
         {
-            "label": "Firefox Crash Reports",
-            "icon" : 11,
+            "app": 72,
             "action": [
                 {
                     "command": "delete",
@@ -30,8 +30,7 @@
             ]
         },
         {
-            "label": "Kernel Crash Reports",
-            "icon" : 38,
+            "app": 74,
             "action": [
                 {
                     "command": "delete",
@@ -41,8 +40,7 @@
             ]
         },
         {
-            "label": "Windows memory dump",
-            "icon" : 38,
+            "app": 75,
             "action": [
                 {
                     "command": "delete",

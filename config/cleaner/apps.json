@@ -1,0 +1,567 @@
+[
+    {
+        "id": 1,
+        "label": 1049010,
+        "description": 1049011,
+        "icon": 0,
+        "running": [
+            {
+                "type": "exe",
+                "text": "acroread"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "label": 1049020,
+        "description": 1049021,
+        "icon": 1,
+        "os": "linux"
+    },
+    {
+        "id": 3,
+        "label": 1049030,
+        "description": 1049031,
+        "icon": 54
+    },
+    {
+        "id": 4,
+        "label": 1049040,
+        "description": 1049041,
+        "icon": 2,
+        "os": "linux"
+    },
+    {
+        "id": 5,
+        "label": 1049050,
+        "description": 1049051,
+        "icon": 39,
+        "os": "linux"
+    },
+    {
+        "id": 6,
+        "label": 1049060,
+        "description": 1049061,
+        "icon": 3,
+        "os": "linux"
+    },
+    {
+        "id": 7,
+        "label": 1049070,
+        "description": 1049071,
+        "icon": 4,
+        "running": [
+            {
+                "type": "exe",
+                "text": "chrome.exe"
+            },
+            {
+                "type": "exe",
+                "text": "chromium-browser"
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "label": 1049080,
+        "description": 1049081,
+        "icon": 40,
+        "os": "linux"
+    },
+    {
+        "id": 9,
+        "label": 1049090,
+        "description": 1049091,
+        "icon": 41,
+        "os": "linux"
+    },
+    {
+        "id": 10,
+        "label": 1049100,
+        "description": 1049101,
+        "icon": 36,
+        "os": "linux"
+    },
+    {
+        "id": 11,
+        "label": 1049110,
+        "description": 1049111,
+        "icon": 5,
+        "os": "linux"
+    },
+    {
+        "id": 12,
+        "label": 1049120,
+        "description": 1049121,
+        "icon": 6,
+        "os": "linux"
+    },
+    {
+        "id": 13,
+        "label": 1049130,
+        "description": 1049131,
+        "icon": 7,
+        "os": "linux"
+    },
+    {
+        "id": 14,
+        "label": 1049140,
+        "description": 1049141,
+        "icon": 8,
+        "os": "linux"
+    },
+    {
+        "id": 15,
+        "label": 1049150,
+        "description": 1049151,
+        "icon": 62
+    },
+    {
+        "id": 16,
+        "label": 1049160,
+        "description": 1049161,
+        "icon": 9
+    },
+    {
+        "id": 17,
+        "label": 1049170,
+        "description": 1049171,
+        "icon": 63,
+        "os": "linux"
+    },
+    {
+        "id": 18,
+        "label": 1049180,
+        "description": 1049181,
+        "icon": 10,
+        "os": "linux"
+    },
+    {
+        "id": 19,
+        "label": 1049190,
+        "description": 1049191,
+        "icon": 72
+    },
+    {
+        "id": 20,
+        "label": 1049200,
+        "description": 1049201,
+        "icon": 42,
+        "os": "linux"
+    },
+    {
+        "id": 21,
+        "label": 1049210,
+        "description": 1049211,
+        "icon": 12,
+        "running": [
+            {
+                "type": "exe",
+                "text": "chrome"
+            }
+        ]
+    },
+    {
+        "id": 22,
+        "label": 1049220,
+        "description": 1049221,
+        "icon": 73
+    },
+    {
+        "id": 23,
+        "label": 1049230,
+        "description": 1049231,
+        "icon": 43
+    },
+    {
+        "id": 24,
+        "label": 1049240,
+        "description": 1049241,
+        "icon": 13,
+        "os": "linux"
+    },
+    {
+        "id": 25,
+        "label": 1049250,
+        "description": 1049251,
+        "icon": 64,
+        "os": "linux"
+    },
+    {
+        "id": 26,
+        "label": 1049260,
+        "description": 1049261,
+        "icon": 55
+    },
+    {
+        "id": 27,
+        "label": 1049270,
+        "description": 1049271,
+        "icon": 32,
+        "os": "windows"
+    },
+    {
+        "id": 28,
+        "label": 1049280,
+        "description": 1049281,
+        "icon": 15
+    },
+    {
+        "id": 29,
+        "label": 1049290,
+        "description": 1049291,
+        "icon": 56,
+        "os": "linux"
+    },
+    {
+        "id": 30,
+        "label": 1049300,
+        "description": 1049301,
+        "icon": 16,
+        "os": "linux"
+    },
+    {
+        "id": 31,
+        "label": 1049310,
+        "description": 1049311,
+        "icon": 33,
+        "os": "linux"
+    },
+    {
+        "id": 32,
+        "label": 1049320,
+        "description": 1049321,
+        "icon": 17,
+        "running": [
+            {
+                "type": "exe",
+                "text": "soffice.bin"
+            },
+            {
+                "type": "exe",
+                "text": "soffice.exe"
+            }
+        ]
+    },
+    {
+        "id": 33,
+        "label": 1049330,
+        "description": 1049331,
+        "icon": 18
+    },
+    {
+        "id": 34,
+        "label": 1049340,
+        "description": 1049341,
+        "icon": 36,
+        "os": "linux"
+    },
+    {
+        "id": 35,
+        "label": 1049350,
+        "description": 1049351,
+        "icon": 44,
+        "os": "linux"
+    },
+    {
+        "id": 36,
+        "label": 1049360,
+        "description": 1049361,
+        "icon": 57,
+        "os": "windows"
+    },
+    {
+        "id": 37,
+        "label": 1049370,
+        "description": 1049371,
+        "icon": 19
+    },
+    {
+        "id": 38,
+        "label": 1049380,
+        "description": 1049381,
+        "icon": 45,
+        "os": "linux"
+    },
+    {
+        "id": 39,
+        "label": 1049390,
+        "description": 1049391,
+        "icon": 46
+    },
+    {
+        "id": 40,
+        "label": 1049400,
+        "description": 1049401,
+        "icon": 21,
+        "running": [
+            {
+                "type": "exe",
+                "text": "opera"
+            }
+        ]
+    },
+    {
+        "id": 41,
+        "label": 1049410,
+        "description": 1049411,
+        "icon": 65,
+        "os": "windows"
+    },
+    {
+        "id": 42,
+        "label": 1049420,
+        "description": 1049421,
+        "icon": 22
+    },
+    {
+        "id": 43,
+        "label": 1049430,
+        "description": 1049431,
+        "icon": 34
+    },
+    {
+        "id": 44,
+        "label": 1049440,
+        "description": 1049441,
+        "icon": 47,
+        "os": "linux"
+    },
+    {
+        "id": 45,
+        "label": 1049450,
+        "description": 1049451,
+        "icon": 23,
+        "os": "linux"
+    },
+    {
+        "id": 46,
+        "label": 1049460,
+        "description": 1049461,
+        "icon": 24,
+        "os": "windows"
+    },
+    {
+        "id": 47,
+        "label": 1049470,
+        "description": 1049471,
+        "icon": 58,
+        "os": "linux"
+    },
+    {
+        "id": 48,
+        "label": 1049480,
+        "description": 1049480,
+        "icon": 25,
+        "running": [
+            {
+                "type": "exe",
+                "text": "seamonkey"
+            }
+        ]
+    },
+    {
+        "id": 49,
+        "label": 1049490,
+        "description": 1049491,
+        "icon": 35,
+        "os": "windows"
+    },
+    {
+        "id": 50,
+        "label": 1049500,
+        "description": 1049501,
+        "icon": 53,
+        "running": [
+            {
+                "type": "exe",
+                "text": "skype"
+            }
+        ]
+    },
+    {
+        "id": 51,
+        "label": 1049510,
+        "description": 1049511,
+        "icon": 48,
+        "os": "linux"
+    },
+    {
+        "id": 52,
+        "label": 1049520,
+        "description": 1049521,
+        "icon": 59,
+        "os": "windows"
+    },
+    {
+        "id": 53,
+        "label": 1049530,
+        "description": 1049531,
+        "icon": 27,
+        "os": "linux"
+    },
+    {
+        "id": 54,
+        "label": 1049540,
+        "description": 1049541,
+        "icon": 28
+    },
+    {
+        "id": 55,
+        "label": 1049550,
+        "description": 1049551,
+        "icon": 49,
+        "os": "windows"
+    },
+    {
+        "id": 56,
+        "label": 1049560,
+        "description": 1049561,
+        "icon": 0,
+        "os": "linux",
+        "running": [
+            {
+                "type": "exe",
+                "text": "transmission"
+            }
+        ]
+    },
+    {
+        "id": 57,
+        "label": 1049570,
+        "description": 1049571,
+        "icon": 50
+    },
+    {
+        "id": 58,
+        "label": 1049580,
+        "description": 1049581,
+        "icon": 66,
+        "running": [
+            {
+                "type": "exe",
+                "text": "vlc"
+            }
+        ]
+    },
+    {
+        "id": 59,
+        "label": 1049590,
+        "description": 1049591,
+        "icon": 29
+    },
+    {
+        "id": 60,
+        "label": 1049600,
+        "description": 1049601,
+        "icon": 67,
+        "os": "windows"
+    },
+    {
+        "id": 61,
+        "label": 1049610,
+        "description": 1049611,
+        "icon": 51,
+        "os": "windows"
+    },
+    {
+        "id": 62,
+        "label": 1049620,
+        "description": 1049621,
+        "icon": 52,
+        "os": "windows"
+    },
+    {
+        "id": 63,
+        "label": 1049630,
+        "description": 1049631,
+        "icon": 68,
+        "os": "windows"
+    },
+    {
+        "id": 64,
+        "label": 1049640,
+        "description": 1049641,
+        "icon": 74,
+        "os": "linux"
+    },
+    {
+        "id": 65,
+        "label": 1049650,
+        "description": 1049651,
+        "icon": 74,
+        "os": "linux"
+    },
+    {
+        "id": 66,
+        "label": 1049660,
+        "description": 1049661,
+        "icon": 69,
+        "os": "windows"
+    },
+    {
+        "id": 67,
+        "label": 1049670,
+        "description": 1049671,
+        "icon": 70,
+        "os": "windows"
+    },
+    {
+        "id": 68,
+        "label": 1049680,
+        "description": 1049681,
+        "icon": 71,
+        "os": "windows"
+    },
+    {
+        "id": 69,
+        "label": 1049690,
+        "description": 1049691,
+        "icon": 61,
+        "os": "linux"
+    },
+    {
+        "id": 70,
+        "label": 1049700,
+        "description": 1049701,
+        "icon": 30,
+        "os": "linux"
+    },
+    {
+        "id": 71,
+        "label": 1049710,
+        "description": 1049711,
+        "icon": 31,
+        "os": "windows"
+    },
+    {
+        "id": 72,
+        "label": 1049720,
+        "description": 1049721,
+        "icon": 11,
+        "running": [
+            {
+                "type": "exe",
+                "text": "firefox"
+            }
+        ]
+    },
+    {
+        "id": 73,
+        "label": 1049730,
+        "description": 1049731,
+        "icon": 80
+    },
+    {
+        "id": 74,
+        "label": 1049740,
+        "description": 1049741,
+        "icon": 38
+    },
+    {
+        "id": 75,
+        "label": 1049750,
+        "description": 1049751,
+        "icon": 38
+    }
+]

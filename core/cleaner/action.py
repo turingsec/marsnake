@@ -305,9 +305,15 @@ class Delete(file_action_base):
 	
 	@staticmethod
 	def do(action_useful):
+		error_count = 0
 		for path in action_useful["paths"]:
-			print(path)
-			command.Delete(path).execute()
+			try:
+				command.Delete(path).execute()
+			except Exception as e:
+				print("clean failed, " + str(e))
+				error_count += 1
+
+		return error_count
 
 class Ini(file_action_base):
 

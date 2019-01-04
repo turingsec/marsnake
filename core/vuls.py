@@ -1,44 +1,45 @@
 from utils.singleton import singleton
-from utils import lib, common
+from utils import lib, common, time_op
 from core.logger import Klogger
 from core.db import Kdatabase
-import os, re
+import os, re, threading
 
 @singleton
 class Kvuls():
 	def __init__(self):
 		self.reset()
-		
+
 	def reset(self):
 		self.vuls = {}
 		self.installed_packages = {}
 		self.upgradable_packages = {}
 		self.upgradable_packages_count = 0
 		self.changelogtool = ""
-		
+		self.lock = threading.Lock()
+
 	def get_upgradable_packages_num(self):
 		return self.upgradable_packages_count
-		
+
 	def candidate_size(self, package_name, candidate):
 		apt = common.check_programs_installed("apt-get")
 		size = 0
-		
+
 		if apt:
-			data, success, retcode = lib.exec_command(["apt-cache", "show", package_name])
-			
+			data, success, retcode = common.exec_command(["apt-cache", "show", package_name])
+
 			if success:
 				lines = data.split("\n")
 				pattern_size = re.compile(r'^Size: (\d+)')
-				
+
 				for line in lines:
 					match = pattern_size.match(line)
-					
+
 					if match:
 						size = int(match.groups()[0])
 						break
-						
+
 		yum = common.check_programs_installed("yum")
-		
+
 		#Available Packages
 		#Name        : systemd
 		#Arch        : x86_64
@@ -46,21 +47,21 @@ class Kvuls():
 		#Release     : 42.el7_4.4
 		#Size        : 5.2 M
 		if yum:
-			data, success, retcode = lib.exec_command(["yum", "info", "available", package_name])
-			
+			data, success, retcode = common.exec_command(["yum", "info", "available", package_name])
+
 			if success:
 				lines = data.split("\n")
 				pattern = re.compile(r"^Size\s*:\s(.+)")	#need to upgrade
-				
+
 				for line in lines:
 					match = pattern.match(line)
-					
+
 					if match:
 						size = common.sizestring2int(match.groups()[0])
 						break
-						
+
 		return size
-		
+
 	def get_installed_package_version(self, package):
 		if package in self.installed_packages:
 			return self.installed_packages[package]
@@ -71,7 +72,7 @@ class Kvuls():
 		#atmel-firmware	atmel-firmware-1.3-16.fc26.noarch
 		#libqb			libqb-1.0.2-1.fc26.x86_64
 		#gnutls			gnutls-3.5.14-1.fc26.x86_64
-		data, success, retcode = lib.exec_command(["rpm", "-qa", "--queryformat", "'%{NAME}\t%{NAME}-%{VERSION}-%{RELEASE}.%{ARCH}\n\'"])
+		data, success, retcode = common.exec_command(["rpm", "-qa", "--queryformat", "'%{NAME}\t%{NAME}-%{VERSION}-%{RELEASE}.%{ARCH}\n\'"])
 
 		if success:
 			lines = data.split("\n")
@@ -87,8 +88,8 @@ class Kvuls():
 		#wireless-tools.i686				1:29-6.el6				base
 		#xorg-x11-drv-ati-firmware.noarch	7.6.1-2.el6				base
 		#Obsoleting Packages
-		#firefox.i686						52.3.0-3.el6.centos		updates                                 
-		data, success, retcode = lib.exec_command(["yum", "--color=never", "check-update"])
+		#firefox.i686						52.3.0-3.el6.centos		updates
+		data, success, retcode = common.exec_command(["yum", "--color=never", "check-update"])
 
 		#Returns exit value of 100 if there are packages available for an update
 		if success or retcode == 100:
@@ -109,7 +110,7 @@ class Kvuls():
 
 					result = line.split()
 
-					#xorg-x11-xauth.x86_64		1:1.0.9-1.el6		base 
+					#xorg-x11-xauth.x86_64		1:1.0.9-1.el6		base
 					#Obsoleting Packages
 					if len(result) == 3:
 						package_name, arch = result[0].split(".")
@@ -134,13 +135,13 @@ class Kvuls():
 
 		for key, value in self.upgradable_packages.items():
 			tmp_cmd = "{0} {1}".format(cmd, key)
-			
-			data, success, retcode = lib.exec_command(tmp_cmd.split())
-			
+
+			data, success, retcode = common.exec_command(tmp_cmd.split())
+
 			if retcode == 1 or retcode == 0:
 				lines = data.split("\n")
 				begin_founded = False
-				
+
 				#Changes in packages about to be updated:
 				#
 				#ChangeLog for: bash-4.1.2-48.el6.x86_64
@@ -158,7 +159,7 @@ class Kvuls():
 						if pattern_begin.match(line):
 							begin_founded = True
 						continue
-						
+
 					if pattern_end.match(line):
 						break
 
@@ -174,8 +175,8 @@ class Kvuls():
 		#FEDORA-2017-f9b4e14129 bugfix       vim-minimal-2:8.0.983-1.fc26.x86_64
 		#FEDORA-2017-b8fa8e1a13 Unknown/Sec. xen-libs-4.8.1-7.fc26.x86_64
 		#FEDORA-2017-b8fa8e1a13 Unknown/Sec. xen-licenses-4.8.1-7.fc26.x86_64
-		#data, success, retcode = lib.exec_command(["yum", "--security", "--bugfix", "updateinfo", "list", "updates"])
-		data, success, retcode = lib.exec_command(["yum", "updateinfo", "list", "updates", "sec"])
+		#data, success, retcode = common.exec_command(["yum", "--security", "--bugfix", "updateinfo", "list", "updates"])
+		data, success, retcode = common.exec_command(["yum", "updateinfo", "list", "updates", "sec"])
 
 		if success:
 			lines = data.split("\n")
@@ -219,12 +220,12 @@ class Kvuls():
 		for key, value in self.upgradable_packages.items():
 			tmp_cmd = "{} {}".format(cmd, key)
 
-			data, success, retcode = lib.exec_command(tmp_cmd.split())
+			data, success, retcode = common.exec_command(tmp_cmd.split())
 
 			if success:
 				cves = cve_obj.findall(data)
 				cves = list(set(cves))
-				
+
 				for cveid in cves:
 					for info in value:
 						self.redhat_append_vulsinfo(cveid, info["name"], info["fullname"])
@@ -233,17 +234,17 @@ class Kvuls():
 		installed = self.get_installed_package_version(name)
 
 		self.common_response(cveid, name, installed, fullname)
-		
+
 	############################################## Debian ####################################################
 	def debian_update_packages(self):
 
 		if lib.check_root():
-			lib.exec_command(['apt-get', 'update'])
+			common.exec_command(['apt-get', 'update'])
 		else:
-			data, success, retcode = lib.exec_command(['sudo', '-n', 'ls'])
-			
+			data, success, retcode = common.exec_command(['sudo', '-n', 'ls'])
+
 			if success:
-				lib.exec_command(['sudo', 'apt-get', 'update'])
+				common.exec_command(['sudo', 'apt-get', 'update'])
 
 	def debian_check_dependencies(self):
 		aptitude = common.check_programs_installed("aptitude")
@@ -255,8 +256,8 @@ class Kvuls():
 		self.changelogtool = "apt-get"
 
 	def debian_get_installed_packages(self):
-		data, success, retcode = lib.exec_command(['dpkg-query', '-W'])
-		
+		data, success, retcode = common.exec_command(['dpkg-query', '-W'])
+
 		#snap-confine    		2.25
 		#snapd  				2.25
 		#snapd-login-service	1.2-0ubuntu1.1~xenial
@@ -273,7 +274,7 @@ class Kvuls():
 					Klogger().info("package : {}  ver : {}".format(package, ver))
 
 	def debian_get_upgradable_packages(self):
-		data, success, retcode = lib.exec_command(['LANGUAGE=en_US.UTF-8', 'apt-get', 'upgrade', '--dry-run'])
+		data, success, retcode = common.exec_command(['LANGUAGE=en_US.UTF-8', 'apt-get', 'upgrade', '--dry-run'])
 		packages = []
 
 		if success:
@@ -289,7 +290,7 @@ class Kvuls():
 					if pattern_begin.match(line):
 						begin_found = True
 					continue
-					
+
 				match = pattern_end.match(line)
 
 				if match:
@@ -317,7 +318,7 @@ class Kvuls():
 		for package_name in self.upgradable_packages:
 			tmp_cmd = "{} {}".format(cmd, package_name)
 
-			data, success, retcode = lib.exec_command(tmp_cmd.split())
+			data, success, retcode = common.exec_command(tmp_cmd.split())
 
 			if success:
 				lines = data.split("\n")
@@ -334,39 +335,39 @@ class Kvuls():
 							self.debian_append_vulsinfo(cve_id, package_name)
 			else:
 				Klogger().error("{} failed:{}".format(tmp_cmd, data))
-				
+
 	def debian_append_vulsinfo(self, cveid, package_name):
 		installed = ""
 		candidate = ""
-		
-		data, success, retcode = lib.exec_command(['apt-cache', 'policy', package_name])
-		
+
+		data, success, retcode = common.exec_command(['apt-cache', 'policy', package_name])
+
 		if success:
 			pattern_installed = re.compile(r'\s*Installed:\s*(.*)\n')
 			pattern_candidate = re.compile(r'\s*Candidate:\s*(.*)\n')
-			
+
 			match = pattern_installed.search(data)
 			if match:
 				installed = match.groups()[0]
-				
+
 			match = pattern_candidate.search(data)
 			if match:
 				candidate = match.groups()[0]
-				
+
 			Klogger().info("cveid : {} package : {} installed : {} candidate : {}".format(cveid, package_name, installed, candidate))
-			
+
 		if installed and candidate:
 			self.common_response(cveid, package_name, installed, candidate)
-			
+
 	############################################## Redhat and Debian send function ####################################################
 	def common_response(self, cveid, package_name, installed, candidate):
 		if package_name in self.vuls:
-			
+
 			cves = self.vuls[package_name]["cves"]
-			
+
 			if cveid not in cves:
 				cves.append(cveid)
-				
+
 		else:
 			self.vuls[package_name] = {
 				"installed" : installed,
@@ -374,35 +375,89 @@ class Kvuls():
 				"candidate_size" : self.candidate_size(package_name, candidate),
 				"cves" : [cveid]
 			}
-			
-			print("package : {} cve : {}".format(package_name, cveid))
-			
+
+			#print("package : {} cve : {}".format(package_name, cveid))
+
 	#yum install yum-changelog
 	def vulscan(self):
 		self.reset()
-		
+
 		distro, distro_release = lib.detect_distribution()
-		
+
 		yum = common.check_programs_installed("yum")
 		apt = common.check_programs_installed("apt-get")
-		
+
 		if yum:
 			self.redhat_get_installed_packages()
-			
+
 			if "centos" in distro.lower():
 				self.redhat_centos_checkupdate()
 				self.redhat_centos_vulscan()
 			else:
 				self.redhat_common_checkupdate()
 				self.redhat_common_vulscan()
-				
+
 		if apt:
 			self.debian_update_packages()
 			self.debian_check_dependencies()
 			self.debian_get_installed_packages()
 			self.debian_scan_cveid_from_changelog()
-			
+
 		vuls = Kdatabase().get_obj("vuls")
 		vuls["items"] = self.vuls
-		
-		#self.vuls = {}
+
+	def get_lock(self):
+		return self.lock
+
+	def repair(self, package):
+		yum = common.check_programs_installed("yum")
+		apt = common.check_programs_installed("apt-get")
+
+		if not any([yum, apt]):
+			return "Vulnerability repair not support on this OS"
+
+		if yum:
+			data, success, retcode = common.exec_command(['yum', 'update', '-y', package])
+
+			if not success:
+				return "yum error : {} code : {}".format(data, retcode)
+		elif apt:
+			data, success, retcode = common.exec_command(['apt-get', 'install', '-y', '--only-upgrade', package])
+
+			if not success:
+				return "apt-get error : {} code : {}".format(data, retcode)
+
+		self.update_record(package)
+
+		return None
+
+	def update_record(self, package):
+		vuls = Kdatabase().get_obj("vuls")
+
+		if package in vuls["items"]:
+			info = vuls["items"][package]
+			today = time_op.get_last_day()
+
+			if len(vuls["record"]) > 0:
+				last_record = vuls["record"][-1]
+				lastday = time_op.get_last_day(last_record["time"])
+
+				if today == lastday:
+					last_record["cves"].extend(info["cves"])
+				else:
+					vuls["record"].append({
+						"time" : today,
+						"cves" : info["cves"]
+					})
+			else:
+				vuls["record"].append({
+					"time" : today,
+					"cves" : info["cves"]
+				})
+
+			vuls["repaired_packages"].append({
+				"name" : package,
+				"installed" : info["installed"]
+			})
+
+			del vuls["items"][package]
