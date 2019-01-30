@@ -7,34 +7,16 @@ import multiprocessing
 RESTART = 1
 EXIT = 0
 
-if os.name == 'nt':
-	debug = True
-else:
-	debug = False
+debug = False
 
 def dprint(msg):
 	global debug
 	if debug:
 		print(msg)
 
-def load_extra_library():
-	pass
-
 def initAll(test = True):
 	common.set_work_dir()
 	dprint('[Init Info] work dir set')
-	try:
-		# if you want to start this py python.exe,set module to None.
-		if not test: 
-			load_extra_library()
-			dprint('[Init Info] extra libraries loaded')
-
-	except Exception as e:
-		dprint('[Init Error] set path failed: ' + str(e))
-		return -1
-
-	if common.is_windows():
-		multiprocessing.freeze_support()
 
 	try:
 		if common.is_windows() or common.is_darwin():
@@ -47,18 +29,12 @@ def initAll(test = True):
 		elif common.is_linux():
 			import start_without_ui
 
-			if hasattr(sys, "argv"):
-				for each in sys.argv:
-					if each == "--no-updater":
-						start_without_ui.login()
-						return 0
-
 			dprint("[Init Info] starting marsnake without ui..")
 			main_proc = common.fork_process(start_without_ui.without_ui_main, ())
 			main_proc.start()
 
 		update_now = False
-		next_update_time = int(time.time()) + 5
+		next_update_time = int(time.time()) + 30
 
 		while True:
 			if not main_proc.is_alive():
@@ -71,17 +47,12 @@ def initAll(test = True):
 						update_now = True
 						continue
 
-					next_update_time = int(time.time()) + 30 * 60 # wait for 1 hour
+					next_update_time = int(time.time()) + 60 * 60 * 6 # wait for 6 hour
 				except Exception as e:
 					dprint("[Init Error]", str(e))
 
 			time.sleep(1)
 
-		# update_now will force kill us.
-		# if you need to do other things,
-		# Do it before this function !!!
-		if update_now:
-			update.update_now()
 	except Exception as e:
 		dprint('[Init Info] start marsnake failed with ' + str(e))
 
