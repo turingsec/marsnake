@@ -1,26 +1,24 @@
 import os, logging, getpass, platform, json, locale, sys, traceback
 from logging.handlers import RotatingFileHandler
 from utils.singleton import singleton
-from core.configuration import Kconfig
-from core.profile_reader import KProfile
 from core.threads import Kthreads
 from core.security import Ksecurity
-from core.event.base_event import base_event
 from core.information import KInformation
+from config import constant
 from utils import common, net_op, time_op
 
 @singleton
-class Klogger(base_event):
+class Klogger():
 	def __init__(self):
 		self.logger = None
 
 	def on_initializing(self, *args, **kwargs):
-		log_location = os.path.join(common.get_data_location(), Kconfig().log_dir)
+		log_location = os.path.join(common.get_data_location(), constant.LOG_DIR)
 
 		if not os.path.exists(log_location):
 			os.mkdir(log_location)
 
-		self.path = os.path.join(log_location, Kconfig().log_name)
+		self.path = os.path.join(log_location, constant.LOG_NAME)
 
 		# create logger
 		logger_name = "loginfo"
@@ -29,7 +27,7 @@ class Klogger(base_event):
 		self.logger.setLevel(logging.DEBUG)
 
 		# create file handler
-		rfh = RotatingFileHandler(self.path, maxBytes = Kconfig().log_max_bytes, backupCount = Kconfig().log_backup_count)
+		rfh = RotatingFileHandler(self.path, maxBytes = constant.LOG_MAX_BYTES, backupCount = constant.LOG_BACKUP_COUNT)
 		rfh.setLevel(logging.DEBUG)
 
 		# create formatter
@@ -53,12 +51,12 @@ class Klogger(base_event):
 		info["encoding"] = encoding
 		info["python_version"] = platform.python_version()
 		info["data"] = log
-
-		server_setting = KProfile().read_key("server")
-		marsnake_server = "{}:{}".format(server_setting["host"], server_setting["port"])
-
+		
 		encrypt = Ksecurity().rsa_long_encrypt(json.dumps(info))
-		net_op.create_http_request(marsnake_server, "POST", "/upload_logs", encrypt)
+		net_op.create_http_request("{}:{}".format(constant.SERVER_HOST, constant.SERVER_PORT), 
+					"POST", 
+					"/upload_logs", 
+					encrypt)
 
 	def exception(self):
 		exc_info = sys.exc_info()
@@ -68,7 +66,7 @@ class Klogger(base_event):
 		self.upload_error(log)
 
 	def upload_error(self, log):
-		if Kconfig().release:
+		if constant.RELEASE:
 			Kthreads().apply_async(self.run_mod, (log, ))
 
 		print(log)
@@ -76,15 +74,18 @@ class Klogger(base_event):
 		self.logger.error(log)
 
 	def info(self, msg):
+		print(msg)
 		self.logger.info(str(msg).encode('utf8'))
 
 	def warn(self, msg):
+		print(msg)
 		self.logger.warn(str(msg).encode('utf8'))
 
 	def error(self, msg):
 		self.upload_error(msg)
 
 	def critical(self, msg):
+		print(msg)
 		self.logger.critical(str(msg).encode('utf8'))
 
 	'''

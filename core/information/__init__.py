@@ -1,8 +1,8 @@
 from utils import common
-from core.configuration import Kconfig
 from core.db import Kdatabase
 from core.profile_reader import KProfile
 from utils.singleton import singleton
+from config import constant
 import platform, uuid, getpass
 
 @singleton
@@ -26,7 +26,7 @@ class KInformation():
 			"localip" : common.get_ip_gateway(),
 			"hostname" : platform.node(),
 			"platform" : platform.platform(),
-			"version" : Kconfig().read_version(),
+			"version" : constant.VERSION,
 			"open_ports" : len(fingerprint["port"]["current"]),
 			"accounts" : len(fingerprint["account"]["current"]),
 			"uuid" : Kdatabase().get_obj("basic")["uuid"]

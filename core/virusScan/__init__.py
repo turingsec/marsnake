@@ -4,7 +4,6 @@ from core.db import Kdatabase
 from core.cybertek import KCybertek
 from core.threads import Kthreads
 from core.logger import Klogger
-from core.event.base_event import base_event
 from core.profile_reader import KProfile
 from config.constant import ISOLATION_PATH
 import re
@@ -27,7 +26,7 @@ OPERATION_MOVETO = 4
 
 RESERVERED_WHEN_CLEARED_HISTORY = -1
 
-class KvirusScanner(base_event):
+class KvirusScanner():
 	# a static dict for whitelist.used for addWhiteList funtion.
 	white_list = {}
 

@@ -23,7 +23,6 @@ class KProfile():
 				"host": constant.SERVER_HOST,
 				"port": constant.SERVER_PORT
 			},
-			"update_server": constant.UPDATE_SERVER_URL,
 			"settings": {
 				"remote_support": {
 					"allow_terminal": True,

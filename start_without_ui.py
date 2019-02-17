@@ -1,9 +1,6 @@
-from core.profile_reader import KProfile
-from utils import common, net_op
-import sys, os
-import json
+from utils import common
+import os
 import time
-import urllib.parse, getpass
 import start
 
 main_proc = None
@@ -32,20 +29,7 @@ def without_ui_main():
 	import signal
 	signal.signal(signal.SIGTERM, signal_term_handler)
 
-	try:
-		if not KProfile().read_key("username") or not KProfile().read_key("password"):
-			credential = os.path.join(common.get_data_location(), ".CREDENTIALS")
-
-			with open(credential, "rb") as f:
-				username = f.readline().strip().decode()
-				password = f.readline().strip().decode()
-
-			KProfile().write_username_fullname(username, "")
-			KProfile().write_password(password)
-
-		start_python_main()
-	except Exception as e:
-		print("Read Credential error:", e)
+	start_python_main()
 
 if __name__ == '__main__':
 	without_ui_main()

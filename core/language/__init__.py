@@ -1,11 +1,10 @@
 from utils.singleton import singleton
 from config import constant
-from core.event.base_event import base_event
 from utils import common, file_op
 import os, json, re
 
 @singleton
-class Klanguage(base_event):
+class Klanguage():
 	def __init__(self):
 		self.lang = "zh-CN"
 		self.jsons = os.path.join(common.get_work_dir(), constant.LANGUAGE_CONF)

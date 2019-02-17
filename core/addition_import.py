@@ -41,21 +41,21 @@ import module.hardening.cleaner
 import module.hardening.security_audit
 import module.hardening.check_vuls
 import module.hardening.repair_vuls
-import module.filetransfer.sender_init
-import module.filetransfer.udp_setup_server
-import module.filetransfer.udp_setup_client
-import module.filetransfer.udp_punch
-import module.filetransfer.udp_punch_server
-import module.filetransfer.udp_punch_client
-import module.filetransfer.upload
-import module.filetransfer.download
+# import module.filetransfer.sender_init
+# import module.filetransfer.udp_setup_server
+# import module.filetransfer.udp_setup_client
+# import module.filetransfer.udp_punch
+# import module.filetransfer.udp_punch_server
+# import module.filetransfer.udp_punch_client
+# import module.filetransfer.upload
+# import module.filetransfer.download
+# import module.filetransfer.list_files
+# import module.filetransfer.downloading
 import module.ueba.ueba_overview
 import module.ueba.ueba_list
 import module.ueba.ueba_detail
 import module.hardening.security_audit_scaner
 import module.ueba.ueba_resolve
-import module.filetransfer.list_files
-import module.filetransfer.downloading
 import module.hardening.virusScannerQueryUnhandled
 import module.hardening.virusScannerQueryHandled
 import module.hardening.virusScannerQueryWhitelist

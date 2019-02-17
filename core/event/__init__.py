@@ -1,5 +1,4 @@
 from utils.singleton import singleton
-from core.configuration import Kconfig
 from core.security import Ksecurity
 from core.db import Kdatabase
 from core.logger import Klogger
@@ -29,7 +28,7 @@ def signal_term_handler(signal, frame):
 @singleton
 class Kevent():
 	def __init__(self):
-		self.members = [Kconfig(), Klanguage(), Klogger(), Kdatabase(),
+		self.members = [Klogger(), Kdatabase(), Klanguage(),
 						Ksecurity(), Kmodules(), KUEBA(), Kptys(),
 						KvirusScanner(), Kbaseline(), Klauncher()]
 		self.terminate = False
@@ -52,15 +51,18 @@ class Kevent():
 		Kthreads().set_name("Network-thread")
 
 		for target in self.members:
-			target.on_start(*args, **kwargs)
+			if hasattr(target, "on_start"):
+				target.on_start(*args, **kwargs)
 
 	def do_unpack(self, *args, **kwargs):
 		for target in self.members:
-			target.on_unpack(*args, **kwargs)
+			if hasattr(target, "on_unpack"):
+				target.on_unpack(*args, **kwargs)
 
 	def do_disconnected(self, *args, **kwargs):
 		for target in self.members:
-			target.on_disconnected(*args, **kwargs)
+			if hasattr(target, "on_disconnected"):
+				target.on_disconnected(*args, **kwargs)
 
 	def set_terminate(self):
 		self.terminate = True

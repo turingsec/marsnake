@@ -2,7 +2,6 @@
 from utils.singleton import singleton
 from utils import time_op
 from core.logger import Klogger
-from core.event.base_event import base_event
 from core.threads import Kthreads
 from core.db import Kdatabase
 from core.profile_reader import KProfile
@@ -14,7 +13,7 @@ from core.baseline.weak_pwd import weak_pwd
 import time
 
 @singleton
-class Kbaseline(base_event):
+class Kbaseline():
 	def __init__(self):
 		self.maps = {
 			"authentication": authentication(),

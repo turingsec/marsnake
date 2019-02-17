@@ -2,8 +2,7 @@ from utils.singleton import singleton
 from utils import common, net_op
 from core.security import Ksecurity
 from core.logger import Klogger
-from core.configuration import Kconfig
-import re
+import re, json, base64
 
 @singleton
 class Khttp():
@@ -22,15 +21,18 @@ class Khttp():
 		Klogger().info("Get Response From Gateway server status({})".format(status))
 
 		if status == 200:
-			data = Ksecurity().rsa_long_decrypt(data)
+			data = json.loads(data)
+			
+			if data["code"] == 0:
+				destination = Ksecurity().rsa_long_decrypt(base64.b64decode(data["data"]))
 
-			if b":" in data:
-				host, port = data.split(b":", 1)
-
-				if common.is_python2x() is False:
+				if b":" in destination:
+					host, port = destination.split(b":", 1)
 					host = host.decode("ascii")
 					port = port.decode("ascii")
 
-			Klogger().info("Logic Server Host:{} Port:{}".format(host, port))
+				Klogger().info("Logic Server Host:{} Port:{}".format(host, port))
+			else:
+				Klogger().info("Connect to Web server failed:{}".format(data["msg"]))
 
 		return host, port

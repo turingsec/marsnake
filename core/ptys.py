@@ -3,7 +3,6 @@ from concurrent.futures import ThreadPoolExecutor
 from collections import deque
 from utils.singleton import singleton
 from core.logger import Klogger
-from core.event.base_event import base_event
 from utils import common
 
 if os.name != 'nt':
@@ -41,7 +40,7 @@ def terminal_reading(term, socket, session_id):
 		})
 
 @singleton
-class Kptys(base_event):
+class Kptys():
 
 	def __init__(self):
 		pass

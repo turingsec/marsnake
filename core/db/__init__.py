@@ -1,7 +1,6 @@
-from core.configuration import Kconfig
-from utils import common, time_op
+from utils import common
 from utils.singleton import singleton
-from core.event.base_event import base_event
+from config import constant
 import os
 
 try:
@@ -11,7 +10,7 @@ except ImportError:
 
 class Kpickle():
 	def __init__(self, path):
-		db_location = os.path.join(common.get_data_location(), Kconfig().db_dir)
+		db_location = os.path.join(common.get_data_location(), constant.DB_DIR)
 
 		if not os.path.exists(db_location):
 			os.mkdir(db_location)
@@ -27,27 +26,27 @@ class Kpickle():
 			return pickle.load(f)
 
 @singleton
-class Kdatabase(base_event):
+class Kdatabase():
 	def __init__(self):
 		pass
-
+		
 	def on_initializing(self, *args, **kwargs):
 		self.reset_monitor_second()
-
+		
 		self.db_objs = {}
 		self.db_maps = {
-			"audit": Kpickle(Kconfig().db_audit),
-			"baseline": Kpickle(Kconfig().db_baseline),
-			"basic" : Kpickle(Kconfig().db_basic),
-			"cleaner" : Kpickle(Kconfig().db_cleaner),
-			"fingerprint" : Kpickle(Kconfig().db_fingerprint),
-			"monitor" : Kpickle(Kconfig().db_monitor),
-			"ueba" : Kpickle(Kconfig().db_ueba),
-			"virus": Kpickle(Kconfig().db_virus),
-			"virus_whitelist" : Kpickle(Kconfig().db_virus_whitelist),
-			"vuls" : Kpickle(Kconfig().db_vuls)
+			"audit": Kpickle(constant.DB_AUDIT),
+			"baseline": Kpickle(constant.DB_BASELINE),
+			"basic" : Kpickle(constant.DB_BASIC),
+			"fingerprint" : Kpickle(constant.DB_FINGERPRINT),
+			"monitor" : Kpickle(constant.DB_MONITOR),
+			"setting": Kpickle(constant.DB_SETTING),
+			"ueba" : Kpickle(constant.DB_UEBA),
+			"virus": Kpickle(constant.DB_VIRUS),
+			"virus_whitelist" : Kpickle(constant.DB_VIRUS_WHITELIST),
+			"vuls" : Kpickle(constant.DB_VULS)
 		}
-
+		
 		db_objs = {
 			"audit" : {
 				"feature": [],
@@ -67,11 +66,6 @@ class Kdatabase(base_event):
 				"startup_counts" : 0,
 				"uuid" : None,
 				"version" : ""
-			},
-			"cleaner" : {
-				"kinds" : {},
-				"record" : [],
-				"lasttime" : 0
 			},
 			"fingerprint" : {
 				"port": {
@@ -106,6 +100,10 @@ class Kdatabase(base_event):
 					"disk_io" : []
 				}
 			},
+			"setting" : {
+				"username": "",
+				"credential": ""
+			},
 			"ueba" : {
 				"storys" : {},
 				"lasttime" : 0
@@ -128,44 +126,28 @@ class Kdatabase(base_event):
 				"lasttime" : 0
 			}
 		}
-
+		
 		for key in self.db_maps.keys():
 			try:
 				self.db_objs[key] = self.db_maps[key].load()
 			except Exception as e:
 				self.db_objs[key] = db_objs[key]
 				self.dump(key)
-
+				
 		#self.startup_update()
 		self.manual_struct_update()
-		#self.recursive_update(self.db_objs, db_objs)
-		#self.db_objs = db_objs
+		
+		if len(args) == 0:
+			if not self.get_obj("setting")["username"] or not self.get_obj("setting")["credential"]:
+				from core.logger import Klogger
+				Klogger().critical("Please use login.py to login Marsnake server first")
+				return False
 
 		return True
 
 	def manual_struct_update(self):
 		"""This function only for updating TypeError struct"""
-
-		# modify at 2018/6/16 14:41 by zhangqian
-		if 'statistic' not in self.db_objs["audit"]:
-			self.db_objs["audit"]["statistic"] = {
-				"critical": 0,
-				"warning": 0
-			}
-			self.dump("audit")
-
-		if not self.db_objs["basic"]["uuid"]:
-			self.db_objs["basic"]["uuid"] = common.create_uuid()
-			self.dump("basic")
-
-		if not "warnings" in self.db_objs["monitor"]:
-			self.db_objs["monitor"]["warnings"] = {
-				"cpu": [],
-				"memory": [],
-				"net_io": [],
-				"disk_io": []
-			}
-			self.dump("monitor")
+		pass
 
 	def recursive_update(self, default, custom):
 		"""

@@ -2,7 +2,6 @@ from utils.singleton import singleton
 from concurrent.futures import ThreadPoolExecutor
 from utils import common, import_helper
 from core.logger import Klogger
-from core.event.base_event import base_event
 from core.threads import Kthreads
 import sys, imp
 import threading
@@ -26,7 +25,7 @@ def run_mod(mod_run, payload, socket):
 		Klogger().exception()
 
 @singleton
-class Kmodules(base_event):
+class Kmodules():
 	def __init__(self):
 		pass
 
@@ -57,20 +56,20 @@ class Kmodules(base_event):
 			"1045" : load_mod("module/status/network_status.py"),
 			"1046" : load_mod("module/status/cpu_status.py"),
 			"1047" : load_mod("module/status/disk_status.py"),
-			"1048" : load_mod("module/hardening/cleaner.py"),
+			#"1048" : load_mod("module/hardening/cleaner.py"),
 			"1049" : load_mod("module/hardening/security_audit.py"),
 			"1050" : load_mod("module/hardening/check_vuls.py"),
 			"1051" : load_mod("module/hardening/repair_vuls.py"),
 			#"1052" : load_mod("module/hardening/repair_vuls.py"),
-			"1060" : load_mod("module/filetransfer/sender_init.py"),
-			"1061" : load_mod("module/filetransfer/udp_setup_server.py"),
-			"1062" : load_mod("module/filetransfer/udp_setup_client.py"),
-			"1064" : load_mod("module/filetransfer/udp_punch.py"),
-			"1065" : load_mod("module/filetransfer/udp_punch_server.py"),
-			"1066" : load_mod("module/filetransfer/udp_punch_client.py"),
-			#"1067" : load_mod(""
-			"1068" : load_mod("module/filetransfer/upload.py"),
-			"1069" : load_mod("module/filetransfer/download.py"),
+			# "1060" : load_mod("module/filetransfer/sender_init.py"),
+			# "1061" : load_mod("module/filetransfer/udp_setup_server.py"),
+			# "1062" : load_mod("module/filetransfer/udp_setup_client.py"),
+			# "1064" : load_mod("module/filetransfer/udp_punch.py"),
+			# "1065" : load_mod("module/filetransfer/udp_punch_server.py"),
+			# "1066" : load_mod("module/filetransfer/udp_punch_client.py"),
+			# "1067" : load_mod(""
+			# "1068" : load_mod("module/filetransfer/upload.py"),
+			# "1069" : load_mod("module/filetransfer/download.py"),
 			"1070" : load_mod("module/ueba/ueba_overview.py"),
 			"1071" : load_mod("module/ueba/ueba_list.py"),
 			"1072" : load_mod("module/ueba/ueba_detail.py"),
@@ -78,9 +77,9 @@ class Kmodules(base_event):
 			"1074" : load_mod("module/ueba/ueba_resolve.py"),
 			"1075" : load_mod("module/ueba/ueba_delete_resolved.py"),
 
-			"1080" : load_mod("module/filetransfer/list_files.py"),
+			#"1080" : load_mod("module/filetransfer/list_files.py"),
 			#"1081" : load_mod("sync process"),
-			"1082" : load_mod("module/filetransfer/downloading.py"),
+			#"1082" : load_mod("module/filetransfer/downloading.py"),
 
 			"1090" : load_mod("module/status/get_resource_warnings.py"),
 			"1091" : load_mod("module/status/clear_resource_warnings.py"),
@@ -134,7 +133,7 @@ class Kmodules(base_event):
 			self.executor.submit(run_mod, self.modules["1014"], None, None)
 			self.executor.submit(run_mod, self.modules["1015"], None, None)
 			self.executor.submit(run_mod, self.modules["1016"], None, None)
-			self.executor.submit(run_mod, self.modules["1048"], None, None)
+			#self.executor.submit(run_mod, self.modules["1048"], None, None)
 			#self.executor.submit(run_mod, self.modules["1073"], None, None)
 
 			self.unacked = True

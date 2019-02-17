@@ -14,7 +14,7 @@ def dprint(msg):
 	if debug:
 		print(msg)
 
-def initAll(test = True):
+def initAll():
 	common.set_work_dir()
 	dprint('[Init Info] work dir set')
 

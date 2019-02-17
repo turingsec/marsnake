@@ -1,11 +1,10 @@
 from utils.singleton import singleton
-from core.configuration import Kconfig
 from core.threads import Kthreads
 from core.information import KInformation
 from core.computer_score import KScore
 from utils import net_op, file_op
-from utils.randomize import Krandom
 from core.profile_reader import KProfile
+from config import constant
 import urllib.parse, json
 import os, struct
 
@@ -21,7 +20,7 @@ class KCybertek():
 			self.do_upload_virus(pathname, oldname)
 
 	def do_upload_virus(self, pathname, oldname):
-		if file_op.getsize(pathname) <= Kconfig().cybertak_size_limit:
+		if file_op.getsize(pathname) <= constant.MALWARE_FILE_MAX_SIZE:
 			sha256 = file_op.sha256_checksum(pathname)
 			content = file_op.cat(pathname)
 
@@ -30,7 +29,7 @@ class KCybertek():
 				oldname_len = struct.pack("<I", len(oldname))
 				oldname = struct.pack("{}s".format(len(oldname)), oldname.encode("ascii"))
 
-				status, data = net_op.create_http_request(Kconfig().cybertek_server,
+				status, data = net_op.create_http_request(constant.CYBERTEK_URL,
 					"POST",
 					"/api/virus_upload",
 					sha256 + oldname_len + oldname + content)
@@ -41,7 +40,7 @@ class KCybertek():
 
 	def detect_file_sha256(self, sha256):
 		if sha256:
-			status, data = net_op.create_http_request(Kconfig().cybertek_server,
+			status, data = net_op.create_http_request(constant.CYBERTEK_URL,
 				"POST",
 				"/api/virus_report",
 				urllib.parse.urlencode({'sha256': sha256}),
@@ -55,7 +54,7 @@ class KCybertek():
 		return None
 
 	def get_ip_report(self, ip):
-		status, data = net_op.create_http_request(Kconfig().cybertek_server,
+		status, data = net_op.create_http_request(constant.CYBERTEK_URL,
 			"POST",
 			"/api/ip_report",
 			urllib.parse.urlencode({'ip': ip}),
@@ -64,7 +63,7 @@ class KCybertek():
 		return data
 
 	def get_ip_geo(self, ip):
-		status, data = net_op.create_http_request(Kconfig().cybertek_server,
+		status, data = net_op.create_http_request(constant.CYBERTEK_URL,
 			"POST",
 			"/api/ip_geo",
 			urllib.parse.urlencode({'ip': ip}),

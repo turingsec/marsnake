@@ -1,9 +1,8 @@
 import sys
 from utils.singleton import singleton
-from core.event.base_event import base_event
 
 @singleton
-class Klauncher(base_event):
+class Klauncher():
 	"class launcher"
 	def __init__(self):
 		from network.launcher.connect_launcher import connect_launcher
