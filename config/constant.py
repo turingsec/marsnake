@@ -1,29 +1,15 @@
 RELEASE = True
 APP_NAME = "Marsnake"
-VERSION = "1.6.0"
+VERSION = "1.6.1"
 
 #MACRO
 FILE_TRANSFER_SIZE_PER_TIME = 1 * 1024 * 1024
 SOCKET_BUFFER_SIZE = 10 * 1024 * 1024
 SOCKET_RECV_SIZE = 1 * 1024 * 1024
-
-#VULS
-VULS_SCAN_PERIOD = 2 * 24 * 60 * 60
-VULS_REPAIR_PERIOD = 3 * 24 * 60 * 60
-
-#CLEANER
-CLEANER_SCAN_PERIOD = 2 * 24 * 60 * 60
-CLEANER_CLEAN_PERIOD = 3 * 24 * 60 * 60
+MALWARE_FILE_MAX_SIZE = 10 * 1024 * 1024
 
 #SECURITY AUDIT
 AUDIT_SCAN_PERIOD = 5 * 60
-
-#VIRUS
-VIRUS_SCAN_PERIOD = 3 * 24 * 60 * 60
-
-#
-PORT_SCAN_PERIOD = 10 * 60
-ACCOUNT_SCAN_PERIOD = 10 * 60
 
 #RSA KEYS
 SERVER_PUBLIC_KEY = "config/server_public_key.pem"
@@ -32,9 +18,6 @@ SERVER_PUBLIC_KEY = "config/server_public_key.pem"
 CLEANER_CONF = "config/cleaner"
 LANGUAGE_CONF = "config/language"
 PCIDB_CONF = "config/pci.ids"
-
-#APPLICATION SETTINGS
-SETTINGS_INFO = "settings.conf"
 
 #LOG
 LOG_DIR = "logs"
@@ -59,13 +42,7 @@ DB_VIRUS_WHITELIST = "whitelist.pkl"
 #ISOLATION
 ISOLATION_PATH = "isolation"
 
-#CYBERTEK
-MALWARE_FILE_MAX_SIZE = 30 * 1024 * 1024
-
 if RELEASE:
-	#SERVER_URL = "marsnake.com:443"
-	SERVER_URL = "192.168.1.19:8080"
-	CYBERTEK_URL = "cybertek.turingsec.com:443"
+	SERVER_URL = "marsnake.com:443"
 else:
 	SERVER_URL = "10.16.60.202:8080"
-	CYBERTEK_URL = "cybertek.turingsec.com:80"

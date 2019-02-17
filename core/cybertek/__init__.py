@@ -28,9 +28,9 @@ class KCybertek():
 				oldname_len = struct.pack("<I", len(oldname))
 				oldname = struct.pack("{}s".format(len(oldname)), oldname.encode("ascii"))
 
-				status, data = net_op.create_http_request(constant.CYBERTEK_URL,
+				status, data = net_op.create_http_request(constant.SERVER_URL,
 					"POST",
-					"/api/virus_upload",
+					"/client/virus_upload",
 					sha256 + oldname_len + oldname + content)
 
 				return data
@@ -39,9 +39,9 @@ class KCybertek():
 
 	def detect_file_sha256(self, sha256):
 		if sha256:
-			status, data = net_op.create_http_request(constant.CYBERTEK_URL,
+			status, data = net_op.create_http_request(constant.SERVER_URL,
 				"POST",
-				"/api/virus_report",
+				"/client/virus_report",
 				urllib.parse.urlencode({'sha256': sha256}),
 				{"Content-type": "application/x-www-form-urlencoded", "Accept": "text/plain"})
 
@@ -53,18 +53,18 @@ class KCybertek():
 		return None
 		
 	def get_ip_report(self, ip):
-		status, data = net_op.create_http_request(constant.CYBERTEK_URL,
+		status, data = net_op.create_http_request(constant.SERVER_URL,
 			"POST",
-			"/api/ip_report",
+			"/client/ip_report",
 			urllib.parse.urlencode({'ip': ip}),
 			{"Content-type": "application/x-www-form-urlencoded", "Accept": "text/plain"})
 
 		return data
 
 	def get_ip_geo(self, ip):
-		status, data = net_op.create_http_request(constant.CYBERTEK_URL,
+		status, data = net_op.create_http_request(constant.SERVER_URL,
 			"POST",
-			"/api/ip_geo",
+			"/client/ip_geo",
 			urllib.parse.urlencode({'ip': ip}),
 			{"Content-type": "application/x-www-form-urlencoded", "Accept": "text/plain"})
 
@@ -74,7 +74,7 @@ class KCybertek():
 		warning, score = KScore().get_status()
 		status, data = net_op.create_http_request(constant.SERVER_URL,
 			"POST",
-			"/publish_threat",
+			"/client/publish_threat",
 			urllib.parse.urlencode({'score': score,
 							'threat_id': threat_id,
 							'threat': json.dumps(threat).encode("ascii"),
