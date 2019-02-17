@@ -52,6 +52,7 @@ DB_VULS = "vuls.pkl"
 DB_UEBA = "ueba.pkl"
 DB_AUDIT = "audit.pkl"
 DB_SETTING = "setting.pkl"
+DB_STRATEGY = "strategy.pkl"
 DB_VIRUS = "virus.pkl"
 DB_VIRUS_WHITELIST = "whitelist.pkl"
 
@@ -62,12 +63,9 @@ ISOLATION_PATH = "isolation"
 MALWARE_FILE_MAX_SIZE = 30 * 1024 * 1024
 
 if RELEASE:
-	#SERVER_HOST = "marsnake.com"
-	#SERVER_PORT = 443
-	SERVER_HOST = "192.168.1.19"
-	SERVER_PORT = 8080
+	#SERVER_URL = "marsnake.com:443"
+	SERVER_URL = "192.168.1.19:8080"
 	CYBERTEK_URL = "cybertek.turingsec.com:443"
 else:
-	SERVER_HOST = "10.16.60.202"
-	SERVER_PORT = 8080
+	SERVER_URL = "10.16.60.202:8080"
 	CYBERTEK_URL = "cybertek.turingsec.com:80"

@@ -1,7 +1,6 @@
 from core.vuls import Kvuls
 from core.db import Kdatabase
 from core.event import Kevent
-from core.profile_reader import KProfile
 from utils import common, lib, time_op
 import time
 
@@ -15,7 +14,7 @@ def run(payload, socket):
 				break
 
 			now = time_op.now()
-			settings = KProfile().get_web_strategy()
+			settings = Kdatabase().get_obj('strategy')
 
 			if settings:
 				if now > vuls["lasttime"] + settings["vuls"]["period"]:

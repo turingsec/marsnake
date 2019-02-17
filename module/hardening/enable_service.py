@@ -1,6 +1,5 @@
 from utils import lib, common
 from core.language import Klanguage
-from core.profile_reader import KProfile
 
 def op_service(name, op, response):
 	if common.is_linux():

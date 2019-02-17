@@ -6,7 +6,7 @@ import urllib.parse, json
 
 def login(username, password):
 	setting_db = Kdatabase().get_obj("setting")
-	status, data = net_op.create_http_request("{}:{}".format(constant.SERVER_HOST, constant.SERVER_PORT),
+	status, data = net_op.create_http_request(constant.SERVER_URL,
 		"POST",
 		"/client/login",
 		urllib.parse.urlencode({'username': username, 'password': password}),

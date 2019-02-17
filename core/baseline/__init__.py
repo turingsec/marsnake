@@ -4,7 +4,6 @@ from utils import time_op
 from core.logger import Klogger
 from core.threads import Kthreads
 from core.db import Kdatabase
-from core.profile_reader import KProfile
 from core.baseline.authentication import authentication
 from core.baseline.database import database
 from core.baseline.normal import normal
@@ -43,7 +42,7 @@ class Kbaseline():
 	def check_loop(self):
 		while True:
 			baseline = Kdatabase().get_obj('baseline')
-			settings = KProfile().get_web_strategy()
+			settings = Kdatabase().get_obj('strategy')
 			now = time_op.now()
 			
 			if settings:

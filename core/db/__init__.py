@@ -41,6 +41,7 @@ class Kdatabase():
 			"fingerprint" : Kpickle(constant.DB_FINGERPRINT),
 			"monitor" : Kpickle(constant.DB_MONITOR),
 			"setting": Kpickle(constant.DB_SETTING),
+			"strategy": Kpickle(constant.DB_STRATEGY),
 			"ueba" : Kpickle(constant.DB_UEBA),
 			"virus": Kpickle(constant.DB_VIRUS),
 			"virus_whitelist" : Kpickle(constant.DB_VIRUS_WHITELIST),
@@ -64,8 +65,7 @@ class Kdatabase():
 			},
 			"basic" : {
 				"startup_counts" : 0,
-				"uuid" : None,
-				"version" : ""
+				"uuid" : None
 			},
 			"fingerprint" : {
 				"port": {
@@ -104,6 +104,9 @@ class Kdatabase():
 				"username": "",
 				"credential": ""
 			},
+			"strategy" : {
+
+			},
 			"ueba" : {
 				"storys" : {},
 				"lasttime" : 0
@@ -134,7 +137,7 @@ class Kdatabase():
 				self.db_objs[key] = db_objs[key]
 				self.dump(key)
 				
-		#self.startup_update()
+		self.startup_update()
 		self.manual_struct_update()
 		
 		if len(args) == 0:
@@ -202,6 +205,9 @@ class Kdatabase():
 	def get_obj(self, key):
 		if key in self.db_objs:
 			return self.db_objs[key]
+
+	def set_obj(self, key, value):
+			self.db_objs[key] = value
 
 	def dump(self, key):
 		if key in self.db_objs:

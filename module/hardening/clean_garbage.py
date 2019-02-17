@@ -1,7 +1,6 @@
 from core.db import Kdatabase
 from core.cleaner import Kcleaner
 from core.language import Klanguage
-from core.profile_reader import KProfile
 from utils import common
 import shutil, time, os
 
@@ -48,14 +47,14 @@ def run(payload, socket):
 		"error" : ""
 	}
 
-	if payload["args"]["user_id"] != KProfile().read_key("username"):
+	if payload["args"]["user_id"] != Kdatabase().get_obj('setting')["username"]:
 		response["error"] = Klanguage().to_ts(4007)
 		socket.response(response)
 		return
 
 	with Kcleaner().get_lock():
 		total_failed, total_size = clean(payload["args"]["items"], socket, payload["args"]["session_id"])
-
+		
 	if total_failed + total_size > 0:
 		prompt = "{} {}".format(common.size_human_readable(total_size), Klanguage().to_ts(1830))
 		'''

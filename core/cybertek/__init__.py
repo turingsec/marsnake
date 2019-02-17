@@ -3,7 +3,6 @@ from core.threads import Kthreads
 from core.information import KInformation
 from core.computer_score import KScore
 from utils import net_op, file_op
-from core.profile_reader import KProfile
 from config import constant
 import urllib.parse, json
 import os, struct
@@ -52,7 +51,7 @@ class KCybertek():
 			return data
 
 		return None
-
+		
 	def get_ip_report(self, ip):
 		status, data = net_op.create_http_request(constant.CYBERTEK_URL,
 			"POST",
@@ -73,9 +72,7 @@ class KCybertek():
 
 	def publish_threat(self, threat_id, threat):
 		warning, score = KScore().get_status()
-		server_setting = KProfile().read_key("server")
-		marsnake_server = "{}:{}".format(server_setting["host"], server_setting["port"])
-		status, data = net_op.create_http_request(marsnake_server,
+		status, data = net_op.create_http_request(constant.SERVER_URL,
 			"POST",
 			"/publish_threat",
 			urllib.parse.urlencode({'score': score,

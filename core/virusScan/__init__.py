@@ -4,7 +4,6 @@ from core.db import Kdatabase
 from core.cybertek import KCybertek
 from core.threads import Kthreads
 from core.logger import Klogger
-from core.profile_reader import KProfile
 from config.constant import ISOLATION_PATH
 import re
 import shutil
@@ -351,7 +350,7 @@ class KvirusScanner():
 	def runScannerCron(self):
 		while True:
 			virus = Kdatabase().get_obj('virus')
-			settings = KProfile().get_web_strategy()
+			settings = Kdatabase().get_obj('strategy')
 
 			if settings:
 				if virus['finished']:

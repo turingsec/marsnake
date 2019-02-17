@@ -1,7 +1,6 @@
 from core.db import Kdatabase
 from core.vuls import Kvuls
 from core.language import Klanguage
-from core.profile_reader import KProfile
 from utils import common, lib, time_op
 
 def repair(package, socket, session_id):
@@ -28,7 +27,7 @@ def run(payload, socket):
 		"error" : ""
 	}
 
-	if payload["args"]["user_id"] != KProfile().read_key("username"):
+	if payload["args"]["user_id"] != Kdatabase().get_obj('setting')["username"]:
 		response["error"] = Klanguage().to_ts(4007)
 		socket.response(response)
 		return

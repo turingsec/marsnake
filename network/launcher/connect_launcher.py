@@ -14,10 +14,9 @@ class connect_launcher(base_launcher):
 	def start(self):
 		while True:
 			try:
-				marsnake_server = "{}:{}".format(constant.SERVER_HOST, constant.SERVER_PORT)
 				username = Kdatabase().get_obj("setting")["username"]
 				
-				host, port = Khttp().get_connection(marsnake_server, username)
+				host, port = Khttp().get_connection(constant.SERVER_URL, username)
 				
 				if host and port:
 					Kevent().do_unpack()

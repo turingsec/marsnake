@@ -1,6 +1,8 @@
-from core.profile_reader import KProfile
+from core.db import Kdatabase
 
 def run(payload, socket):
 	detail = payload["args"]["detail"]
-
-	KProfile().set_web_strategy(detail)
+	
+	#need to check
+	if detail:
+		Kdatabase().set_obj("strategy", detail)

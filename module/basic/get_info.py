@@ -1,7 +1,7 @@
 from core.security import Ksecurity
 from core.computer_score import KScore
 from core.information import KInformation
-from core.profile_reader import KProfile
+from core.db import Kdatabase
 import base64
 
 def run(payload, socket):
@@ -9,9 +9,9 @@ def run(payload, socket):
 	Ksecurity().set_aes_iv(Ksecurity().rsa_long_decrypt(encrypt_aes), 'This is an IV456')
 	
 	warning, score = KScore().get_status()
-
+	
 	response = KInformation().get_info()
-	response["password"] = KProfile().read_key("password")
+	response["credential"] = Kdatabase().get_obj("setting")["credential"]
 	response["cmd_id"] = payload["cmd_id"]
 	response["score"] = score
 	response["warning"] = warning

@@ -1,6 +1,5 @@
 from utils import common
 from core.db import Kdatabase
-from core.profile_reader import KProfile
 from utils.singleton import singleton
 from config import constant
 import platform, uuid, getpass
@@ -17,8 +16,8 @@ class KInformation():
 		fingerprint = Kdatabase().get_obj("fingerprint")
 
 		return {
-			"user_id" : KProfile().read_key("username"),
-			"fullname" : KProfile().read_key("fullname"),
+			"user_id" : Kdatabase().get_obj("setting")["username"],
+			"fullname" : Kdatabase().get_obj("setting")["username"],
 			"distro" : common.get_distribution(),
 			"os_name" : platform.system(),
 			"macaddr" : macaddr,
@@ -29,5 +28,6 @@ class KInformation():
 			"version" : constant.VERSION,
 			"open_ports" : len(fingerprint["port"]["current"]),
 			"accounts" : len(fingerprint["account"]["current"]),
-			"uuid" : Kdatabase().get_obj("basic")["uuid"]
+			"uuid" : Kdatabase().get_obj("basic")["uuid"],
+			"startup_counts": Kdatabase().get_obj("basic")["startup_counts"]
 		}

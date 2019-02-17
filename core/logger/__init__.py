@@ -53,7 +53,7 @@ class Klogger():
 		info["data"] = log
 		
 		encrypt = Ksecurity().rsa_long_encrypt(json.dumps(info))
-		net_op.create_http_request("{}:{}".format(constant.SERVER_HOST, constant.SERVER_PORT), 
+		net_op.create_http_request(constant.SERVER_URL, 
 					"POST", 
 					"/upload_logs", 
 					encrypt)
