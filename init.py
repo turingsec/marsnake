@@ -51,7 +51,7 @@ def initAll(test = True):
 				except Exception as e:
 					dprint("[Init Error]", str(e))
 
-			time.sleep(1)
+			time.sleep(10)
 
 	except Exception as e:
 		dprint('[Init Info] start marsnake failed with ' + str(e))
