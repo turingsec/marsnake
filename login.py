@@ -11,16 +11,17 @@ def login(username, password):
 		"/client/login",
 		urllib.parse.urlencode({'username': username, 'password': password}),
 		{"Content-type": "application/x-www-form-urlencoded", "Accept": "application/json"})
-	
+		
 	if status == 200 and data:
 		data = json.loads(data)
 
-		setting_db["username"] = data["username"]
-		setting_db["credential"] = data["credential"]
+		if data["code"] == 0:
+			setting_db["username"] = data["username"]
+			setting_db["credential"] = data["credential"]
 
-		Kdatabase().dump("setting")
+			Kdatabase().dump("setting")
 
-		return True
+			return True
 
 	return False
 

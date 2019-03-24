@@ -43,7 +43,7 @@ class KCybertek():
 				"POST",
 				"/client/virus_report",
 				urllib.parse.urlencode({'sha256': sha256}),
-				{"Content-type": "application/x-www-form-urlencoded", "Accept": "text/plain"})
+				{"Content-type": "application/x-www-form-urlencoded", "Accept": "application/json"})
 
 			#if isinstance(data, bytes):
 			#	data = data.decode()
@@ -57,7 +57,7 @@ class KCybertek():
 			"POST",
 			"/client/ip_report",
 			urllib.parse.urlencode({'ip': ip}),
-			{"Content-type": "application/x-www-form-urlencoded", "Accept": "text/plain"})
+			{"Content-type": "application/x-www-form-urlencoded", "Accept": "application/json"})
 
 		return data
 
@@ -66,7 +66,7 @@ class KCybertek():
 			"POST",
 			"/client/ip_geo",
 			urllib.parse.urlencode({'ip': ip}),
-			{"Content-type": "application/x-www-form-urlencoded", "Accept": "text/plain"})
+			{"Content-type": "application/x-www-form-urlencoded", "Accept": "application/json"})
 
 		return data
 
