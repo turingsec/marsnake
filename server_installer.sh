@@ -52,12 +52,6 @@ SearchRequiredBinary() {
                     unxz)
                         UNXZ_BINARY=${BINARY}
                     ;;
-                    python)
-                        PYTHON_BINARY=${BINARY}
-                    ;;
-                    pip)
-                        PIP_BINARY=${BINARY}
-                    ;;
                     gcc)
                         GCC_BINARY=${BINARY}
                     ;;
@@ -188,6 +182,7 @@ InstallPackage() {
     done
 }
 
+set -e
 env echo -e '\033[0;36m'\
 '   __  __                            _           \r\n'\
 '  |  \/  |                          | |          \r\n'\
@@ -197,16 +192,9 @@ env echo -e '\033[0;36m'\
 '  |_|  |_|\__,_|_|  |___/_| |_|\__,_|_|\_\___|   \r\n'\
 '\033[0;0m'
 
-if [ $# -ne 1 ]
-    then
-        echo "Wrong number of arguments supplied."
-        echo "Usage: installer.sh <username>"
-        exit 1
-fi
-
-USERNAME=$1
-
+DEST_DIR=${HOME}"/.Marsnake"
 MARSNAKE_GIT_ADDR="https://github.com/turingsec/marsnake"
+INSTALL_LOG=${DEST_DIR}"/install.log"
 
 SearchRequiredBinary
 
@@ -248,7 +236,7 @@ fi
 
 Display --indent 1 --text "- Installing essential packages"
 
-if [ ! ${GIT_BINARY} ] || [ ! ${TAR_BINARY} ] || [ ! ${UNXZ_BINARY} ] || [ ! ${PYTHON_BINARY} ] || [ ! ${PIP_BINARY} ] || [ ! ${GCC_BINARY} ] || [ ! ${MAKE_BINARY} ] || [ ! ${CURL_BINARY} ]; then
+if [ ! ${GIT_BINARY} ] || [ ! ${TAR_BINARY} ] || [ ! ${UNXZ_BINARY} ] || [ ! ${GCC_BINARY} ] || [ ! ${MAKE_BINARY} ] || [ ! ${CURL_BINARY} ]; then
 	if [ ! ${GIT_BINARY} ]; then
 		InstallPackage "git"
 	fi
@@ -263,14 +251,6 @@ if [ ! ${GIT_BINARY} ] || [ ! ${TAR_BINARY} ] || [ ! ${UNXZ_BINARY} ] || [ ! ${P
 		else
 			InstallPackage "xz"
 		fi
-	fi
-
-	if [ ! ${PYTHON_BINARY} ]; then
-		InstallPackage "python"
-	fi
-
-	if [ ! ${PIP_BINARY} ]; then
-		InstallPackage "python-pip"
 	fi
 
 	if [ ! ${GCC_BINARY} ]; then
@@ -297,7 +277,6 @@ else
 	InstallPackage "${RPM_PACKAGES}"
 fi
 
-DEST_DIR=${HOME}"/.Marsnake"
 Display --indent 1 --text "- Marsnake is installing to "${DEST_DIR}
 
 if [ ! -d ${DEST_DIR} ]; then
@@ -310,24 +289,27 @@ if [ ! -d ${DEST_DIR} ]; then
 fi
 
 Display --indent 2 --text "- Downloading Marsnake using git"
-${SUDO} ${GIT_BINARY} clone ${MARSNAKE_GIT_ADDR} ${DEST_DIR}"/marsnake"
 
-if [ ! $? -eq 0 ]; then
-	Display --indent 2 --text "- Download Marsnake" --result "FAILED" --color RED
+if [ ! -d ${DEST_DIR}"/marsnake" ];then
+    ${SUDO} ${GIT_BINARY} clone ${MARSNAKE_GIT_ADDR} ${DEST_DIR}"/marsnake"
+    
+    if [ ! $? -eq 0 ]; then
+	    Display --indent 2 --text "- Download Marsnake" --result "FAILED" --color RED
         exit 1
+    fi
 fi
 
 Display --indent 2 --text "- Extracting python interpreter"
-${SUDO} ${TAR_BINARY} -xJf ${DEST_DIR}"/marsnake/Python-3.6.8.tar.xz" -C ${DEST_DIR}"/marsnake"
+${SUDO} ${TAR_BINARY} -xJf ${DEST_DIR}"/marsnake/lib/Python-3.6.8.tar.xz" -C ${DEST_DIR}"/marsnake"
 
 if [ ! $? -eq 0 ]; then
 	Display --indent 2 --text "- Extract python interpreter" --result "FAILED" --color RED
-        exit 1
+    exit 1
 fi
 
 Display --indent 2 --text "- Compiling python interpreter"
-
 Display --indent 3 --text "- Configure"
+
 CONFIGURE_PREFIX=${DEST_DIR}"/marsnake/interpreter_install"
 CONFIGURE_PARAMS="--enable-optimizations --enable-ipv6 --with-system-expat --with-system-ffi --without-dtrace --without-doc-strings"
 ${SUDO} /bin/bash -c "cd ${DEST_DIR}'/marsnake/Python-3.6.8' && ./configure --prefix=${CONFIGURE_PREFIX} ${CONFIGURE_PARAMS}"
@@ -353,16 +335,16 @@ if [ ! $? -eq 0 ]; then
         exit 1
 fi
 
-Display --indent 3 --text "- Cleaning"
-${SUDO} ${RM_BINARY} -f ${DEST_DIR}"/marsnake/Python-3.6.8.tar.xz"
-${SUDO} ${RM_BINARY} -rf ${DEST_DIR}"/marsnake/Python-3.6.8"
+#Display --indent 3 --text "- Cleaning"
+#${SUDO} ${RM_BINARY} -f ${DEST_DIR}"/marsnake/lib/Python-3.6.8.tar.xz"
+#${SUDO} ${RM_BINARY} -rf ${DEST_DIR}"/marsnake/Python-3.6.8"
 
-if [ ! $? -eq 0 ]; then
-        Display --indent 3 --text "- Clean" --result "FAILED" --color YELLOW
-fi
+#if [ ! $? -eq 0 ]; then
+#        Display --indent 3 --text "- Clean" --result "FAILED" --color YELLOW
+#fi
 
 Display --indent 2 --text "- Installing python virtualenv"
-${SUDO} ${PIP_BINARY} install virtualenv
+${SUDO} ${DEST_DIR}/marsnake/interpreter_install/bin/pip3.6 install virtualenv
 
 if [ ! $? -eq 0 ]; then
 	Display --indent 2 --text "- Install python virtualenv" --result "FAILED" --color RED
@@ -370,7 +352,7 @@ if [ ! $? -eq 0 ]; then
 fi
 
 Display --indent 2 --text "- Setting up python virtualenv"
-${SUDO} virtualenv --python=${DEST_DIR}"/marsnake/interpreter_install/bin/python3.6" ${DEST_DIR}"/marsnake/interpreter_env"
+${SUDO} ${DEST_DIR}/marsnake/interpreter_install/bin/virtualenv --python=${DEST_DIR}"/marsnake/interpreter_install/bin/python3.6" ${DEST_DIR}"/marsnake/interpreter_env"
 
 if [ ! $? -eq 0 ]; then
         Display --indent 3 --text "- Execute virtualenv" --result "FAILED" --color RED
