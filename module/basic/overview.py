@@ -387,18 +387,6 @@ def get_mem_disk_info(response):
 	response["ram"]["total"] = common.size_human_readable(mem[0])
 	response["ram"]["used"] = common.size_human_readable(mem[3])
 
-def get_garbage(response):
-	cleaner = Kdatabase().get_obj("cleaner")
-
-	for kind, info in cleaner["kinds"].items():
-		size = info["size"]
-
-		if size > 0:
-			response["garbage"].append({
-				"name" : Klanguage().to_ts(info["name"]),
-				"size" :  info["size"]
-			})
-
 def get_vuls(response):
 	vuls = Kdatabase().get_obj("vuls")
 
@@ -436,7 +424,6 @@ def run(payload, socket):
 	get_hardware_info(response)
 	get_system_info(response)
 	get_mem_disk_info(response)
-	get_garbage(response)
 	get_vuls(response)
 
 	monitor_second = Kdatabase().get_monitor_second()
