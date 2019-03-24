@@ -61,15 +61,6 @@ class KCybertek():
 
 		return data
 
-	def get_ip_geo(self, ip):
-		status, data = net_op.create_http_request(constant.SERVER_URL,
-			"POST",
-			"/client/ip_geo",
-			urllib.parse.urlencode({'ip': ip}),
-			{"Content-type": "application/x-www-form-urlencoded", "Accept": "application/json"})
-
-		return data
-
 	def publish_threat(self, threat_id, threat):
 		warning, score = KScore().get_status()
 		status, data = net_op.create_http_request(constant.SERVER_URL,

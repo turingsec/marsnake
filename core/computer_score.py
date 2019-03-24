@@ -174,7 +174,7 @@ class KScore():
 	def get_status(self):
 		lost_score = 0
 		warning = {}
-		maps = [KvirusScore(), KcleanerScore(), KvulsScore(),
+		maps = [KvirusScore(), KvulsScore(),
 						KuebaScore(), KbaselineScore(), KmonitorScore()]
 
 		for i in maps:

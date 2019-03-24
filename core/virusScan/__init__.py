@@ -260,15 +260,12 @@ class KvirusScanner():
 
 			ret = json.loads(ret)
 
-			if ret['isVirus'] == 1:
+			if ret['isVirus']:
 				self.handleVirus(filepath, ret['virusType'], ret['level'], sha256)
 
 				if 'isNeedUpload' in ret and ret['isNeedUpload']:
 					self.uploadFile(filepath)
-
-			elif ret['isVirus'] == -1:  # server don't sure until now
-				retry_list.append((filepath, sha256))
-
+	
 	  	# when we finish scan,set "finished" and "lastScanedPath"
 		self.current_path = ''
 
@@ -279,29 +276,6 @@ class KvirusScanner():
 		virus['lasttime'] = time_op.now()
 
 		Kdatabase().dump('virus')
-
-		# retry for no result filepath.
-		times = 3
-		while times:
-			new_retry_list = []
-
-			for filepath, sha256 in retry_list:
-				ret = KCybertek().detect_file_sha256(sha256)
-				if not ret:
-					continue
-
-				ret = json.loads(ret)
-
-				if ret['isVirus'] == 1:
-					self.handleVirus(
-						filepath, ret['virusType'], ret['level'], sha256)
-					if 'isNeedUpload' in ret and ret['isNeedUpload']:
-						self.uploadFile(filepath)
-				elif ret['isVirus'] == -1:
-					new_retry_list.append((filepath, sha256))
-
-			retry_list = new_retry_list
-			times -= 1
 
 	def runDeepScan(self):
 		root_paths = []

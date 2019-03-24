@@ -182,7 +182,6 @@ InstallPackage() {
     done
 }
 
-set -e
 env echo -e '\033[0;36m'\
 '   __  __                            _           \r\n'\
 '  |  \/  |                          | |          \r\n'\
@@ -277,6 +276,7 @@ else
 	InstallPackage "${RPM_PACKAGES}"
 fi
 
+set -e
 Display --indent 1 --text "- Marsnake is installing to "${DEST_DIR}
 
 if [ ! -d ${DEST_DIR} ]; then
