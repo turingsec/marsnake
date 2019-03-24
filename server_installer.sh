@@ -246,7 +246,6 @@ else
 	Display --indent 2 --text '- Continue with sudo'
 fi
 
-
 Display --indent 1 --text "- Installing essential packages"
 
 if [ ! ${GIT_BINARY} ] || [ ! ${TAR_BINARY} ] || [ ! ${UNXZ_BINARY} ] || [ ! ${PYTHON_BINARY} ] || [ ! ${PIP_BINARY} ] || [ ! ${GCC_BINARY} ] || [ ! ${MAKE_BINARY} ] || [ ! ${CURL_BINARY} ]; then
@@ -386,15 +385,9 @@ if [ ! $? -eq 0 ]; then
 	exit 1
 fi
 
+#Login to server
 Display --indent 2 --text "- Registering the device"
-LOGIN_CREDENTIALS=`${CURL_BINARY} -d "username=${USERNAME}" https://marsnake.com/client/register`
-
-if [ ! $? -eq 0 ]; then
-	Display --indent 2 --text "- Register the device" --result "FAILED" --color RED
-	exit 1
-fi
-
-${SUDO} /bin/bash -c "echo ${USERNAME} > ${DEST_DIR}/.CREDENTIALS && echo ${LOGIN_CREDENTIALS} >> ${DEST_DIR}/.CREDENTIALS"
+${SUDO} /bin/bash -c "source ${DEST_DIR}'/marsnake/interpreter_env/bin/activate' && python3.6 ${DEST_DIR}'/marsnake/login.py'"
 
 Display --indent 1 --text "- Set up Marsnake auto-start"
 
