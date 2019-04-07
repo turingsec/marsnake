@@ -13,11 +13,11 @@ class remote_ip(net_feature):
 
 			if ip_report:
 				ip_report = json.loads(ip_report)
-				detected_urls = ip_report["detected_urls"]
+				detected_downloaded_samples = ip_report["detected_downloaded_samples"]
 				positives = 0
 				total = 0
 
-				for url in detected_urls:
+				for url in detected_downloaded_samples:
 					positives += url["positives"]
 					total += url["total"]
 
