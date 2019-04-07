@@ -2,7 +2,7 @@ from utils import net_op
 from config import constant
 from core.db import Kdatabase
 import getpass
-import urllib.parse, json
+import urllib.parse, json, sys
 
 def login(username, password):
 	setting_db = Kdatabase().get_obj("setting")
@@ -30,9 +30,10 @@ def read_from_user():
 
 	if not setting_db["username"] or not setting_db["credential"]:
 		print("""Visit https://www.marsnake.com to register a cloud account.\nCloud account used to manage your multiple devices via web panel.\n""")
-
+		
 		while True:
-			username = input("Please enter your email: ")
+			sys.stdin.flush()
+			username = raw_input("Please enter your email: ")
 			password = getpass.getpass("Please enter your password: ")
 			
 			if username and password:
