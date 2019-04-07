@@ -259,12 +259,14 @@ class KvirusScanner():
 				continue
 
 			ret = json.loads(ret)
+			data = ret["data"]
 
-			if ret['isVirus']:
-				self.handleVirus(filepath, ret['virusType'], ret['level'], sha256)
+			if data:
+				if data['isVirus']:
+					self.handleVirus(filepath, data['virusType'], data['level'], sha256)
 
-				if 'isNeedUpload' in ret and ret['isNeedUpload']:
-					self.uploadFile(filepath)
+					if data['isNeedUpload']:
+						self.uploadFile(filepath)
 	
 	  	# when we finish scan,set "finished" and "lastScanedPath"
 		self.current_path = ''
