@@ -324,6 +324,8 @@ class KvirusScanner():
 		self.runVirusScan(root_paths)
 
 	def runScannerCron(self):
+		time.sleep(30)
+		
 		while True:
 			virus = Kdatabase().get_obj('virus')
 			settings = Kdatabase().get_obj('strategy')
