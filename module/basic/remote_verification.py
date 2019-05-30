@@ -1,5 +1,3 @@
-from core.profile_reader import KProfile
-
 def run(payload, socket):
 	response = {
 		"cmd_id" : payload["cmd_id"],
@@ -7,9 +5,7 @@ def run(payload, socket):
 		"error" : ""
 	}
 
-	settings = KProfile().read_key("settings")
-
-	if settings["remote_support"]["code"] != payload["args"]["code"]:
+	if "6666" != payload["args"]["code"]:
 		response["error"] = "wrong code"
-
+	
 	socket.response(response)

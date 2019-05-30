@@ -149,7 +149,7 @@ def run(payload, socket):
     get_hardware_info(response)
     get_system_info(response)
     get_mem_disk_info(response)
-    get_garbage(response)
+    #get_garbage(response)
 
     monitor_second = Kdatabase().get_monitor_second()
 

@@ -36,6 +36,7 @@ class Connection:
 			self.client.connect((ip, port))
 			self.send(json.dumps({"key": key}).encode("ascii"))
 		except Exception as e:
+			print("VNC connection error:", e)
 			self.client.close()
 			self.client = None
 
@@ -76,7 +77,7 @@ class MiscLibrary:
 
 		elif common.is_windows():
 			self._lib = CDLL(os.path.join(
-				common.get_work_dir(), "lib/misc.dll"))
+				common.get_work_dir(), "lib/windows/misc.dll"))
 		else:
 			raise Exception("Not support on macos")
 

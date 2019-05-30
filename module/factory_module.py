@@ -32,7 +32,7 @@ class Kmodules():
 	def on_initializing(self, *args, **kwargs):
 		self.modules = {
 			"0" : load_mod("module/basic/heartbeat.py"),
-			#"1" : load_mod("module/basic/remote_verification.py"),
+			"1" : load_mod("module/basic/remote_verification.py"),
 			"2" : load_mod("module/basic/set_security_strategy.py"),
 			"999" : load_mod("module/basic/set_language.py"),
 			"1000" : load_mod("module/basic/get_info.py"),

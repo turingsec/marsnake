@@ -13,6 +13,7 @@ class remote_ip(net_feature):
 
 			if ip_report:
 				ip_report = json.loads(ip_report)
+				print(ip_report)
 				detected_downloaded_samples = ip_report["detected_downloaded_samples"]
 				positives = 0
 				total = 0
