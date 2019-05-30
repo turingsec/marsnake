@@ -12,7 +12,8 @@ if common.is_windows():
 	import wmi
 	import win32timezone
 	import win32file
-
+	import login
+	
 if common.is_darwin():
 	import module.basic.overview_mac
 

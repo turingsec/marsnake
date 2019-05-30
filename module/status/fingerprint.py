@@ -1,10 +1,10 @@
-from core.fingerprint import Kfingerprint
 from core.db import Kdatabase
 from core.event import Kevent
 from utils import time_op
 import time
 
 def run(payload, socket):
+	from core.fingerprint import Kfingerprint
 	fingerprint = Kdatabase().get_obj("fingerprint")
 
 	while True:

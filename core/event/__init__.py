@@ -44,7 +44,6 @@ class Kevent():
 		for target in self.members:
 			if not target.on_initializing(*args, **kwargs):
 				return False
-
 		return True
 
 	def do_start(self, *args, **kwargs):
