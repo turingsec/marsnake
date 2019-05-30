@@ -35,7 +35,7 @@ def read_from_user():
 			sys.stdin.flush()
 			sys.stdout.flush()
 			sys.stderr.flush()
-			username = input("Please enter your email: ")
+			username = getpass.getpass("Please enter your email: ")
 			password = getpass.getpass("Please enter your password: ")
 			
 			if username and password:
