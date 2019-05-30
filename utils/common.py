@@ -62,8 +62,10 @@ def python_version(version):
 
 def set_work_dir():
 	global work_dir
+	
 	if hasattr(sys, "frozen"):# synchronize with pyloader's initialization.py
-		work_dir = os.path.abspath(os.path.join(os.path.dirname(os.__file__),'..'))
+		#work_dir = os.path.abspath(os.path.join(os.path.dirname(os.__file__),'..'))
+		work_dir = os.path.abspath(os.path.join(os.path.dirname(os.__file__)))
 	else:
 		work_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 

@@ -144,10 +144,16 @@ class Kdatabase():
 			if not self.get_obj("setting")["username"] or not self.get_obj("setting")["credential"]:
 				from core.logger import Klogger
 				Klogger().critical("Please use login.py to login Marsnake server first")
-				return False
+
+				if common.is_windows():
+					import login
+					login.read_from_user()
+					return True
+				else:
+					return False
 
 		return True
-
+		
 	def manual_struct_update(self):
 		"""This function only for updating TypeError struct"""
 		pass

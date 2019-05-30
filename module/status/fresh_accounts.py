@@ -1,6 +1,5 @@
 from utils import common
 from core.db import Kdatabase
-from core.fingerprint import Kfingerprint
 
 def run(payload, socket):
 	response = {
@@ -9,6 +8,7 @@ def run(payload, socket):
 		"error" : ""
 	}
 
+	from core.fingerprint import Kfingerprint
 	Kfingerprint().record_account()
 	
 	fingerprint = Kdatabase().get_obj("fingerprint")
