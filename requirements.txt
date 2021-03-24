@@ -2,4 +2,4 @@ psutil==5.4.8
 ptyprocess==0.6.0
 pyasn1==0.4.5
 pystun==0.1.0
-rsa==4.0
+rsa==4.1
